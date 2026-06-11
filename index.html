@@ -264,47 +264,80 @@
     .hero-trust-stars { color: var(--gold); letter-spacing: 1px; }
     .hero-trust strong { color: var(--gold); }
 
-    /* ─── HERO ROAD (Шлях до свободи) ─── */
-    .hero-road {
+    /* ─── PATH DIVIDER between sections ─── */
+    .path-divider {
       position: relative;
-      width: 100%;
-      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 0;
       margin: 0 auto;
+      max-width: 1280px;
     }
-    .hero-road::before {
+    .path-divider::before,
+    .path-divider::after {
+      content: '';
+      width: 2px;
+      height: 50px;
+      background-image: linear-gradient(to bottom, var(--gold) 50%, transparent 50%);
+      background-size: 2px 10px;
+      background-repeat: repeat-y;
+      opacity: 0.45;
+    }
+    .path-divider::before { margin-bottom: 4px; }
+    .path-divider::after  { margin-top: 4px; }
+    .path-marker {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 22px;
+      background: linear-gradient(135deg, var(--card) 0%, var(--card-2) 100%);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-pill);
+      box-shadow: 0 8px 32px rgba(0,0,0,.3);
+      position: relative;
+      z-index: 2;
+    }
+    .path-num {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+      color: var(--gold-text);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700; font-size: 15px;
+      box-shadow: 0 4px 16px var(--gold-glow), inset 0 -2px 4px rgba(0,0,0,.2);
+      position: relative;
+      flex-shrink: 0;
+    }
+    .path-num::before {
       content: '';
       position: absolute;
-      inset: -60px;
-      background: radial-gradient(ellipse at 50% 20%, var(--gold-dim) 0%, var(--violet-dim) 40%, transparent 70%);
-      filter: blur(60px);
-      z-index: -1;
+      inset: -5px;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
+      opacity: 0.35;
+      animation: pulse 2.4s infinite;
     }
-    .road-svg {
-      width: 100%;
-      height: auto;
-      display: block;
-      filter: drop-shadow(0 20px 60px rgba(168,85,247,.15));
+    .path-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gray-200);
+      font-weight: 600;
+      white-space: nowrap;
     }
-    .road-dash {
-      stroke-dashoffset: 0;
-      animation: roadMove 1.8s linear infinite;
+    .path-label-strong {
+      font-size: 16px;
+      letter-spacing: -0.01em;
+      text-transform: none;
+      color: var(--white);
+      font-weight: 700;
+      margin-left: -8px;
     }
-    @keyframes roadMove {
-      from { stroke-dashoffset: 0; }
-      to   { stroke-dashoffset: -40; }
-    }
-    .road-marker {
-      animation: markerFloat 4s ease-in-out infinite;
-      transform-origin: center;
-    }
-    .road-marker:nth-child(7) { animation-delay: 0s; }
-    .road-marker:nth-child(8) { animation-delay: -1s; }
-    .road-marker:nth-child(9) { animation-delay: -2s; }
-    .road-marker:nth-child(10) { animation-delay: -3s; }
-    @keyframes markerFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-3px); }
-    }
+    .path-divider--end::after { display: none; }
+    .path-divider--start::before { display: none; }
 
     /* keep old hero-models for compatibility (not used now) */
     .hero-models {
@@ -1307,12 +1340,12 @@
           </div>
 
           <h1>
-            Шлях до<br>
-            <span class="grad">свободи</span>
+            Пасивний дохід<br>
+            <span class="grad">на 3D-моделях</span>
           </h1>
 
           <p class="hero-sub">
-            Програма, яка 4 роки була доступна лише команді Visual360. Тепер відкриваємо тобі. За 2 місяці — твій пасивний дохід на 3D-моделях.
+            Створюй меблі, декор і вази. Продавай на TurboSquid. Один раз створив — отримуєш роками.
           </p>
 
           <div class="hero-pricing">
@@ -1342,136 +1375,94 @@
           </div>
         </div>
 
-        <!-- HERO ROAD — Шлях до свободи -->
-        <div class="hero-road">
-          <svg class="road-svg" viewBox="0 0 460 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="skyGrad" x1="230" y1="0" x2="230" y2="600" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#F5DE89" stop-opacity="0.35"/>
-                <stop offset="25%" stop-color="#A855F7" stop-opacity="0.25"/>
-                <stop offset="60%" stop-color="#0A0A0F" stop-opacity="0"/>
-              </linearGradient>
-              <linearGradient id="roadGrad" x1="230" y1="600" x2="230" y2="120" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#2A2A3A"/>
-                <stop offset="100%" stop-color="#1A1A26"/>
-              </linearGradient>
-              <linearGradient id="sunGrad" x1="230" y1="40" x2="230" y2="160" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#FFE062"/>
-                <stop offset="60%" stop-color="#F5DE89"/>
-                <stop offset="100%" stop-color="#F5DE89" stop-opacity="0"/>
-              </linearGradient>
-              <radialGradient id="sunBlur" cx="0.5" cy="0.5" r="0.5">
-                <stop offset="0%" stop-color="#FFE062" stop-opacity="0.8"/>
-                <stop offset="100%" stop-color="#F5DE89" stop-opacity="0"/>
-              </radialGradient>
-              <filter id="glow"><feGaussianBlur stdDeviation="6"/></filter>
-            </defs>
+        <!-- HERO MODELS GRID -->
+        <div class="hero-models">
+          <div class="model-card">
+            <div class="model-svg">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 14 L14 36 L42 36 L42 14"/>
+                <path d="M14 36 L8 56 L20 56"/>
+                <path d="M42 36 L48 56 L36 56"/>
+                <path d="M14 26 L42 26"/>
+                <path d="M22 36 L20 48 L36 48 L34 36"/>
+                <path d="M14 14 Q14 8 18 8 L38 8 Q42 8 42 14"/>
+              </svg>
+            </div>
+            <div class="model-meta">
+              <span class="model-name">Lounge Chair</span>
+              <span class="model-price">$159</span>
+            </div>
+          </div>
 
-            <!-- Sky gradient -->
-            <rect width="460" height="600" fill="url(#skyGrad)" opacity="0.6"/>
+          <div class="model-card model-card--violet">
+            <div class="model-svg">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 32 Q6 24 14 24 L50 24 Q58 24 58 32 L58 44 L6 44 Z"/>
+                <path d="M14 24 L14 36 Q14 30 20 30 L44 30 Q50 30 50 36 L50 24"/>
+                <path d="M12 44 L10 52"/>
+                <path d="M52 44 L54 52"/>
+              </svg>
+            </div>
+            <div class="model-meta">
+              <span class="model-name">Sofa 3-seat</span>
+              <span class="model-price">$299</span>
+            </div>
+          </div>
 
-            <!-- Sun glow (horizon) -->
-            <circle cx="230" cy="120" r="80" fill="url(#sunBlur)"/>
-            <circle cx="230" cy="120" r="38" fill="url(#sunGrad)"/>
+          <div class="model-card model-card--cyan">
+            <div class="model-svg">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 L44 6 L40 24 L24 24 Z"/>
+                <path d="M32 24 L32 52"/>
+                <ellipse cx="32" cy="54" rx="14" ry="3"/>
+              </svg>
+            </div>
+            <div class="model-meta">
+              <span class="model-name">Floor Lamp</span>
+              <span class="model-price">$89</span>
+            </div>
+          </div>
 
-            <!-- Mountains silhouette -->
-            <path d="M 0 200 L 60 160 L 130 190 L 200 150 L 280 175 L 360 145 L 430 175 L 460 165 L 460 220 L 0 220 Z" fill="#1A1A26" opacity="0.6"/>
+          <div class="model-card model-card--pink">
+            <div class="model-svg">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <ellipse cx="32" cy="14" rx="8" ry="2"/>
+                <path d="M24 14 L24 20 Q24 26 28 30 Q24 36 24 44 Q24 52 32 52 Q40 52 40 44 Q40 36 36 30 Q40 26 40 20 L40 14"/>
+              </svg>
+            </div>
+            <div class="model-meta">
+              <span class="model-name">Ceramic Vase</span>
+              <span class="model-price">$45</span>
+            </div>
+          </div>
 
-            <!-- Road trapezoid -->
-            <path d="M 50 600 L 410 600 L 260 145 L 200 145 Z" fill="url(#roadGrad)" stroke="#3A3A50" stroke-width="1"/>
+          <div class="model-card">
+            <div class="model-svg">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 18 L60 18 L54 24 L10 24 Z"/>
+                <path d="M14 24 L14 52"/>
+                <path d="M50 24 L50 52"/>
+              </svg>
+            </div>
+            <div class="model-meta">
+              <span class="model-name">Coffee Table</span>
+              <span class="model-price">$199</span>
+            </div>
+          </div>
 
-            <!-- Road side lines -->
-            <line x1="50" y1="600" x2="200" y2="145" stroke="#F5DE89" stroke-width="2" opacity="0.6"/>
-            <line x1="410" y1="600" x2="260" y2="145" stroke="#F5DE89" stroke-width="2" opacity="0.6"/>
-
-            <!-- Dashed center line (animated) -->
-            <line x1="230" y1="600" x2="230" y2="145" stroke="#F5DE89" stroke-width="4" stroke-dasharray="22 18" stroke-linecap="round" class="road-dash"/>
-
-            <!-- Start label (ТИ ТУТ) -->
-            <g transform="translate(60, 575)">
-              <rect x="-4" y="-12" width="60" height="22" rx="11" fill="#F5DE89"/>
-              <text x="26" y="3" text-anchor="middle" fill="#0A0A0F" font-family="Space Grotesk" font-weight="700" font-size="11" letter-spacing="0.5">ТИ ТУТ</text>
-            </g>
-
-            <!-- MODEL MARKER 1 — Стілець ($159, Місяць 2) -->
-            <g transform="translate(105, 470)" class="road-marker">
-              <line x1="60" y1="0" x2="125" y2="0" stroke="#2A2A3A" stroke-width="1" stroke-dasharray="3 3"/>
-              <g transform="translate(0, -38)">
-                <rect x="-4" y="-4" width="62" height="64" rx="10" fill="#1A1A26" stroke="#F5DE89" stroke-width="1.5"/>
-                <svg x="3" y="0" width="48" height="48" viewBox="0 0 64 64" fill="none" stroke="#F5DE89" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M14 14 L14 36 L42 36 L42 14"/>
-                  <path d="M14 36 L8 56 L20 56"/>
-                  <path d="M42 36 L48 56 L36 56"/>
-                  <path d="M14 14 Q14 8 18 8 L38 8 Q42 8 42 14"/>
-                </svg>
-              </g>
-              <g transform="translate(135, -4)">
-                <text font-family="Space Grotesk" font-weight="700" font-size="13" fill="#F5DE89">Місяць 2</text>
-                <text y="16" font-family="Space Grotesk" font-weight="500" font-size="11" fill="#7d7d7d">Перший продаж · $159</text>
-              </g>
-            </g>
-
-            <!-- MODEL MARKER 2 — Ваза + Лампа ($89-129, Місяць 4) -->
-            <g transform="translate(340, 370)" class="road-marker">
-              <line x1="-110" y1="0" x2="-55" y2="0" stroke="#2A2A3A" stroke-width="1" stroke-dasharray="3 3"/>
-              <g transform="translate(-50, -38)">
-                <rect x="-4" y="-4" width="62" height="64" rx="10" fill="#1A1A26" stroke="#A855F7" stroke-width="1.5"/>
-                <svg x="3" y="0" width="48" height="48" viewBox="0 0 64 64" fill="none" stroke="#A855F7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20 6 L44 6 L40 24 L24 24 Z"/>
-                  <path d="M32 24 L32 52"/>
-                  <ellipse cx="32" cy="54" rx="14" ry="3"/>
-                </svg>
-              </g>
-              <g transform="translate(0, -4)">
-                <text font-family="Space Grotesk" font-weight="700" font-size="13" fill="#A855F7">Місяць 4</text>
-                <text y="16" font-family="Space Grotesk" font-weight="500" font-size="11" fill="#7d7d7d">$800+ пасивно</text>
-              </g>
-            </g>
-
-            <!-- MODEL MARKER 3 — Диван ($299, Місяць 6) -->
-            <g transform="translate(155, 280)" class="road-marker">
-              <line x1="38" y1="0" x2="85" y2="0" stroke="#2A2A3A" stroke-width="1" stroke-dasharray="3 3"/>
-              <g transform="translate(-15, -32)">
-                <rect x="-4" y="-4" width="54" height="54" rx="9" fill="#1A1A26" stroke="#06B6D4" stroke-width="1.5"/>
-                <svg x="2" y="0" width="42" height="42" viewBox="0 0 64 64" fill="none" stroke="#06B6D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M6 32 Q6 24 14 24 L50 24 Q58 24 58 32 L58 44 L6 44 Z"/>
-                  <path d="M14 24 L14 36 Q14 30 20 30 L44 30 Q50 30 50 36 L50 24"/>
-                </svg>
-              </g>
-              <g transform="translate(95, -2)">
-                <text font-family="Space Grotesk" font-weight="700" font-size="12" fill="#06B6D4">Місяць 6</text>
-                <text y="14" font-family="Space Grotesk" font-weight="500" font-size="10" fill="#7d7d7d">$2 400+ /міс</text>
-              </g>
-            </g>
-
-            <!-- MODEL MARKER 4 — Кухня + Декор ($599, Місяць 12) -->
-            <g transform="translate(310, 215)" class="road-marker">
-              <line x1="-80" y1="0" x2="-46" y2="0" stroke="#2A2A3A" stroke-width="1" stroke-dasharray="3 3"/>
-              <g transform="translate(-42, -28)">
-                <rect x="-4" y="-4" width="46" height="46" rx="8" fill="#1A1A26" stroke="#F5DE89" stroke-width="1.5"/>
-                <svg x="1" y="0" width="36" height="36" viewBox="0 0 64 64" fill="none" stroke="#F5DE89" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8 32 L8 56 L56 56 L56 32"/>
-                  <path d="M14 32 L14 20 Q14 14 20 14 L44 14 Q50 14 50 20 L50 32"/>
-                </svg>
-              </g>
-              <g transform="translate(0, -2)">
-                <text font-family="Space Grotesk" font-weight="700" font-size="12" fill="#F5DE89">Місяць 12</text>
-                <text y="14" font-family="Space Grotesk" font-weight="500" font-size="10" fill="#7d7d7d">$8 000+ /міс</text>
-              </g>
-            </g>
-
-            <!-- HORIZON LABEL — Свобода -->
-            <g transform="translate(230, 80)">
-              <rect x="-58" y="-14" width="116" height="28" rx="14" fill="#0A0A0F" stroke="#F5DE89" stroke-width="2"/>
-              <text x="0" y="5" text-anchor="middle" font-family="Space Grotesk" font-weight="700" font-size="13" fill="#F5DE89" letter-spacing="1">СВОБОДА</text>
-            </g>
-
-            <!-- Stars in sky -->
-            <circle cx="80" cy="50" r="1.2" fill="#fff" opacity="0.6"/>
-            <circle cx="380" cy="35" r="1.5" fill="#fff" opacity="0.7"/>
-            <circle cx="420" cy="80" r="1" fill="#fff" opacity="0.5"/>
-            <circle cx="40" cy="100" r="1.3" fill="#fff" opacity="0.5"/>
-          </svg>
+          <div class="model-card model-card--violet">
+            <div class="model-svg">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="8" y="8" width="48" height="36" rx="2"/>
+                <path d="M8 38 L22 26 L30 32 L42 22 L56 30"/>
+                <circle cx="42" cy="18" r="3"/>
+              </svg>
+            </div>
+            <div class="model-meta">
+              <span class="model-name">Wall Art</span>
+              <span class="model-price">$129</span>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -1489,6 +1480,14 @@
         <span class="press-logo">Divoche</span>
         <span class="press-logo">Genius.Space</span>
       </div>
+    </div>
+  </div>
+
+  <!-- PATH 01 -->
+  <div class="path-divider path-divider--start">
+    <div class="path-marker">
+      <div class="path-num">01</div>
+      <div class="path-label">Етап 1<span class="path-label-strong">Хто вже на шляху</span></div>
     </div>
   </div>
 
@@ -1548,6 +1547,14 @@
     </div>
   </section>
 
+  <!-- PATH 02 -->
+  <div class="path-divider">
+    <div class="path-marker">
+      <div class="path-num">02</div>
+      <div class="path-label">Етап 2<span class="path-label-strong">Знайомство з провідником</span></div>
+    </div>
+  </div>
+
   <!-- SPEAKER / VIKTOR -->
   <section id="speakerSection">
     <div class="container">
@@ -1586,6 +1593,14 @@
       </div>
     </div>
   </section>
+
+  <!-- PATH 03 -->
+  <div class="path-divider">
+    <div class="path-marker">
+      <div class="path-num">03</div>
+      <div class="path-label">Етап 3<span class="path-label-strong">Перевірка сумісності</span></div>
+    </div>
+  </div>
 
   <!-- QUIZ -->
   <section id="quiz">
@@ -1702,6 +1717,14 @@
       </div>
     </div>
   </section>
+
+  <!-- PATH 04 -->
+  <div class="path-divider">
+    <div class="path-marker">
+      <div class="path-num">04</div>
+      <div class="path-label">Етап 4<span class="path-label-strong">Твоє майбутнє портфоліо</span></div>
+    </div>
+  </div>
 
   <!-- PORTFOLIO -->
   <section>
@@ -1832,6 +1855,14 @@
       </div>
     </div>
   </section>
+
+  <!-- PATH 05 -->
+  <div class="path-divider">
+    <div class="path-marker">
+      <div class="path-num">05</div>
+      <div class="path-label">Етап 5<span class="path-label-strong">Дашборд продавця</span></div>
+    </div>
+  </div>
 
   <!-- TURBOSQUID DASHBOARD -->
   <section id="dashboard">
@@ -1976,6 +2007,14 @@
     </div>
   </section>
 
+  <!-- PATH 06 -->
+  <div class="path-divider">
+    <div class="path-marker">
+      <div class="path-num">06</div>
+      <div class="path-label">Етап 6<span class="path-label-strong">Порахуй свій шлях</span></div>
+    </div>
+  </div>
+
   <!-- CALCULATOR -->
   <section>
     <div class="container">
@@ -2069,6 +2108,14 @@
     </div>
   </section>
 
+  <!-- PATH 07 -->
+  <div class="path-divider">
+    <div class="path-marker">
+      <div class="path-num">07</div>
+      <div class="path-label">Етап 7<span class="path-label-strong">Обери свій пакет</span></div>
+    </div>
+  </div>
+
   <!-- PACKAGES -->
   <section>
     <div class="container">
@@ -2143,6 +2190,14 @@
       </div>
     </div>
   </section>
+
+  <!-- PATH 08 — FINISH -->
+  <div class="path-divider path-divider--end">
+    <div class="path-marker" style="background: linear-gradient(135deg, var(--gold), var(--gold-bright)); border-color: var(--gold);">
+      <div class="path-num" style="background: var(--black); color: var(--gold); box-shadow: 0 4px 16px rgba(0,0,0,.4);">★</div>
+      <div class="path-label" style="color: var(--gold-text);">Фініш<span class="path-label-strong" style="color: var(--gold-text);">Дорога стоїть. Йдеш?</span></div>
+    </div>
+  </div>
 
   <!-- FINAL CTA -->
   <section class="final">
