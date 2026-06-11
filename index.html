@@ -457,6 +457,29 @@
       margin-left: 0 !important;
       margin-top: 4px;
     }
+    /* FINISH marker — orange→purple gradient */
+    .path-marker--finish {
+      background: linear-gradient(135deg, var(--orange) 0%, var(--red) 50%, var(--purple) 100%) !important;
+      border-color: transparent !important;
+      box-shadow: 0 16px 48px var(--orange-glow), 0 8px 24px var(--purple-glow), 0 0 0 6px var(--black) !important;
+      padding: 16px 30px 16px 16px !important;
+    }
+    .path-marker--finish .path-num {
+      background: #FFFFFF !important;
+      color: var(--orange) !important;
+      font-size: 22px !important;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2) !important;
+    }
+    .path-marker--finish .path-num::before {
+      border-color: #FFFFFF !important;
+      opacity: 0.5 !important;
+    }
+    .path-marker--finish .path-label {
+      color: rgba(255,255,255,0.85) !important;
+    }
+    .path-marker--finish .path-label-strong {
+      color: #FFFFFF !important;
+    }
 
     /* keep old hero-models for compatibility (not used now) */
     .hero-models {
@@ -1317,9 +1340,10 @@
     footer span { color: var(--gold); font-weight: 700; }
 
     /* ─── VIDEO WIDGET ─── */
+    /* ─── REELS-STYLE VIDEO WIDGET ─── */
     .video-widget {
       position: fixed; bottom: 24px; right: 24px;
-      width: 270px; z-index: 9999;
+      width: 180px; z-index: 9999;
       opacity: 0; transform: translateY(20px);
       animation: slideIn 0.6s ease 6s forwards;
       transition: opacity .4s ease;
@@ -1327,83 +1351,188 @@
     .video-widget.hidden { opacity: 0 !important; pointer-events: none; }
     @keyframes slideIn { to { opacity: 1; transform: translateY(0); } }
     .widget-trigger {
-      background: linear-gradient(135deg, #1A1A26, #20202E);
-      color: #fff; padding: 10px 14px;
-      border-radius: 12px 12px 4px 12px;
-      font-size: 13px; font-weight: 500;
-      margin-bottom: 8px; margin-right: 16px;
+      background: #FFFFFF;
+      color: #0A0A0A;
+      padding: 9px 14px;
+      border-radius: 14px 14px 4px 14px;
+      font-size: 12px; font-weight: 600;
+      margin-bottom: 8px; margin-right: 12px;
       position: relative;
-      box-shadow: 0 8px 24px rgba(0,0,0,.5);
+      box-shadow: 0 8px 24px rgba(0,0,0,.12);
       border: 1px solid var(--card-border);
     }
     .widget-trigger::after {
       content: ''; position: absolute;
-      bottom: -6px; right: 24px;
+      bottom: -6px; right: 20px;
       width: 12px; height: 12px;
-      background: #20202E;
-      transform: rotate(45deg); z-index: -1;
+      background: #FFFFFF;
+      border-right: 1px solid var(--card-border);
+      border-bottom: 1px solid var(--card-border);
+      transform: rotate(45deg);
     }
     .trigger-pulse {
-      display: inline-block; width: 8px; height: 8px;
+      display: inline-block; width: 7px; height: 7px;
       background: var(--red); border-radius: 50%;
       margin-right: 6px; vertical-align: middle;
       animation: pulse 1.8s infinite;
+      box-shadow: 0 0 0 0 rgba(255,77,94,0.7);
+      animation: pulseRing 1.8s infinite;
     }
+    @keyframes pulseRing {
+      0% { box-shadow: 0 0 0 0 rgba(255,77,94,0.7); }
+      70% { box-shadow: 0 0 0 8px rgba(255,77,94,0); }
+      100% { box-shadow: 0 0 0 0 rgba(255,77,94,0); }
+    }
+    /* THUMB — vertical reels/story format */
     .widget-thumb {
-      position: relative; border-radius: 14px;
+      position: relative; border-radius: 18px;
       overflow: hidden; cursor: pointer;
-      box-shadow: 0 16px 40px rgba(0,0,0,.6);
-      transition: transform .25s ease;
-      background: linear-gradient(135deg, var(--violet) 0%, var(--gold) 100%);
-      aspect-ratio: 16/11;
-      border: 1px solid var(--card-border);
+      box-shadow: 0 20px 50px rgba(255,107,53,.25), 0 8px 24px rgba(159,76,255,.25);
+      transition: transform .25s ease, box-shadow .25s ease;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.25), transparent 50%),
+        linear-gradient(135deg, #FF6B35 0%, #FF4D5E 35%, #9F4CFF 75%, #FF8FA8 100%);
+      aspect-ratio: 9/16;
+      border: 2px solid #FFFFFF;
     }
-    .widget-thumb:hover { transform: translateY(-3px); border-color: var(--gold); }
-    .widget-thumb-initials {
+    .widget-thumb::before {
+      content: '';
       position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 44px; color: rgba(255,255,255,0.95);
-      text-shadow: 0 4px 20px rgba(0,0,0,.3);
+      background:
+        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.2), transparent 50%),
+        radial-gradient(circle at 20% 90%, rgba(0,0,0,0.15), transparent 50%);
+      pointer-events: none;
     }
+    .widget-thumb:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 28px 60px rgba(255,107,53,.4), 0 12px 32px rgba(159,76,255,.35);
+    }
+    /* STORY BADGE — top left */
+    .widget-badge {
+      position: absolute;
+      top: 10px; left: 10px;
+      padding: 4px 9px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 100px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 9px; font-weight: 800;
+      letter-spacing: 1.5px;
+      color: var(--red);
+      z-index: 3;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .widget-badge-dot {
+      width: 5px; height: 5px;
+      background: var(--red); border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+    /* TIME — top right */
+    .widget-time {
+      position: absolute;
+      top: 10px; right: 10px;
+      padding: 3px 8px;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(8px);
+      border-radius: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 10px; font-weight: 600;
+      color: #FFFFFF;
+      z-index: 3;
+    }
+    /* Avatar with story ring */
+    .widget-avatar {
+      position: absolute;
+      top: 36%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #FFFFFF, #FFE5D9);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      z-index: 2;
+    }
+    .widget-avatar::before {
+      content: '';
+      position: absolute; inset: -4px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #FFE062, #FF4D5E, #9F4CFF, #4FB8E8, #FFE062);
+      background-size: 400% 400%;
+      animation: storyRing 4s ease infinite;
+      z-index: -1;
+      padding: 4px;
+    }
+    @keyframes storyRing {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    .widget-avatar-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px; font-weight: 800;
+      background: linear-gradient(135deg, var(--orange), var(--purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    /* PLAY button — center-bottom of avatar */
     .play-btn {
       position: absolute;
-      top: 50%; left: 50%;
-      width: 52px; height: 52px;
-      background: rgba(255,255,255,.95);
+      top: 58%; left: 50%;
+      width: 44px; height: 44px;
+      background: #FFFFFF;
       border-radius: 50%;
-      transform: translate(-50%,-50%);
+      transform: translateX(-50%);
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 16px rgba(0,0,0,.4);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
       transition: transform .2s;
+      z-index: 2;
     }
     .play-btn::before {
       content: ''; width: 0; height: 0;
-      border-left: 13px solid #1A1A26;
+      border-left: 12px solid var(--orange);
       border-top: 7px solid transparent;
       border-bottom: 7px solid transparent;
-      margin-left: 4px;
+      margin-left: 3px;
     }
     .widget-thumb:hover .play-btn {
-      transform: translate(-50%,-50%) scale(1.1);
-      background: var(--gold);
+      transform: translateX(-50%) scale(1.15);
     }
-    .widget-meta {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 9px 13px;
-      background: linear-gradient(transparent, rgba(0,0,0,.9));
-      color: #fff; font-size: 12px;
-      display: flex; justify-content: space-between;
-      z-index: 1;
+    /* NAME — bottom */
+    .widget-name {
+      position: absolute;
+      bottom: 32px; left: 0; right: 0;
+      text-align: center;
+      color: #FFFFFF;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700; font-size: 14px;
+      letter-spacing: -0.01em;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      z-index: 2;
+    }
+    .widget-caption {
+      position: absolute;
+      bottom: 14px; left: 0; right: 0;
+      text-align: center;
+      color: rgba(255,255,255,0.85);
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      z-index: 2;
     }
     .widget-close {
       position: absolute;
-      top: -8px; right: -8px;
-      width: 22px; height: 22px;
+      top: -10px; right: -10px;
+      width: 26px; height: 26px;
       border-radius: 50%;
-      background: #fff; border: none;
-      cursor: pointer; font-size: 11px;
-      color: #666; z-index: 2;
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      cursor: pointer;
+      font-size: 12px;
+      color: var(--gray-400);
+      z-index: 4;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      display: flex; align-items: center; justify-content: center;
     }
 
     /* ─── MODAL ─── */
@@ -2421,9 +2550,9 @@
 
   <!-- PATH 08 — FINISH -->
   <div class="path-divider path-divider--end">
-    <div class="path-marker" style="background: linear-gradient(135deg, var(--gold), var(--gold-bright)); border-color: var(--gold);">
-      <div class="path-num" style="background: var(--black); color: var(--gold); box-shadow: 0 4px 16px rgba(0,0,0,.4);">★</div>
-      <div class="path-label" style="color: var(--gold-text);">Фініш<span class="path-label-strong" style="color: var(--gold-text);">Дорога стоїть. Йдеш?</span></div>
+    <div class="path-marker path-marker--finish">
+      <div class="path-num">🚀</div>
+      <div class="path-label">Фініш<span class="path-label-strong">Час бронювати місце</span></div>
     </div>
   </div>
 
@@ -2492,20 +2621,25 @@
 
 </main>
 
-  <!-- VIDEO WIDGET -->
+  <!-- VIDEO WIDGET (reels-style) -->
   <div id="videoWidget" class="video-widget">
     <button class="widget-close" onclick="closeWidget()">✕</button>
     <div class="widget-trigger">
       <span class="trigger-pulse"></span>
-      Подивись відео від Віктора — 3 хв
+      Як працює цифровий капітал?
     </div>
     <div class="widget-thumb" onclick="openMainModal()">
-      <div class="widget-thumb-initials">V</div>
-      <div class="play-btn"></div>
-      <div class="widget-meta">
-        <span>Віктор · Visual360</span>
-        <span>03:00</span>
+      <div class="widget-badge">
+        <span class="widget-badge-dot"></span>
+        LIVE STORY
       </div>
+      <div class="widget-time">03:00</div>
+      <div class="widget-avatar">
+        <span class="widget-avatar-text">V</span>
+      </div>
+      <div class="play-btn"></div>
+      <div class="widget-name">Віктор</div>
+      <div class="widget-caption">Visual360 Studio</div>
     </div>
   </div>
 
