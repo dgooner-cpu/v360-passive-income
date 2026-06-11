@@ -1503,10 +1503,8 @@
 
     /* ─── CALCULATOR ─── */
     .calc-wrap {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      max-width: 1000px;
+      display: block;
+      max-width: 640px;
       margin: 0 auto;
     }
     .calc {
@@ -2875,26 +2873,6 @@
           </div>
         </div>
 
-        <div class="calc-graph">
-          <div class="calc-graph-title">Прогноз вашого доходу</div>
-          <svg class="calc-graph-svg" id="calcGraph" viewBox="0 0 400 240" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="calcGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#FF6B35" stop-opacity="0.5"/>
-                <stop offset="100%" stop-color="#FF6B35" stop-opacity="0"/>
-              </linearGradient>
-            </defs>
-            <line x1="0" y1="60" x2="400" y2="60" stroke="#2A2A3A" stroke-dasharray="2 4"/>
-            <line x1="0" y1="120" x2="400" y2="120" stroke="#2A2A3A" stroke-dasharray="2 4"/>
-            <line x1="0" y1="180" x2="400" y2="180" stroke="#2A2A3A" stroke-dasharray="2 4"/>
-            <path id="calcArea" d="" fill="url(#calcGrad)"/>
-            <path id="calcLine" d="" fill="none" stroke="#FF6B35" stroke-width="2.5" stroke-linecap="round"/>
-            <g id="calcDots"></g>
-          </svg>
-          <div style="display:flex; justify-content:space-between; margin-top:10px; font-size:11px; color:var(--gray-400); font-family:'Space Grotesk', sans-serif;">
-            <span>М1</span><span>М3</span><span>М6</span><span>М9</span><span>М12</span>
-          </div>
-        </div>
       </div>
 
       <div class="inline-cta">
@@ -3212,29 +3190,6 @@
       document.getElementById('calcM12').textContent = '$' + m12.toLocaleString();
       const days = Math.max(1, Math.round(100 / (m2 / 30)));
       document.getElementById('calcPayback').textContent = days + ' днів';
-
-      const points = [];
-      for (let i = 0; i < 12; i++) {
-        const factor = Math.pow(i / 11, 1.4);
-        points.push(Math.round(factor * m12));
-      }
-      const maxVal = points[points.length - 1] || 1;
-      const w = 400, h = 240;
-      const stepX = w / (points.length - 1);
-      let line = '', area = '', dots = '';
-      points.forEach((v, i) => {
-        const x = i * stepX;
-        const y = h - (v / maxVal) * (h - 30) - 10;
-        line += (i === 0 ? 'M' : ' L') + x.toFixed(0) + ',' + y.toFixed(0);
-        area += (i === 0 ? 'M' : ' L') + x.toFixed(0) + ',' + y.toFixed(0);
-        if (i % 3 === 0 || i === points.length - 1) {
-          dots += '<circle cx="' + x.toFixed(0) + '" cy="' + y.toFixed(0) + '" r="4" fill="#FF6B35"/>';
-        }
-      });
-      area += ' L' + w + ',' + h + ' L0,' + h + ' Z';
-      document.getElementById('calcLine').setAttribute('d', line);
-      document.getElementById('calcArea').setAttribute('d', area);
-      document.getElementById('calcDots').innerHTML = dots;
     }
 
     function toggleObj(card) { card.classList.toggle('open'); }
