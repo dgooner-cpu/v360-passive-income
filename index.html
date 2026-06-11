@@ -787,6 +787,31 @@
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 14px;
     }
+    /* Horizontal scroll hint (visible on mobile only) */
+    .portfolio-hint {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding: 10px 18px;
+      background: linear-gradient(135deg, var(--orange-dim), var(--purple-dim));
+      border: 1px dashed var(--orange);
+      border-radius: var(--radius-pill);
+      width: max-content;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--orange-deep);
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: 0.5px;
+    }
+    .portfolio-hint .arrow {
+      display: inline-block;
+      animation: swipeHint 1.6s ease-in-out infinite;
+    }
+    @keyframes swipeHint {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(6px); }
+    }
     .portfolio-card {
       background: linear-gradient(135deg, var(--card) 0%, var(--card-2) 100%);
       border: 1px solid var(--card-border);
@@ -1471,6 +1496,29 @@
       }
       .dashboard-table-row .dashboard-table-sold,
       .dashboard-table-row .dashboard-table-total { display: none; }
+
+      /* PORTFOLIO horizontal swipe on mobile */
+      .portfolio-hint { display: inline-flex; }
+      .portfolio-grid {
+        display: flex;
+        grid-template-columns: none;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-padding-left: 24px;
+        gap: 14px;
+        padding: 4px 24px 16px 24px;
+        margin: 0 -24px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .portfolio-grid::-webkit-scrollbar { display: none; }
+      .portfolio-card {
+        flex: 0 0 82%;
+        scroll-snap-align: start;
+      }
+      .portfolio-card:last-child {
+        margin-right: 24px;
+      }
     }
   </style>
 </head>
@@ -1906,6 +1954,11 @@
       <span class="pill pill--gold section-tag">📦 Твоє портфоліо</span>
       <h2 class="section-title">Що саме ти <span class="grad-gold">створюватимеш</span></h2>
       <p class="section-sub">15 моделей за 2 місяці. Ось приклади з цінниками.</p>
+
+      <div class="portfolio-hint">
+        <span>Гортай вбік</span>
+        <span class="arrow">→</span>
+      </div>
 
       <div class="portfolio-grid">
         <div class="portfolio-card">
