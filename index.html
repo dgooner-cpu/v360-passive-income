@@ -60,12 +60,13 @@
       --peach: #FFE5D9;           /* light peach bg blocks */
       --peach-deep: #FFC8AA;
 
-      --gold: #C9A65A;            /* preserved for some accents */
-      --gold-bright: #E6C277;
-      --gold-deep: #8B6F00;
-      --gold-dim: rgba(201,166,90,0.10);
-      --gold-glow: rgba(201,166,90,0.25);
-      --gold-text: #1a1a1a;
+      /* Legacy "gold" vars now alias to current palette (orange/peach) */
+      --gold: var(--orange);
+      --gold-bright: #FF8A5C;
+      --gold-deep: var(--orange-deep);
+      --gold-dim: var(--orange-dim);
+      --gold-glow: var(--orange-glow);
+      --gold-text: #FFFFFF;
 
       --violet: var(--purple);    /* alias for backward compat */
       --violet-dim: var(--purple-dim);
@@ -217,7 +218,7 @@
     nav {
       position: fixed; top: 0; left: 0; right: 0;
       padding: 14px 24px;
-      background: rgba(245,243,236,.85);
+      background: rgba(255,244,237,.85);
       backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--card-border);
       z-index: 100;
@@ -1003,7 +1004,7 @@
     }
     .case-avatar--1 { background: linear-gradient(135deg, var(--violet), var(--pink)); }
     .case-avatar--2 { background: linear-gradient(135deg, var(--cyan), var(--violet)); }
-    .case-avatar--3 { background: linear-gradient(135deg, var(--gold), var(--gold-deep)); color: var(--gold-text); }
+    .case-avatar--3 { background: linear-gradient(135deg, var(--orange), var(--pink)); color: #fff; }
     .case-info-name { font-weight: 700; font-size: 16px; }
     .case-info-meta { font-size: 12px; color: var(--gray-400); margin-top: 2px; }
     .case-text {
@@ -1032,8 +1033,8 @@
 
     /* ─── SPEAKER (light premium) ─── */
     .speaker {
-      background: linear-gradient(135deg, #FAF6E8 0%, #F5DE89 100%);
-      border: 1px solid var(--gold);
+      background: linear-gradient(135deg, #FFF4ED 0%, #FFE5D9 100%);
+      border: 1px solid var(--orange);
       border-radius: 28px;
       padding: 56px;
       display: grid;
@@ -1042,7 +1043,7 @@
       align-items: center;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 30px 80px rgba(245,222,137,.18);
+      box-shadow: 0 30px 80px rgba(255,107,53,.18);
     }
     .speaker::before {
       content: ''; position: absolute;
@@ -2656,17 +2657,17 @@
             <svg class="chart-svg" viewBox="0 0 600 160" preserveAspectRatio="none">
               <defs>
                 <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#F5DE89" stop-opacity="0.4"/>
-                  <stop offset="100%" stop-color="#F5DE89" stop-opacity="0"/>
+                  <stop offset="0%" stop-color="#FF6B35" stop-opacity="0.4"/>
+                  <stop offset="100%" stop-color="#FF6B35" stop-opacity="0"/>
                 </linearGradient>
               </defs>
               <path d="M0,130 L60,118 L120,108 L180,90 L240,82 L300,68 L360,55 L420,42 L480,30 L540,22 L600,12 L600,160 L0,160 Z" fill="url(#chartGrad)"/>
-              <path d="M0,130 L60,118 L120,108 L180,90 L240,82 L300,68 L360,55 L420,42 L480,30 L540,22 L600,12" fill="none" stroke="#F5DE89" stroke-width="2"/>
-              <circle cx="120" cy="108" r="3" fill="#F5DE89"/>
-              <circle cx="240" cy="82" r="3" fill="#F5DE89"/>
-              <circle cx="360" cy="55" r="3" fill="#F5DE89"/>
-              <circle cx="480" cy="30" r="3" fill="#F5DE89"/>
-              <circle cx="600" cy="12" r="4" fill="#F5DE89"/>
+              <path d="M0,130 L60,118 L120,108 L180,90 L240,82 L300,68 L360,55 L420,42 L480,30 L540,22 L600,12" fill="none" stroke="#FF6B35" stroke-width="2"/>
+              <circle cx="120" cy="108" r="3" fill="#FF6B35"/>
+              <circle cx="240" cy="82" r="3" fill="#FF6B35"/>
+              <circle cx="360" cy="55" r="3" fill="#FF6B35"/>
+              <circle cx="480" cy="30" r="3" fill="#FF6B35"/>
+              <circle cx="600" cy="12" r="4" fill="#FF6B35"/>
             </svg>
           </div>
 
@@ -2797,15 +2798,15 @@
           <svg class="calc-graph-svg" id="calcGraph" viewBox="0 0 400 240" preserveAspectRatio="none">
             <defs>
               <linearGradient id="calcGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#F5DE89" stop-opacity="0.5"/>
-                <stop offset="100%" stop-color="#F5DE89" stop-opacity="0"/>
+                <stop offset="0%" stop-color="#FF6B35" stop-opacity="0.5"/>
+                <stop offset="100%" stop-color="#FF6B35" stop-opacity="0"/>
               </linearGradient>
             </defs>
             <line x1="0" y1="60" x2="400" y2="60" stroke="#2A2A3A" stroke-dasharray="2 4"/>
             <line x1="0" y1="120" x2="400" y2="120" stroke="#2A2A3A" stroke-dasharray="2 4"/>
             <line x1="0" y1="180" x2="400" y2="180" stroke="#2A2A3A" stroke-dasharray="2 4"/>
             <path id="calcArea" d="" fill="url(#calcGrad)"/>
-            <path id="calcLine" d="" fill="none" stroke="#F5DE89" stroke-width="2.5" stroke-linecap="round"/>
+            <path id="calcLine" d="" fill="none" stroke="#FF6B35" stroke-width="2.5" stroke-linecap="round"/>
             <g id="calcDots"></g>
           </svg>
           <div style="display:flex; justify-content:space-between; margin-top:10px; font-size:11px; color:var(--gray-400); font-family:'Space Grotesk', sans-serif;">
@@ -3138,7 +3139,7 @@
         line += (i === 0 ? 'M' : ' L') + x.toFixed(0) + ',' + y.toFixed(0);
         area += (i === 0 ? 'M' : ' L') + x.toFixed(0) + ',' + y.toFixed(0);
         if (i % 3 === 0 || i === points.length - 1) {
-          dots += '<circle cx="' + x.toFixed(0) + '" cy="' + y.toFixed(0) + '" r="4" fill="#F5DE89"/>';
+          dots += '<circle cx="' + x.toFixed(0) + '" cy="' + y.toFixed(0) + '" r="4" fill="#FF6B35"/>';
         }
       });
       area += ' L' + w + ',' + h + ' L0,' + h + ' Z';
