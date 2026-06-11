@@ -226,30 +226,57 @@
     .nav-inner { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
     .nav-logo {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 22px; color: var(--white);
-      text-decoration: none; display: flex; align-items: center; gap: 10px;
+      color: var(--white);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 12px;
+      line-height: 1;
     }
-    .nav-logo span { color: var(--gold); }
     .nav-logo-mark {
-      width: 32px; height: 32px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-deep));
-      border-radius: 8px;
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--orange), var(--red));
+      border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
-      color: var(--gold-text); font-weight: 800;
-      font-family: 'Space Grotesk', sans-serif; font-size: 14px;
+      color: #FFFFFF; font-weight: 800;
+      font-family: 'Space Grotesk', sans-serif; font-size: 18px;
+      box-shadow: 0 6px 18px var(--orange-glow);
+      flex-shrink: 0;
+    }
+    .nav-logo-text {
+      display: flex; flex-direction: column; gap: 3px;
+    }
+    .nav-logo-title {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+    .nav-logo-title span {
+      background: linear-gradient(135deg, var(--orange), var(--purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nav-logo-sub {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gray-400);
     }
     .countdown {
       display: flex; align-items: center; gap: 8px;
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 13px; color: var(--gold);
+      font-size: 13px; color: #FFFFFF;
       font-variant-numeric: tabular-nums;
-      padding: 8px 14px;
-      background: var(--gold-dim);
-      border: 1px solid var(--gold);
+      padding: 9px 16px;
+      background: linear-gradient(135deg, var(--orange), var(--red));
+      border: none;
       border-radius: var(--radius-pill);
+      box-shadow: 0 6px 18px var(--orange-glow);
+      font-weight: 600;
     }
     .countdown-dot {
-      width: 6px; height: 6px; background: var(--gold);
+      width: 6px; height: 6px; background: #FFFFFF;
       border-radius: 50%; animation: pulse 1.5s infinite;
     }
 
@@ -1472,8 +1499,17 @@
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 968px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 30px; }
-      .hero-models { max-width: 480px; }
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        text-align: center;
+      }
+      .hero-content > * { margin-left: auto; margin-right: auto; }
+      .hero-content .hero-tag { display: block; }
+      .hero-content .hero-sub { max-width: 540px; }
+      .hero-content .hero-actions { justify-content: center; }
+      .hero-content .hero-trust { justify-content: center; flex-wrap: wrap; }
+      .hero-models { max-width: 480px; margin: 0 auto; }
       .hero-road { max-width: 420px; }
       .speaker { grid-template-columns: 1fr; padding: 28px; gap: 24px; }
       .speaker-photo { max-width: 240px; margin: 0 auto; }
@@ -1485,10 +1521,14 @@
       .video-widget { width: 200px; bottom: 16px; right: 16px; }
       .final-row { flex-direction: column; }
       .final-row .btn { width: 100%; }
-      .nav-inner .countdown { font-size: 11px; padding: 6px 10px; }
-      .hero-pricing { padding: 14px 18px; }
-      .hero-pricing-item { padding-right: 12px; }
-      .hero-pricing-num { font-size: 18px; }
+      .nav-inner .countdown { font-size: 11px; padding: 6px 10px; gap: 6px; }
+      .nav-logo-mark { width: 34px; height: 34px; font-size: 15px; border-radius: 9px; }
+      .nav-logo-title { font-size: 14px; }
+      .nav-logo-sub { display: none; }
+      .hero { padding: 90px 0 50px; }
+      .hero-content .hero-actions { flex-direction: column; width: 100%; }
+      .hero-content .hero-actions .btn { width: 100%; }
+      .hero-content .hero-tag .pill { font-size: 10px; padding: 6px 12px; }
       .dashboard-body { padding: 18px; }
       .dashboard-table-row {
         grid-template-columns: 36px 1fr 70px;
@@ -1539,7 +1579,10 @@
     <div class="nav-inner">
       <a href="#" class="nav-logo">
         <span class="nav-logo-mark">V</span>
-        Visual<span>360</span>
+        <span class="nav-logo-text">
+          <span class="nav-logo-title">Шлях до <span>пасиву</span></span>
+          <span class="nav-logo-sub">Курс Visual360</span>
+        </span>
       </a>
       <div class="countdown">
         <span class="countdown-dot"></span>
@@ -1553,11 +1596,11 @@
     <div class="container">
       <div class="hero-grid">
 
-        <div>
+        <div class="hero-content">
           <div class="hero-tag">
             <span class="pill pill--gold">
               <span class="pill-dot"></span>
-              Вперше у відкритому доступі · 72 години
+              Студія Visual360 заробила $35K на стоках за 5 місяців
             </span>
           </div>
 
@@ -1567,33 +1610,17 @@
           </h1>
 
           <p class="hero-sub">
-            Створюй меблі, декор і вази. Продавай на TurboSquid. Один раз створив — отримуєш роками.
+            Створи від <b>10 моделей меблів і декору</b> для інтер'єрної візуалізації — і заробляй на них <b>від $500/міс пасивно</b> вже з першого місяця після навчання.
           </p>
 
-          <div class="hero-pricing">
-            <div class="hero-pricing-item">
-              <span class="hero-pricing-num">$100</span>
-              <span class="hero-pricing-lbl">СТАРТ</span>
-            </div>
-            <div class="hero-pricing-item">
-              <span class="hero-pricing-num">$200</span>
-              <span class="hero-pricing-lbl">PRO + куратор</span>
-            </div>
-            <div class="hero-pricing-item">
-              <span class="hero-pricing-num">80</span>
-              <span class="hero-pricing-lbl">Місць у потоці</span>
-            </div>
-            <div class="hero-pricing-discount">−80%</div>
-          </div>
-
           <div class="hero-actions">
-            <a href="#quizCard" class="btn">Перевір, чи ти підходиш — 90 сек →</a>
-            <button class="btn btn--outline" onclick="openMainModal()">▶ Історія Віктора (3 хв)</button>
+            <a href="#quizCard" class="btn">Записатись у перший потік →</a>
+            <button class="btn btn--outline" onclick="openMainModal()">▶ Як це працює (3 хв)</button>
           </div>
 
           <div class="hero-trust">
             <span class="hero-trust-stars">★★★★★</span>
-            <span><strong>14 000+</strong> випускників за 12 років · Партнер <strong>Autodesk</strong></span>
+            <span><strong>14 000+</strong> випускників · Партнер <strong>Autodesk</strong> · 12 років на ринку</span>
           </div>
         </div>
 
