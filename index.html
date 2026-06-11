@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Заробляй пасивно на 3D — Visual360</title>
+  <meta name="description" content="Перший потік закритої програми пасивного доходу на стоках 3D-моделей. Партнер Autodesk. Тільки для підписників Visual360.">
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1273493387694455');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1273493387694455&ev=PageView&noscript=1" /></noscript>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      /* — VISUAL360 BRAND PALETTE: жовтий + сірий + чорний — */
+      --black: #000000;
+      --dark: #0a0a0a;
+      --dark-2: #111111;
+      --card: #181818;
+      --card-2: #1f1f1f;
+      --card-border: #2a2a2a;
+      --gold: #F5DE89;
+      --gold-bright: #FFE062;
+      --gold-dim: rgba(245,222,137,0.12);
+      --gold-glow: rgba(245,222,137,0.28);
+      --gold-text: #1a1a1a;
+      --white: #ffffff;
+      --gray-100: #ededed;
+      --gray-200: #c4c4c4;
+      --gray-300: #a8a8a8;
+      --gray-400: #7d7d7d;
+      --gray-500: #5a5a5a;
+      --gray-600: #3d3d3d;
+      --red: #FF3B30;
+      --radius: 20px;
+      --radius-sm: 12px;
+      --radius-pill: 100px;
+      --transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* ─── PILL ─── */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gray-300);
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .pill--gold {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: var(--gold-dim);
+    }
+    .pill-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(1.3); }
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 18px 38px;
+      background: var(--gold);
+      color: var(--gold-text);
+      border: none;
+      border-radius: var(--radius-pill);
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition);
+      letter-spacing: 0.3px;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px var(--gold-glow);
+      background: var(--gold-bright);
+    }
+    .btn--outline {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid var(--card-border);
+    }
+    .btn--outline:hover {
+      border-color: var(--gold);
+      background: var(--gold-dim);
+      color: var(--gold);
+      box-shadow: none;
+    }
+    .btn--block { width: 100%; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      padding: 16px 24px;
+      background: rgba(0,0,0,.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--card-border);
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+
+    .countdown {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      color: var(--gold);
+      font-variant-numeric: tabular-nums;
+    }
+    .countdown-dot {
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+
+    /* ─── HERO + QUIZ ─── */
+    .hero {
+      min-height: 100vh;
+      padding: 100px 0 60px;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .hero-glow {
+      position: absolute;
+      top: 40%; left: 50%;
+      width: 900px; height: 900px;
+      background: radial-gradient(circle, var(--gold-dim) 0%, transparent 65%);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      filter: blur(80px);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero-tag { margin-bottom: 32px; }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(48px, 7vw, 84px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    h1 span { color: var(--gold); }
+
+    .hero-sub {
+      font-size: clamp(16px, 1.5vw, 19px);
+      color: var(--gray-200);
+      max-width: 620px;
+      margin: 0 auto 40px;
+      line-height: 1.5;
+    }
+
+    /* ─── QUIZ ─── */
+    .quiz-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 40px;
+      max-width: 720px;
+      margin: 40px auto 0;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 30px 80px rgba(0,0,0,.5);
+    }
+    .quiz-progress {
+      height: 4px;
+      background: var(--card-border);
+      border-radius: 10px;
+      margin-bottom: 28px;
+      overflow: hidden;
+    }
+    .quiz-progress-bar {
+      height: 100%;
+      background: var(--gold);
+      width: 20%;
+      transition: width .5s ease;
+      border-radius: 10px;
+    }
+    .quiz-step-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      color: var(--gray-400);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .quiz-question {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(24px, 3vw, 32px);
+      line-height: 1.2;
+      margin-bottom: 28px;
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .quiz-option {
+      padding: 18px 22px;
+      background: var(--card-2);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: left;
+      color: var(--white);
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+    }
+    .quiz-option:hover {
+      border-color: var(--gold);
+      background: var(--gold-dim);
+    }
+    .quiz-option.selected {
+      border-color: var(--gold);
+      background: var(--gold-dim);
+      color: var(--gold);
+    }
+    .quiz-option.danger { opacity: 0.65; }
+    .quiz-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .quiz-back {
+      background: none;
+      border: 1px solid var(--card-border);
+      color: var(--gray-400);
+      padding: 14px 24px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: var(--transition);
+    }
+    .quiz-back:hover { color: var(--white); border-color: var(--white); }
+    .quiz-next {
+      background: var(--gold);
+      color: var(--gold-text);
+      border: none;
+      padding: 14px 32px;
+      border-radius: var(--radius-pill);
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: var(--transition);
+    }
+    .quiz-next:hover:not(:disabled) { background: var(--gold-bright); }
+    .quiz-next:disabled { opacity: .4; cursor: not-allowed; }
+
+    .quiz-form { display: flex; flex-direction: column; gap: 12px; }
+    .quiz-form input {
+      padding: 16px 20px;
+      background: var(--card-2);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+    }
+    .quiz-form input:focus {
+      border-color: var(--gold);
+      outline: none;
+    }
+
+    .quiz-result { text-align: left; }
+    .result-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      background: var(--gold-dim);
+      border-radius: var(--radius-pill);
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .result-profile {
+      background: var(--card-2);
+      padding: 20px;
+      border-radius: var(--radius-sm);
+      margin: 18px 0 20px;
+      font-size: 14px;
+    }
+    .result-profile-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .result-profile-row:last-child { border: none; }
+    .result-profile-row span:first-child { color: var(--gray-400); }
+    .result-profile-row span:last-child { color: var(--gold); font-weight: 600; }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 100px 0; }
+    .section-tag { margin-bottom: 16px; }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1.1;
+      margin-bottom: 20px;
+      max-width: 800px;
+    }
+    .section-title span { color: var(--gold); }
+    .section-sub {
+      font-size: 17px;
+      color: var(--gray-200);
+      max-width: 700px;
+      margin-bottom: 60px;
+    }
+
+    /* ─── VIDEO ─── */
+    .video-section {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 40px;
+      text-align: center;
+    }
+    .video-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+      border-radius: var(--radius-sm);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .video-wrap:hover { transform: translateY(-2px); }
+    .video-wrap::after {
+      content: '▶ Натисніть, щоб подивитись відео від Віктора';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    /* ─── VALUE STACK ─── */
+    .value-stack {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 40px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .value-stack h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 28px;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+    .value-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--card-border);
+      font-size: 15px;
+    }
+    .value-row span:first-child { color: var(--gray-200); }
+    .value-row span:last-child {
+      color: var(--gray-400);
+      font-family: 'Space Grotesk', sans-serif;
+      text-decoration: line-through;
+    }
+    .value-total {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 0;
+      margin-top: 12px;
+      border-top: 2px solid var(--gold);
+      border-bottom: none !important;
+      font-size: 17px;
+      font-weight: 600;
+    }
+    .value-total span:last-child {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 20px;
+    }
+    .value-yours {
+      display: flex;
+      justify-content: space-between;
+      padding: 16px 0;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .value-yours span:last-child {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 28px;
+      font-family: 'DM Serif Display', serif;
+    }
+    .value-discount {
+      text-align: center;
+      margin-top: 16px;
+      padding: 14px;
+      background: var(--gold);
+      color: var(--gold-text);
+      border-radius: var(--radius-pill);
+      font-weight: 700;
+      letter-spacing: 1px;
+      font-size: 14px;
+    }
+
+    /* ─── CALCULATOR ─── */
+    .calc {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 40px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .calc-row { margin-bottom: 28px; }
+    .calc-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      color: var(--gray-200);
+      font-size: 14px;
+    }
+    .calc-value {
+      color: var(--gold);
+      font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .calc-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      background: var(--card-border);
+      border-radius: 10px;
+      outline: none;
+    }
+    .calc-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 26px; height: 26px;
+      background: var(--gold);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 16px var(--gold-glow);
+      transition: transform .15s;
+    }
+    .calc-slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
+    .calc-slider::-moz-range-thumb {
+      width: 26px; height: 26px;
+      background: var(--gold);
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 0 16px var(--gold-glow);
+    }
+    .calc-result {
+      background: var(--card-2);
+      padding: 24px;
+      border-radius: var(--radius-sm);
+      margin-top: 28px;
+    }
+    .calc-result-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 15px;
+    }
+    .calc-result-row span:first-child { color: var(--gray-400); }
+    .calc-result-row span:last-child {
+      color: var(--white);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+    }
+    .calc-payback {
+      margin-top: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--card-border);
+    }
+    .calc-payback span:first-child { color: var(--gold) !important; font-weight: 700; font-size: 16px; }
+    .calc-payback span:last-child { color: var(--gold) !important; font-size: 18px; }
+
+    /* ─── OBJECTIONS GRID ─── */
+    .objections {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .objection-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 28px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .objection-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.4);
+    }
+    .objection-q {
+      font-family: 'DM Serif Display', serif;
+      font-size: 19px;
+      color: var(--gold);
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+    .objection-a {
+      color: var(--gray-200);
+      font-size: 14px;
+      line-height: 1.65;
+      display: none;
+    }
+    .objection-card.open .objection-a { display: block; }
+    .objection-toggle {
+      color: var(--gray-400);
+      font-size: 13px;
+      margin-top: 12px;
+    }
+    .objection-card.open .objection-toggle { color: var(--gold); }
+
+    /* ─── PACKAGES ─── */
+    .packages {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .package {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 36px;
+      position: relative;
+      transition: var(--transition);
+    }
+    .package:hover {
+      border-color: var(--gold);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,.5);
+    }
+    .package--featured {
+      border-color: var(--gold);
+      background: linear-gradient(135deg, var(--card) 0%, rgba(245,222,137,0.05) 100%);
+    }
+    .package-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 6px 14px;
+      background: var(--gold);
+      color: var(--gold-text);
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .package-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+    .package-desc {
+      color: var(--gray-300);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+    .package-price-block { margin-bottom: 28px; }
+    .package-price-old {
+      color: var(--gray-400);
+      text-decoration: line-through;
+      font-size: 16px;
+    }
+    .package-price {
+      font-family: 'DM Serif Display', serif;
+      font-size: 56px;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .package-features {
+      list-style: none;
+      margin-bottom: 28px;
+    }
+    .package-features li {
+      padding: 8px 0;
+      font-size: 14px;
+      color: var(--gray-200);
+      display: flex;
+      align-items: start;
+      gap: 10px;
+    }
+    .package-features li::before {
+      content: '✓';
+      color: var(--gold);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ─── CASE / SOCIAL PROOF ─── */
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .case-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: var(--transition);
+    }
+    .case-card:hover { border-color: var(--gold); }
+    .case-card-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 44px;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .case-card-label {
+      color: var(--gray-200);
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    .case-card-note {
+      color: var(--gray-400);
+      font-size: 12px;
+    }
+
+    /* ─── GUARANTEES ─── */
+    .guarantees {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .guarantee {
+      padding: 32px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+    .guarantee:hover { border-color: var(--gold); }
+    .guarantee-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 32px;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .guarantee-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--white);
+      font-size: 16px;
+    }
+    .guarantee-text {
+      color: var(--gray-300);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ─── FINAL CTA ─── */
+    .final {
+      text-align: center;
+      padding: 120px 0;
+      background: radial-gradient(ellipse at center, var(--gold-dim) 0%, transparent 60%);
+    }
+    .countdown-big {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(36px, 5vw, 56px);
+      color: var(--gold);
+      font-variant-numeric: tabular-nums;
+      margin: 20px 0 8px;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+    }
+    .final-row {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    /* ─── FAQ ─── */
+    .faq-list { max-width: 800px; margin: 0 auto; }
+    .faq-item {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .faq-item:hover { border-color: var(--gray-600); }
+    .faq-item.open { border-color: var(--gold); }
+    .faq-q {
+      padding: 20px 24px;
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--white);
+      text-align: left;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .faq-q::after {
+      content: '+';
+      color: var(--gold);
+      font-size: 24px;
+      transition: transform .3s;
+    }
+    .faq-item.open .faq-q::after { transform: rotate(45deg); }
+    .faq-a {
+      padding: 0 24px 20px;
+      color: var(--gray-200);
+      font-size: 14px;
+      line-height: 1.7;
+      display: none;
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 60px 0 40px;
+      border-top: 1px solid var(--card-border);
+      text-align: center;
+      color: var(--gray-500);
+      font-size: 13px;
+    }
+    footer p { margin-bottom: 6px; }
+    footer span { color: var(--gold); font-weight: 700; }
+
+    /* ─── VIDEO WIDGET ─── */
+    .video-widget {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 280px;
+      z-index: 9999;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideIn 0.6s ease 6s forwards;
+    }
+    @keyframes slideIn { to { opacity: 1; transform: translateY(0); } }
+    .widget-trigger {
+      background: #1A1A1A;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 12px 12px 4px 12px;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      margin-right: 16px;
+      position: relative;
+      box-shadow: 0 8px 24px rgba(0,0,0,.4);
+      border: 1px solid var(--card-border);
+    }
+    .widget-trigger::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      right: 24px;
+      width: 12px;
+      height: 12px;
+      background: #1A1A1A;
+      transform: rotate(45deg);
+      z-index: -1;
+    }
+    .trigger-pulse {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--red);
+      border-radius: 50%;
+      margin-right: 6px;
+      vertical-align: middle;
+      animation: pulse 1.8s infinite;
+    }
+    .widget-thumb {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 12px 32px rgba(0,0,0,.5);
+      transition: transform .25s ease;
+      background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+      aspect-ratio: 16/11;
+      border: 1px solid var(--card-border);
+    }
+    .widget-thumb:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold);
+    }
+    .widget-thumb-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray-400);
+      font-size: 11px;
+    }
+    .play-btn {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 56px; height: 56px;
+      background: rgba(255,255,255,.95);
+      border-radius: 50%;
+      transform: translate(-50%,-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,.3);
+      transition: transform .2s;
+    }
+    .play-btn::before {
+      content: '';
+      width: 0; height: 0;
+      border-left: 14px solid #1A1A1A;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      margin-left: 4px;
+    }
+    .widget-thumb:hover .play-btn {
+      transform: translate(-50%,-50%) scale(1.1);
+      background: var(--gold);
+    }
+    .widget-meta {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 10px 14px;
+      background: linear-gradient(transparent, rgba(0,0,0,.9));
+      color: #fff;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .widget-close {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 12px;
+      color: #666;
+      z-index: 2;
+    }
+
+    /* ─── MODAL ─── */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.92);
+      z-index: 99999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal.active { display: flex; }
+    .modal-content {
+      width: 100%;
+      max-width: 960px;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .modal-video {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--card);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      border: 1px solid var(--card-border);
+    }
+
+    @media (max-width: 640px) {
+      section { padding: 60px 0; }
+      .quiz-card { padding: 24px; }
+      .video-widget { width: 200px; bottom: 16px; right: 16px; }
+      .final-row { flex-direction: column; }
+      .final-row .btn { width: 100%; }
+      .nav-inner .countdown { font-size: 11px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Visual<span>360</span></a>
+      <div class="countdown">
+        <span class="countdown-dot"></span>
+        <span>До закриття: <span id="navCountdown">71:23:45</span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO + QUIZ -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="container hero-content">
+      <div class="hero-tag">
+        <span class="pill pill--gold">
+          <span class="pill-dot"></span>
+          Вперше · Лише для підписників · 72 години
+        </span>
+      </div>
+
+      <h1>Заробляй<br><span>пасивно на 3D</span></h1>
+
+      <p class="hero-sub">
+        Програма, яка раніше була доступна тільки нашим співробітникам.
+        Перший потік для підписників — і ми набираємо лише одну групу мотивованих.
+        Перш ніж розповісти все — 5 коротких питань. 90 секунд.
+      </p>
+
+      <!-- QUIZ -->
+      <div class="quiz-card" id="quizCard">
+
+        <!-- STEP 1 -->
+        <div class="quiz-step" data-step="1">
+          <div class="quiz-progress"><div class="quiz-progress-bar" style="width:20%"></div></div>
+          <div class="quiz-step-num">Питання 1 / 5</div>
+          <h2 class="quiz-question">Яка ваша ситуація зараз?</h2>
+          <div class="quiz-options" data-q="1">
+            <button class="quiz-option" data-v="ua">Я в Україні і думаю про додатковий дохід</button>
+            <button class="quiz-option" data-v="diaspora">Я за кордоном (Польща, Німеччина, Чехія, інше)</button>
+            <button class="quiz-option" data-v="mama">Я в декреті або на паузі з кар'єри</button>
+            <button class="quiz-option" data-v="burned">Я працюю на нелюбимій роботі і вигорів(ла)</button>
+          </div>
+          <div class="quiz-actions">
+            <span></span>
+            <button class="quiz-next" disabled onclick="nextStep()">Далі →</button>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="quiz-step" data-step="2" style="display:none">
+          <div class="quiz-progress"><div class="quiz-progress-bar" style="width:40%"></div></div>
+          <div class="quiz-step-num">Питання 2 / 5</div>
+          <h2 class="quiz-question">Що для вас найважливіше?</h2>
+          <div class="quiz-options" data-q="2">
+            <button class="quiz-option" data-v="freedom">Свобода — працювати з будь-якої точки світу</button>
+            <button class="quiz-option" data-v="money">Дохід, який не залежить від боса і ринку</button>
+            <button class="quiz-option" data-v="stability">Стабільність — щоб завтра не залишитись з нічим</button>
+            <button class="quiz-option" data-v="growth">Самореалізація — нова професія, яка мені цікава</button>
+          </div>
+          <div class="quiz-actions">
+            <button class="quiz-back" onclick="prevStep()">← Назад</button>
+            <button class="quiz-next" disabled onclick="nextStep()">Далі →</button>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="quiz-step" data-step="3" style="display:none">
+          <div class="quiz-progress"><div class="quiz-progress-bar" style="width:60%"></div></div>
+          <div class="quiz-step-num">Питання 3 / 5</div>
+          <h2 class="quiz-question">Скільки часу можете виділяти на навчання?</h2>
+          <div class="quiz-options" data-q="3">
+            <button class="quiz-option" data-v="1h">1 година ввечері — у мене щільний графік</button>
+            <button class="quiz-option" data-v="2h">1-2 години щодня</button>
+            <button class="quiz-option" data-v="3h">2-3 години + вихідні</button>
+            <button class="quiz-option" data-v="full">Готовий зануритись повністю</button>
+          </div>
+          <div class="quiz-actions">
+            <button class="quiz-back" onclick="prevStep()">← Назад</button>
+            <button class="quiz-next" disabled onclick="nextStep()">Далі →</button>
+          </div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="quiz-step" data-step="4" style="display:none">
+          <div class="quiz-progress"><div class="quiz-progress-bar" style="width:80%"></div></div>
+          <div class="quiz-step-num">Питання 4 / 5</div>
+          <h2 class="quiz-question">Скажіть чесно:</h2>
+          <div class="quiz-options" data-q="4">
+            <button class="quiz-option" data-v="ready">Я готовий 2 місяці серйозно попотіти заради результату</button>
+            <button class="quiz-option" data-v="try">Я хочу спробувати, подивитись — і вирішити</button>
+            <button class="quiz-option danger" data-v="lazy">Я шукаю швидкі гроші без особливих зусиль</button>
+          </div>
+          <div class="quiz-actions">
+            <button class="quiz-back" onclick="prevStep()">← Назад</button>
+            <button class="quiz-next" disabled onclick="nextStep()">Далі →</button>
+          </div>
+        </div>
+
+        <!-- STEP 5 -->
+        <div class="quiz-step" data-step="5" style="display:none">
+          <div class="quiz-progress"><div class="quiz-progress-bar" style="width:100%"></div></div>
+          <div class="quiz-step-num">Питання 5 / 5</div>
+          <h2 class="quiz-question">Готові інвестувати $100-200 у програму, яка окупається з 1-2 перших замовлень?</h2>
+          <div class="quiz-options" data-q="5">
+            <button class="quiz-option" data-v="yes">Так — це моя інвестиція в себе</button>
+            <button class="quiz-option" data-v="installment">Готовий, якщо є розстрочка</button>
+            <button class="quiz-option" data-v="info">Поки не впевнений — хочу більше інформації</button>
+          </div>
+          <div class="quiz-actions">
+            <button class="quiz-back" onclick="prevStep()">← Назад</button>
+            <button class="quiz-next" disabled onclick="nextStep()">Сформувати профіль →</button>
+          </div>
+        </div>
+
+        <!-- STEP 6 — FORM -->
+        <div class="quiz-step" data-step="6" style="display:none">
+          <div class="quiz-progress"><div class="quiz-progress-bar" style="width:100%"></div></div>
+          <div class="quiz-step-num">Останній крок</div>
+          <h2 class="quiz-question">Залиште контакти — і ми покажемо ваш профіль</h2>
+          <form class="quiz-form" onsubmit="submitQuiz(event)">
+            <input type="text" placeholder="Ваше ім'я" required id="userName">
+            <input type="tel" placeholder="Номер телефону" required id="userPhone">
+            <button type="submit" class="quiz-next" style="margin-top:12px">Подивитись мій профіль →</button>
+          </form>
+        </div>
+
+        <!-- RESULT -->
+        <div class="quiz-step quiz-result" data-step="7" style="display:none">
+          <div class="result-status">✓ Ви підходите. Місце відкрите.</div>
+          <h2 class="quiz-question" style="font-size:28px">Ваш профіль</h2>
+          <div class="result-profile" id="profileBox"></div>
+          <p style="color:var(--gray-200); margin-bottom:24px; font-size:15px">
+            Перш ніж побачити деталі програми — подивіться 3-хвилинне відео від Віктора, співзасновника Visual360.
+          </p>
+          <button class="btn btn--block" onclick="scrollToId('video')">▶ Дивитись відео (3 хв)</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section id="video">
+    <div class="container">
+      <span class="pill section-tag">▶ Відео від Віктора</span>
+      <h2 class="section-title">Подивіться, як виглядає <span>програма зсередини</span></h2>
+      <div class="video-section">
+        <div class="video-wrap" onclick="openMainModal()"></div>
+        <p style="margin-top:20px; color:var(--gray-400); font-size:14px">3:00 хв · Віктор, співзасновник Visual360</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUE STACK -->
+  <section style="background: var(--dark);">
+    <div class="container">
+      <span class="pill section-tag">Що ви отримаєте</span>
+      <h2 class="section-title">Цінність у <span>10 разів вища</span> за ціну</h2>
+      <p class="section-sub">Це не маркетинг. Це реальна вартість компонентів, з яких складається програма.</p>
+
+      <div class="value-stack">
+        <h3>Пакет PRO — деталізація</h3>
+        <div class="value-row"><span>Курс 3D-моделювання (6 модулів)</span><span>$340</span></div>
+        <div class="value-row"><span>Доступ на 12 місяців</span><span>$120</span></div>
+        <div class="value-row"><span>План "Від 0 до перших $1000"</span><span>$150</span></div>
+        <div class="value-row"><span>Шаблони і референси меблів</span><span>$80</span></div>
+        <div class="value-row"><span>Чек-листи стоків (TurboSquid, CGTrader)</span><span>$50</span></div>
+        <div class="value-row"><span>Сертифікат Autodesk</span><span>$200</span></div>
+        <div class="value-row"><span>50+ готових текстур</span><span>$70</span></div>
+        <div class="value-row"><span>Куратор-практик до першого продажу</span><span>$300</span></div>
+        <div class="value-row"><span>Щотижневі зідзвони (8 тижнів)</span><span>$240</span></div>
+        <div class="value-row"><span>Перевірка моделей перед публікацією</span><span>$100</span></div>
+        <div class="value-row"><span>Закритий чат PRO-потоку</span><span>$60</span></div>
+        <div class="value-total"><span>Загальна цінність</span><span>$1710</span></div>
+        <div class="value-yours"><span>Ваша ціна</span><span>$200</span></div>
+        <div class="value-discount">─ ЗНИЖКА 88% ─ ТІЛЬКИ ДЛЯ ПЕРШОГО ПОТОКУ ─</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALCULATOR -->
+  <section>
+    <div class="container">
+      <span class="pill section-tag">🔥 Інтерактивний калькулятор</span>
+      <h2 class="section-title">Подивіться, як швидко окупиться <span>$100</span></h2>
+      <p class="section-sub">Введіть свої параметри і побачте реалістичний прогноз. Окупність — з першого замовлення.</p>
+
+      <div class="calc">
+        <div class="calc-row">
+          <div class="calc-label">
+            <span>Скільки моделей на місяць плануєте</span>
+            <span class="calc-value" id="modelsValue">5 моделей</span>
+          </div>
+          <input type="range" class="calc-slider" id="modelsSlider" min="1" max="20" value="5" oninput="updateCalc()">
+        </div>
+
+        <div class="calc-row">
+          <div class="calc-label">
+            <span>Середня ціна моделі на стоці</span>
+            <span class="calc-value" id="priceValue">$40</span>
+          </div>
+          <input type="range" class="calc-slider" id="priceSlider" min="20" max="200" value="40" step="5" oninput="updateCalc()">
+        </div>
+
+        <div class="calc-result">
+          <div class="calc-result-row"><span>Місяць 1 (навчання)</span><span>$0</span></div>
+          <div class="calc-result-row"><span>Місяць 2 (перші продажі)</span><span id="calcM2">$200</span></div>
+          <div class="calc-result-row"><span>Місяць 3</span><span id="calcM3">$600</span></div>
+          <div class="calc-result-row"><span>Місяць 6</span><span id="calcM6">$2400</span></div>
+          <div class="calc-result-row"><span>Місяць 12</span><span id="calcM12">$8400</span></div>
+          <div class="calc-result-row calc-payback"><span>Окупність $100</span><span id="calcPayback">14 днів</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE -->
+  <section style="background: var(--dark);">
+    <div class="container">
+      <span class="pill section-tag">Кейс студії</span>
+      <h2 class="section-title"><span>$35 000</span> на стоках за 5 місяців</h2>
+      <p class="section-sub">Це не теорія. Ми у Visual360 робили цей експеримент. Розкажемо як і покажемо чесно — десь стріляє, десь ні.</p>
+
+      <div class="case-grid">
+        <div class="case-card">
+          <div class="case-card-num">$999</div>
+          <div class="case-card-label">Набір кухонних меблів</div>
+          <div class="case-card-note">× 12 продажів = $11 988</div>
+        </div>
+        <div class="case-card">
+          <div class="case-card-num">$299</div>
+          <div class="case-card-label">Набір декору</div>
+          <div class="case-card-note">× 25 продажів = $7 475</div>
+        </div>
+        <div class="case-card">
+          <div class="case-card-num">$0</div>
+          <div class="case-card-label">Набір іграшок</div>
+          <div class="case-card-note">Не зайшло. Буває.</div>
+        </div>
+        <div class="case-card">
+          <div class="case-card-num">$5870</div>
+          <div class="case-card-label">Учень Станіслав за лютий</div>
+          <div class="case-card-note">3D-візуалізація + моделінг</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OBJECTIONS -->
+  <section>
+    <div class="container">
+      <span class="pill section-tag">🤔 Перевір свою думку</span>
+      <h2 class="section-title">Натисніть на те, що зараз <span>у вас в голові</span></h2>
+      <p class="section-sub">Знаю, які питання зараз у вас. Виберіть своє — і отримайте чесну відповідь.</p>
+
+      <div class="objections">
+        <div class="objection-card" onclick="toggleObj(this)">
+          <div class="objection-q">"Я не творчий, я з цифрами"</div>
+          <div class="objection-a">3D-моделювання меблів — це не художня задача, а інженерна. Точні розміри, чисті сітки, технічні вимоги. Якщо ви бухгалтер, інженер чи юрист — ваш мозок підготований краще, ніж у "творчих".</div>
+          <div class="objection-toggle">+ Відповідь</div>
+        </div>
+
+        <div class="objection-card" onclick="toggleObj(this)">
+          <div class="objection-q">"AI заберe цю професію"</div>
+          <div class="objection-a">AI вже частина нашої роботи — прискорює 30-40% задач. Але AI не моделює меблі для виробництва, де потрібен точний полігональний бюджет, UV-розгортка, формат під 3ds Max. Ми вчимо працювати з AI, не проти нього.</div>
+          <div class="objection-toggle">+ Відповідь</div>
+        </div>
+
+        <div class="objection-card" onclick="toggleObj(this)">
+          <div class="objection-q">"У мене немає часу"</div>
+          <div class="objection-a">1 година ввечері. Уроки по 15-20 хвилин. Можна паралельно з основною роботою, в декретні години, після зміни. Більшість учнів проходять програму за 8-10 тижнів.</div>
+          <div class="objection-toggle">+ Відповідь</div>
+        </div>
+
+        <div class="objection-card" onclick="toggleObj(this)">
+          <div class="objection-q">"Я не дружу з комп'ютером"</div>
+          <div class="objection-a">Програма починається з нуля. Як відкрити 3ds Max, як налаштувати інтерфейс, як зробити перший куб. Інтерфейс доступний українською/російською.</div>
+          <div class="objection-toggle">+ Відповідь</div>
+        </div>
+
+        <div class="objection-card" onclick="toggleObj(this)">
+          <div class="objection-q">"Чоловік буде проти"</div>
+          <div class="objection-a">Дамо вам аргументи для розмови з чоловіком — реальна математика, ризики, гарантії повернення. Розстрочка робить бюджетний удар мінімальним. У нас є окремий гайд "Як розповісти близьким про навчання".</div>
+          <div class="objection-toggle">+ Відповідь</div>
+        </div>
+
+        <div class="objection-card" onclick="toggleObj(this)">
+          <div class="objection-q">"Це лохотрон, я вже обпікся"</div>
+          <div class="objection-a">Чесно? Ваші підозри обґрунтовані — ринок курсів дискредитовано. 14 днів повернення без питань. Куратор не зникне після другого зідзвону. Якщо за 2 місяці не пішло — продовжуємо роботу. Це у договорі.</div>
+          <div class="objection-toggle">+ Відповідь</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section style="background: var(--dark);">
+    <div class="container">
+      <span class="pill section-tag">Виберіть свій пакет</span>
+      <h2 class="section-title">2 формати участі</h2>
+      <p class="section-sub">Чесно: 75% людей беруть PRO. Бо з куратором доходять майже всі. Без — 30%. Ваш вибір.</p>
+
+      <div class="packages">
+        <div class="package">
+          <div class="package-name">СТАРТ</div>
+          <div class="package-desc">Для тих, хто йде сам і не потребує супроводу</div>
+          <div class="package-price-block">
+            <div class="package-price-old">$500</div>
+            <div class="package-price">$100</div>
+          </div>
+          <ul class="package-features">
+            <li>Курс (6 модулів)</li>
+            <li>Доступ на 12 місяців</li>
+            <li>План "0 → $500"</li>
+            <li>Чек-листи стоків</li>
+            <li>Autodesk-сертифікат</li>
+            <li>50+ готових текстур</li>
+          </ul>
+          <button class="btn btn--outline btn--block" onclick="scrollToId('quizCard')">Залишити заявку</button>
+        </div>
+
+        <div class="package package--featured">
+          <span class="package-badge">⭐ Рекомендуємо</span>
+          <div class="package-name">PRO</div>
+          <div class="package-desc">Для тих, хто хоче гарантовано дойти до першого продажу</div>
+          <div class="package-price-block">
+            <div class="package-price-old">$1000</div>
+            <div class="package-price">$200</div>
+          </div>
+          <ul class="package-features">
+            <li>Все, що в СТАРТ</li>
+            <li>Особистий куратор</li>
+            <li>Перевірка домашніх робіт</li>
+            <li>Щотижневі зідзвони (8 тижнів)</li>
+            <li>Доведення до першого продажу</li>
+            <li>Розбір моделі перед публікацією</li>
+            <li>Закритий чат PRO</li>
+          </ul>
+          <button class="btn btn--block" onclick="scrollToId('quizCard')">Залишити заявку</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUARANTEES -->
+  <section>
+    <div class="container">
+      <span class="pill section-tag">Гарантії</span>
+      <h2 class="section-title">Що буде, якщо <span>щось піде не так</span></h2>
+
+      <div class="guarantees">
+        <div class="guarantee">
+          <div class="guarantee-num">14</div>
+          <div class="guarantee-title">днів повернення</div>
+          <div class="guarantee-text">Якщо за 14 днів зрозумієте, що це не ваше — повертаємо $100 або $200 без питань. Без "розглянемо заявку".</div>
+        </div>
+        <div class="guarantee">
+          <div class="guarantee-num">12</div>
+          <div class="guarantee-title">місяців доступу</div>
+          <div class="guarantee-text">Не встигаєте за 2 місяці? Маєте рік, щоб пройти програму у своєму темпі. Без тиску.</div>
+        </div>
+        <div class="guarantee">
+          <div class="guarantee-num">∞</div>
+          <div class="guarantee-title">робота до результату</div>
+          <div class="guarantee-text">Якщо на PRO за 2 місяці не пішли продажі — продовжуємо роботу. Бо нам теж потрібен ваш кейс.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final">
+    <div class="container">
+      <span class="pill pill--gold"><span class="pill-dot"></span>Останній шанс</span>
+      <h2 class="section-title" style="margin: 24px auto 20px; text-align:center">
+        Через 6 місяців ви будете<br>в одному з <span>двох станів</span>
+      </h2>
+      <p class="section-sub" style="margin: 0 auto 32px; text-align:center">
+        ❌ У тій самій ситуації, що зараз<br>
+        ✅ Або з $2000-5000 пасивного доходу
+      </p>
+
+      <div class="countdown-big" id="bigCountdown">71:23:45</div>
+      <p style="color:var(--gray-400); margin-bottom:24px">До закриття першого потоку</p>
+
+      <div class="final-row">
+        <button class="btn" onclick="scrollToId('quizCard')">Залишити заявку — $100</button>
+        <button class="btn btn--outline" onclick="scrollToId('quizCard')">PRO — $200</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="background: var(--dark);">
+    <div class="container">
+      <span class="pill section-tag">FAQ</span>
+      <h2 class="section-title">Часті питання</h2>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Що з податками і легальністю на стоках?</button>
+          <div class="faq-a">Стоки — це повністю легальна міжнародна самозайнятість. В Україні: ФОП 3-я група, 5% єдиного податку, виплати через PayPal/Payoneer. В Польщі: JDG, 12-19%. В Німеччині: Freiberufler, прогресивна шкала. Платите податки у країні проживання.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Який ноутбук потрібен?</button>
+          <div class="faq-a">Мінімум: 8 GB ОЗП, процесор від Intel i5 7-го покоління, GPU 2 GB, 128 GB вільного місця. Підійде багато ноутбуків віком 3-5 років. Деталі вимог — у програмі.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Чи можна платити частинами?</button>
+          <div class="faq-a">Так. Розстрочка від студії — від 2000 грн на місяць. Без банків, без кредитів, без переплат.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Скільки реально часу займе вийти на перший дохід?</button>
+          <div class="faq-a">Перші продажі — 8-12 тижнів після початку. Стабільні $500-1000 — 4-6 місяців. $2000-5000 — рік активної роботи. Це реалістичні цифри, не обіцянка.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Що якщо я ніколи не моделював?</button>
+          <div class="faq-a">Перші 3 модулі — з нуля. Як відкрити програму, перші куби, базові форми. Вчимо саме новачків.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Чим це відрізняється від старого курсу Visual360?</button>
+          <div class="faq-a">Старий курс — про роботу на замовників (фриланс, студії). Новий — про стоки, де моделі продаються самі. Інша механіка, інші стратегії, інший результат — пасивний дохід замість пошуку клієнтів.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p><span>VISUAL360</span> · Партнер Autodesk · Ліцензія №ORG10545</p>
+      <p>14 000+ випускників · 96% починають заробляти одразу · 12+ років на ринку</p>
+      <p style="margin-top:16px; opacity:.6">© 2026 Visual360. Всі права захищені.</p>
+    </div>
+  </footer>
+
+  <!-- VIDEO WIDGET -->
+  <div id="videoWidget" class="video-widget">
+    <button class="widget-close" onclick="closeWidget()">✕</button>
+    <div class="widget-trigger">
+      <span class="trigger-pulse"></span>
+      Подивись, як виглядає твій ранок через 6 місяців
+    </div>
+    <div class="widget-thumb" onclick="openMainModal()">
+      <div class="widget-thumb-placeholder">[Превʼю Віктора]</div>
+      <div class="play-btn"></div>
+      <div class="widget-meta">
+        <span>Віктор · Visual360</span>
+        <span>03:00</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div id="videoModal" class="modal" onclick="closeModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-video">▶ Тут буде відео від Віктора (3:00)</div>
+    </div>
+  </div>
+
+  <script>
+    let currentStep = 1;
+    const answers = {};
+
+    document.querySelectorAll('.quiz-options').forEach(opts => {
+      opts.addEventListener('click', e => {
+        if (!e.target.classList.contains('quiz-option')) return;
+        const q = opts.dataset.q;
+        opts.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+        e.target.classList.add('selected');
+        answers[q] = e.target.dataset.v;
+        const step = e.target.closest('.quiz-step');
+        const nextBtn = step.querySelector('.quiz-next');
+        nextBtn.disabled = false;
+        if (q === '4' && e.target.dataset.v === 'lazy') {
+          nextBtn.textContent = 'Дякуємо за чесність →';
+        }
+      });
+    });
+
+    function nextStep() {
+      const cur = document.querySelector(`.quiz-step[data-step="${currentStep}"]`);
+      cur.style.display = 'none';
+      currentStep++;
+      const next = document.querySelector(`.quiz-step[data-step="${currentStep}"]`);
+      next.style.display = 'block';
+      next.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function prevStep() {
+      const cur = document.querySelector(`.quiz-step[data-step="${currentStep}"]`);
+      cur.style.display = 'none';
+      currentStep--;
+      document.querySelector(`.quiz-step[data-step="${currentStep}"]`).style.display = 'block';
+    }
+
+    function submitQuiz(e) {
+      e.preventDefault();
+      const name = document.getElementById('userName').value;
+      const phone = document.getElementById('userPhone').value;
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead', { content_name: 'Quiz Submission' });
+        fbq('track', 'Subscribe');
+      }
+      const sitMap = { ua: 'В Україні', diaspora: 'За кордоном', mama: 'В декреті', burned: 'Вигоріла на роботі' };
+      const motiveMap = { freedom: 'Свобода', money: 'Незалежний дохід', stability: 'Стабільність', growth: 'Самореалізація' };
+      const timeMap = { '1h': '1 година/день', '2h': '1-2 години/день', '3h': '2-3 години/день', 'full': 'Повне занурення' };
+
+      document.getElementById('profileBox').innerHTML = `
+        <div class="result-profile-row"><span>Ситуація</span><span>${sitMap[answers[1]] || '—'}</span></div>
+        <div class="result-profile-row"><span>Головна мотивація</span><span>${motiveMap[answers[2]] || '—'}</span></div>
+        <div class="result-profile-row"><span>Час на навчання</span><span>${timeMap[answers[3]] || '—'}</span></div>
+        <div class="result-profile-row"><span>Готовність</span><span>${answers[4] === 'ready' ? 'Висока (9/10)' : answers[4] === 'try' ? 'Середня (6/10)' : '—'}</span></div>
+      `;
+      console.log('SUBMIT:', { name, phone, answers });
+      document.querySelector('.quiz-step[data-step="6"]').style.display = 'none';
+      document.querySelector('.quiz-step[data-step="7"]').style.display = 'block';
+      currentStep = 7;
+    }
+
+    function updateCalc() {
+      const models = +document.getElementById('modelsSlider').value;
+      const price = +document.getElementById('priceSlider').value;
+      document.getElementById('modelsValue').textContent = `${models} моделей`;
+      document.getElementById('priceValue').textContent = `$${price}`;
+      const m2 = models * price;
+      const m3 = m2 * 3;
+      const m6 = m2 * 12;
+      const m12 = m2 * 42;
+      document.getElementById('calcM2').textContent = `$${m2}`;
+      document.getElementById('calcM3').textContent = `$${m3}`;
+      document.getElementById('calcM6').textContent = `$${m6.toLocaleString()}`;
+      document.getElementById('calcM12').textContent = `$${m12.toLocaleString()}`;
+      const days = Math.max(1, Math.round(100 / (m2 / 30)));
+      document.getElementById('calcPayback').textContent = `${days} днів`;
+    }
+
+    function toggleObj(card) { card.classList.toggle('open'); }
+    function toggleFaq(btn) { btn.parentElement.classList.toggle('open'); }
+    function openMainModal() {
+      document.getElementById('videoModal').classList.add('active');
+      if (typeof fbq === 'function') fbq('trackCustom', 'VideoModalOpen');
+    }
+    function closeModal(e) {
+      if (e && e.target.id !== 'videoModal' && !e.target.classList.contains('modal-close')) return;
+      document.getElementById('videoModal').classList.remove('active');
+    }
+    function closeWidget() {
+      const w = document.getElementById('videoWidget');
+      w.style.animation = 'none';
+      w.style.opacity = '0';
+      w.style.pointerEvents = 'none';
+      setTimeout(() => {
+        w.style.animation = 'slideIn 0.6s ease forwards';
+        w.style.pointerEvents = 'auto';
+      }, 60000);
+    }
+
+    let totalSec = 72 * 3600 - (23 * 60 + 45);
+    function updateCountdown() {
+      const h = Math.floor(totalSec / 3600);
+      const m = Math.floor((totalSec % 3600) / 60);
+      const s = totalSec % 60;
+      const txt = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+      const nav = document.getElementById('navCountdown');
+      const big = document.getElementById('bigCountdown');
+      if (nav) nav.textContent = txt;
+      if (big) big.textContent = txt;
+      if (totalSec > 0) totalSec--;
+    }
+    setInterval(updateCountdown, 1000);
+
+    function scrollToId(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    updateCalc();
+  </script>
+
+</body>
+</html>
