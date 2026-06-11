@@ -1266,22 +1266,16 @@
     }
     .portfolio-img {
       aspect-ratio: 1/1;
-      background: #FFFFFF;
+      background: linear-gradient(135deg, #FFFAF6 0%, #FFF1E8 100%);
       display: flex; align-items: center; justify-content: center;
       position: relative; overflow: hidden;
       padding: 14px;
-    }
-    .portfolio-img::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(255,244,237,.45) 0%, rgba(255,229,217,.55) 100%);
-      pointer-events: none;
     }
     .portfolio-img img {
       width: 100%; height: 100%;
       object-fit: contain;
       display: block;
       transition: transform .5s ease;
-      position: relative; z-index: 2;
     }
     .portfolio-card:hover .portfolio-img img {
       transform: scale(1.06);
