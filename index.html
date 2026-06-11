@@ -481,6 +481,209 @@
       color: #FFFFFF !important;
     }
 
+    /* ─── HERO iPhone mockup with push notifications ─── */
+    .hero-iphone {
+      position: relative;
+      width: 100%;
+      max-width: 340px;
+      margin: 0 auto;
+    }
+    .iphone-glow {
+      position: absolute; inset: -40px;
+      background:
+        radial-gradient(circle at 30% 30%, var(--orange-glow), transparent 60%),
+        radial-gradient(circle at 70% 70%, var(--purple-glow), transparent 60%);
+      filter: blur(60px); z-index: -1;
+    }
+    .iphone {
+      position: relative;
+      aspect-ratio: 9/19;
+      background: linear-gradient(135deg, #1a1a26, #2a2a3a);
+      border-radius: 44px;
+      padding: 14px;
+      box-shadow:
+        0 30px 80px rgba(0,0,0,0.25),
+        0 0 0 4px #0a0a14,
+        0 0 0 6px #2a2a3a,
+        inset 0 0 0 0.5px rgba(255,255,255,0.08);
+    }
+    .iphone-notch {
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 110px; height: 26px;
+      background: #0a0a14;
+      border-radius: 18px;
+      z-index: 5;
+    }
+    .iphone-screen {
+      width: 100%; height: 100%;
+      background:
+        radial-gradient(ellipse at 30% 10%, rgba(255,107,53,0.45), transparent 60%),
+        radial-gradient(ellipse at 70% 90%, rgba(159,76,255,0.55), transparent 60%),
+        linear-gradient(160deg, #FF6B35 0%, #FF4D5E 30%, #9F4CFF 65%, #FF8FA8 100%);
+      border-radius: 34px;
+      padding: 50px 14px 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .iphone-status {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 12px;
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+    .status-icons {
+      display: flex; align-items: center; gap: 4px;
+    }
+    .battery {
+      width: 22px; height: 11px;
+      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: 3px;
+      padding: 1px;
+      position: relative;
+    }
+    .battery::after {
+      content: ''; position: absolute;
+      right: -3px; top: 50%; transform: translateY(-50%);
+      width: 2px; height: 5px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 0 1px 1px 0;
+    }
+    .battery > div {
+      width: 75%; height: 100%;
+      background: #fff;
+      border-radius: 1px;
+    }
+    .iphone-today {
+      text-align: center;
+      color: #fff;
+      margin-bottom: 14px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .today-day {
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      opacity: 0.85;
+      font-weight: 600;
+    }
+    .today-date {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1;
+      margin-top: 2px;
+    }
+    .push-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .push-card {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 14px;
+      padding: 9px 11px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      animation: pushIn 0.5s ease-out backwards;
+    }
+    .push-card.push--start {
+      opacity: 0.55;
+      filter: grayscale(0.4);
+    }
+    .push--month12 { animation-delay: 0.4s; }
+    .push--month6  { animation-delay: 0.8s; }
+    .push--month3  { animation-delay: 1.2s; }
+    .push--start   { animation-delay: 1.6s; }
+    @keyframes pushIn {
+      from { transform: translateY(-12px) scale(0.92); opacity: 0; }
+      to   { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    .push--start { animation-name: pushInFaded; }
+    @keyframes pushInFaded {
+      from { transform: translateY(-12px) scale(0.92); opacity: 0; }
+      to   { transform: translateY(0) scale(1); opacity: 0.55; }
+    }
+    .push-head {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 3px;
+      font-size: 10px;
+      color: #5a5a5a;
+    }
+    .push-icon {
+      width: 14px; height: 14px;
+      background: linear-gradient(135deg, var(--orange), var(--red));
+      border-radius: 4px;
+      color: #fff;
+      font-size: 8px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .push-icon--purple {
+      background: linear-gradient(135deg, var(--purple), var(--red));
+    }
+    .push-app {
+      font-weight: 700;
+      color: #0a0a0a;
+    }
+    .push-time {
+      margin-left: auto;
+      font-size: 9px;
+      color: #888;
+    }
+    .push-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #0a0a0a;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+    .push-sub {
+      font-size: 10px;
+      color: #6a6a6a;
+      margin-top: 2px;
+    }
+    .iphone-total {
+      margin-top: 12px;
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 16px;
+      text-align: center;
+      color: #fff;
+      animation: pushIn 0.5s ease-out 2s backwards;
+    }
+    .total-label {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      opacity: 0.85;
+      font-weight: 600;
+    }
+    .total-amount {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1;
+      margin: 4px 0;
+      text-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    .total-trend {
+      font-size: 10px;
+      opacity: 0.95;
+      font-weight: 600;
+    }
+
     /* keep old hero-models for compatibility (not used now) */
     .hero-models {
       display: grid; grid-template-columns: repeat(3, 1fr);
@@ -1752,94 +1955,74 @@
           </div>
         </div>
 
-        <!-- HERO MODELS GRID -->
-        <div class="hero-models">
-          <div class="model-card">
-            <div class="model-svg">
-              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14 14 L14 36 L42 36 L42 14"/>
-                <path d="M14 36 L8 56 L20 56"/>
-                <path d="M42 36 L48 56 L36 56"/>
-                <path d="M14 26 L42 26"/>
-                <path d="M22 36 L20 48 L36 48 L34 36"/>
-                <path d="M14 14 Q14 8 18 8 L38 8 Q42 8 42 14"/>
-              </svg>
-            </div>
-            <div class="model-meta">
-              <span class="model-name">Lounge Chair</span>
-              <span class="model-price">$159</span>
-            </div>
-          </div>
+        <!-- HERO IPHONE MOCKUP — push notifications -->
+        <div class="hero-iphone">
+          <div class="iphone">
+            <div class="iphone-notch"></div>
+            <div class="iphone-screen">
+              <div class="iphone-status">
+                <span class="status-time">16:42</span>
+                <span class="status-icons">
+                  <svg width="14" height="9" viewBox="0 0 14 9" fill="none"><path d="M1 7l1.5-2 2.5 1L7 4l2 1 2-2 2 2" stroke="#fff" stroke-width="1.2"/></svg>
+                  <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5a6 6 0 0112 0M3 6.5a3.5 3.5 0 018 0M5.5 8a1 1 0 013 0" stroke="#fff" stroke-width="1.2"/></svg>
+                  <div class="battery"><div></div></div>
+                </span>
+              </div>
+              <div class="iphone-today">
+                <div class="today-day">пʼятниця</div>
+                <div class="today-date">12 червня</div>
+              </div>
 
-          <div class="model-card model-card--violet">
-            <div class="model-svg">
-              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 32 Q6 24 14 24 L50 24 Q58 24 58 32 L58 44 L6 44 Z"/>
-                <path d="M14 24 L14 36 Q14 30 20 30 L44 30 Q50 30 50 36 L50 24"/>
-                <path d="M12 44 L10 52"/>
-                <path d="M52 44 L54 52"/>
-              </svg>
-            </div>
-            <div class="model-meta">
-              <span class="model-name">Sofa 3-seat</span>
-              <span class="model-price">$299</span>
-            </div>
-          </div>
+              <div class="push-stack">
+                <div class="push-card push--month12">
+                  <div class="push-head">
+                    <div class="push-icon">T</div>
+                    <span class="push-app">TurboSquid</span>
+                    <span class="push-time">щойно</span>
+                  </div>
+                  <div class="push-title">💰 +$159 — Lounge Chair</div>
+                  <div class="push-sub">Місяць 12 · $11,760 цього місяця</div>
+                </div>
 
-          <div class="model-card model-card--cyan">
-            <div class="model-svg">
-              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 6 L44 6 L40 24 L24 24 Z"/>
-                <path d="M32 24 L32 52"/>
-                <ellipse cx="32" cy="54" rx="14" ry="3"/>
-              </svg>
-            </div>
-            <div class="model-meta">
-              <span class="model-name">Floor Lamp</span>
-              <span class="model-price">$89</span>
-            </div>
-          </div>
+                <div class="push-card push--month6">
+                  <div class="push-head">
+                    <div class="push-icon">T</div>
+                    <span class="push-app">TurboSquid</span>
+                    <span class="push-time">3 міс тому</span>
+                  </div>
+                  <div class="push-title">💰 +$89 — Floor Lamp</div>
+                  <div class="push-sub">Місяць 6 · $3,360 цього місяця</div>
+                </div>
 
-          <div class="model-card model-card--pink">
-            <div class="model-svg">
-              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <ellipse cx="32" cy="14" rx="8" ry="2"/>
-                <path d="M24 14 L24 20 Q24 26 28 30 Q24 36 24 44 Q24 52 32 52 Q40 52 40 44 Q40 36 36 30 Q40 26 40 20 L40 14"/>
-              </svg>
-            </div>
-            <div class="model-meta">
-              <span class="model-name">Ceramic Vase</span>
-              <span class="model-price">$45</span>
-            </div>
-          </div>
+                <div class="push-card push--month3">
+                  <div class="push-head">
+                    <div class="push-icon">T</div>
+                    <span class="push-app">TurboSquid</span>
+                    <span class="push-time">9 міс тому</span>
+                  </div>
+                  <div class="push-title">💰 +$45 — Ceramic Vase</div>
+                  <div class="push-sub">Місяць 3 · перший продаж 🎉</div>
+                </div>
 
-          <div class="model-card">
-            <div class="model-svg">
-              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 18 L60 18 L54 24 L10 24 Z"/>
-                <path d="M14 24 L14 52"/>
-                <path d="M50 24 L50 52"/>
-              </svg>
-            </div>
-            <div class="model-meta">
-              <span class="model-name">Coffee Table</span>
-              <span class="model-price">$199</span>
-            </div>
-          </div>
+                <div class="push-card push--start">
+                  <div class="push-head">
+                    <div class="push-icon push-icon--purple">V</div>
+                    <span class="push-app">Visual360</span>
+                    <span class="push-time">рік тому</span>
+                  </div>
+                  <div class="push-title">🚀 Старт навчання</div>
+                  <div class="push-sub">Місяць 1 · вперше відкрила 3ds Max</div>
+                </div>
+              </div>
 
-          <div class="model-card model-card--violet">
-            <div class="model-svg">
-              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="8" y="8" width="48" height="36" rx="2"/>
-                <path d="M8 38 L22 26 L30 32 L42 22 L56 30"/>
-                <circle cx="42" cy="18" r="3"/>
-              </svg>
-            </div>
-            <div class="model-meta">
-              <span class="model-name">Wall Art</span>
-              <span class="model-price">$129</span>
+              <div class="iphone-total">
+                <div class="total-label">Цього року</div>
+                <div class="total-amount">+$15 240</div>
+                <div class="total-trend">↗ актив росте</div>
+              </div>
             </div>
           </div>
+          <div class="iphone-glow"></div>
         </div>
 
       </div>
