@@ -1265,16 +1265,18 @@
       box-shadow: 0 20px 40px rgba(0,0,0,.5);
     }
     .portfolio-img {
-      aspect-ratio: 4/3;
-      background: linear-gradient(135deg, var(--dark) 0%, var(--card-2) 100%);
+      aspect-ratio: 1/1;
+      background: linear-gradient(135deg, #FFF4ED 0%, #FFE5D9 100%);
       display: flex; align-items: center; justify-content: center;
       position: relative; overflow: hidden;
+      padding: 18px;
     }
     .portfolio-img img {
       width: 100%; height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       display: block;
       transition: transform .5s ease;
+      mix-blend-mode: multiply;
     }
     .portfolio-card:hover .portfolio-img img {
       transform: scale(1.06);
@@ -2514,10 +2516,10 @@
         <div class="portfolio-card">
           <div class="portfolio-tag">🔥 Bestseller</div>
           <div class="portfolio-img">
-            <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600&h=450&fit=crop&q=80" alt="Lounge Chair" loading="lazy">
+            <img src="models/sofa.png" alt="Sofa" loading="lazy">
           </div>
           <div class="portfolio-meta">
-            <div class="portfolio-name">Lounge Chair</div>
+            <div class="portfolio-name">Диван</div>
             <div class="portfolio-info"><span class="price">$159</span><span class="sold">× 24</span></div>
           </div>
         </div>
@@ -2525,20 +2527,20 @@
         <div class="portfolio-card">
           <div class="portfolio-tag portfolio-tag--violet">⭐ Top</div>
           <div class="portfolio-img">
-            <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&h=450&fit=crop&q=80" alt="Sofa Collection" loading="lazy">
+            <img src="models/bed-upholstered.png" alt="Upholstered Bed" loading="lazy">
           </div>
           <div class="portfolio-meta">
-            <div class="portfolio-name">Sofa Collection</div>
+            <div class="portfolio-name">М'яке ліжко</div>
             <div class="portfolio-info"><span class="price">$299</span><span class="sold">× 17</span></div>
           </div>
         </div>
 
         <div class="portfolio-card">
           <div class="portfolio-img">
-            <img src="https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=600&h=450&fit=crop&q=80" alt="Floor Lamp" loading="lazy">
+            <img src="models/bar-stools.png" alt="Bar Stools" loading="lazy">
           </div>
           <div class="portfolio-meta">
-            <div class="portfolio-name">Floor Lamp</div>
+            <div class="portfolio-name">Барні стільці</div>
             <div class="portfolio-info"><span class="price">$89</span><span class="sold">× 41</span></div>
           </div>
         </div>
@@ -2546,30 +2548,30 @@
         <div class="portfolio-card">
           <div class="portfolio-tag portfolio-tag--cyan">💎 Premium</div>
           <div class="portfolio-img">
-            <img src="https://images.unsplash.com/photo-1525974160448-038dacadcc71?w=600&h=450&fit=crop&q=80" alt="Ceramic Set" loading="lazy">
+            <img src="models/side-table.png" alt="Side Table" loading="lazy">
           </div>
           <div class="portfolio-meta">
-            <div class="portfolio-name">Ceramic Set</div>
+            <div class="portfolio-name">Приліжковий стіл</div>
             <div class="portfolio-info"><span class="price">$45</span><span class="sold">× 88</span></div>
           </div>
         </div>
 
         <div class="portfolio-card">
           <div class="portfolio-img">
-            <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=600&h=450&fit=crop&q=80" alt="Coffee Table" loading="lazy">
+            <img src="models/bed-velvet.png" alt="Velvet Bed" loading="lazy">
           </div>
           <div class="portfolio-meta">
-            <div class="portfolio-name">Coffee Table</div>
+            <div class="portfolio-name">Велюрове ліжко</div>
             <div class="portfolio-info"><span class="price">$199</span><span class="sold">× 13</span></div>
           </div>
         </div>
 
         <div class="portfolio-card">
           <div class="portfolio-img">
-            <img src="https://images.unsplash.com/photo-1581539250439-c96689b516dd?w=600&h=450&fit=crop&q=80" alt="Wall Art" loading="lazy">
+            <img src="models/teddy-bear.png" alt="Teddy Bear" loading="lazy">
           </div>
           <div class="portfolio-meta">
-            <div class="portfolio-name">Wall Art</div>
+            <div class="portfolio-name">Плюшевий ведмідь</div>
             <div class="portfolio-info"><span class="price">$129</span><span class="sold">× 27</span></div>
           </div>
         </div>
@@ -2577,10 +2579,10 @@
         <div class="portfolio-card">
           <div class="portfolio-tag">🔥 Hot</div>
           <div class="portfolio-img">
-            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=450&fit=crop&q=80" alt="Kitchen Set" loading="lazy">
+            <img src="models/desk.png" alt="Office Desk" loading="lazy">
           </div>
           <div class="portfolio-meta">
-            <div class="portfolio-name">Kitchen Set</div>
+            <div class="portfolio-name">Письмовий стіл</div>
             <div class="portfolio-info"><span class="price">$599</span><span class="sold">× 9</span></div>
           </div>
         </div>
@@ -2588,10 +2590,10 @@
         <div class="portfolio-card">
           <div class="portfolio-tag portfolio-tag--violet">⭐ New</div>
           <div class="portfolio-img">
-            <img src="https://images.unsplash.com/photo-1578500494198-246f612d3b3d?w=600&h=450&fit=crop&q=80" alt="Pottery Pack" loading="lazy">
+            <img src="models/armchair.png" alt="Velvet Armchair" loading="lazy">
           </div>
           <div class="portfolio-meta">
-            <div class="portfolio-name">Pottery Pack</div>
+            <div class="portfolio-name">Велюрове крісло</div>
             <div class="portfolio-info"><span class="price">$79</span><span class="sold">× 52</span></div>
           </div>
         </div>
