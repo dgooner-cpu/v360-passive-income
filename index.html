@@ -481,7 +481,194 @@
       color: #FFFFFF !important;
     }
 
-    /* ─── HERO iPhone mockup with push notifications ─── */
+    /* ─── HERO TIMELINE — твій шлях ─── */
+    .hero-timeline {
+      position: relative;
+      width: 100%;
+      max-width: 460px;
+      margin: 0 auto;
+    }
+    .hero-timeline::before {
+      content: '';
+      position: absolute; inset: -40px;
+      background:
+        radial-gradient(circle at 20% 20%, var(--orange-glow), transparent 60%),
+        radial-gradient(circle at 80% 80%, var(--purple-glow), transparent 60%);
+      filter: blur(80px);
+      z-index: -1;
+    }
+    .timeline-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .timeline-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-pill);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--orange-deep);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+      margin-bottom: 14px;
+    }
+    .timeline-headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: #0a0a0a;
+    }
+    .timeline-headline span {
+      background: linear-gradient(135deg, var(--orange), var(--purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .timeline-list {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    /* Vertical connector line */
+    .timeline-list::before {
+      content: '';
+      position: absolute;
+      left: 27px; top: 30px; bottom: 30px;
+      width: 3px;
+      background:
+        linear-gradient(to bottom,
+          rgba(159,76,255,0.25) 0%,
+          var(--orange) 30%,
+          var(--orange) 70%,
+          var(--purple) 100%);
+      border-radius: 2px;
+      z-index: 0;
+    }
+    .timeline-step {
+      position: relative;
+      display: flex;
+      align-items: stretch;
+      gap: 16px;
+      animation: stepIn 0.6s ease-out backwards;
+    }
+    .timeline-step:nth-child(1) { animation-delay: 0.1s; }
+    .timeline-step:nth-child(2) { animation-delay: 0.3s; }
+    .timeline-step:nth-child(3) { animation-delay: 0.5s; }
+    .timeline-step:nth-child(4) { animation-delay: 0.7s; }
+    @keyframes stepIn {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .step-marker {
+      flex-shrink: 0;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 3px solid #D5D5D5;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--gray-400);
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+    .step-marker--3 {
+      border-color: var(--orange);
+      color: var(--orange);
+      box-shadow: 0 6px 18px var(--orange-glow);
+    }
+    .step-marker--6 {
+      border-color: var(--orange);
+      color: #fff;
+      background: linear-gradient(135deg, var(--orange), var(--red));
+      box-shadow: 0 8px 24px var(--orange-glow);
+    }
+    .step-marker--12 {
+      border-color: transparent;
+      color: #fff;
+      background: linear-gradient(135deg, var(--orange), var(--red), var(--purple));
+      box-shadow: 0 12px 32px var(--orange-glow), 0 8px 24px var(--purple-glow);
+    }
+    .step-marker--12::before {
+      content: '';
+      position: absolute; inset: -6px;
+      border-radius: 50%;
+      border: 2px solid var(--purple);
+      opacity: 0.4;
+      animation: pulse 2s infinite;
+    }
+    .step-body {
+      flex: 1;
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 14px 18px;
+      box-shadow: var(--shadow-card);
+      position: relative;
+    }
+    .timeline-step--final .step-body {
+      background: linear-gradient(135deg, #FFF8EE 0%, #FFE5D9 100%);
+      border-color: var(--orange);
+      box-shadow: 0 16px 40px var(--orange-glow);
+    }
+    .timeline-step--start .step-body {
+      opacity: 0.85;
+    }
+    .step-month {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 2px;
+    }
+    .step-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0a0a0a;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .step-stats {
+      display: flex;
+      gap: 18px;
+    }
+    .step-stat {
+      display: flex; flex-direction: column;
+    }
+    .stat-label {
+      font-size: 10px;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .stat-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      color: #0a0a0a;
+      letter-spacing: -0.01em;
+    }
+    .stat-value--orange { color: var(--orange-deep); }
+    .stat-value--gradient {
+      background: linear-gradient(135deg, var(--orange), var(--purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* (legacy hero-iphone class kept empty for compatibility) */
     .hero-iphone {
       position: relative;
       width: 100%;
@@ -1955,74 +2142,94 @@
           </div>
         </div>
 
-        <!-- HERO IPHONE MOCKUP — push notifications -->
-        <div class="hero-iphone">
-          <div class="iphone">
-            <div class="iphone-notch"></div>
-            <div class="iphone-screen">
-              <div class="iphone-status">
-                <span class="status-time">16:42</span>
-                <span class="status-icons">
-                  <svg width="14" height="9" viewBox="0 0 14 9" fill="none"><path d="M1 7l1.5-2 2.5 1L7 4l2 1 2-2 2 2" stroke="#fff" stroke-width="1.2"/></svg>
-                  <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5a6 6 0 0112 0M3 6.5a3.5 3.5 0 018 0M5.5 8a1 1 0 013 0" stroke="#fff" stroke-width="1.2"/></svg>
-                  <div class="battery"><div></div></div>
-                </span>
+        <!-- HERO TIMELINE — Шлях твого року -->
+        <div class="hero-timeline">
+          <div class="timeline-header">
+            <div class="timeline-badge">🗺 ТВІЙ ШЛЯХ</div>
+            <div class="timeline-headline">Від $0 до $5 800/міс<br><span>за 12 місяців</span></div>
+          </div>
+
+          <div class="timeline-list">
+            <div class="timeline-step timeline-step--start">
+              <div class="step-marker">
+                <span class="step-num">01</span>
               </div>
-              <div class="iphone-today">
-                <div class="today-day">пʼятниця</div>
-                <div class="today-date">12 червня</div>
-              </div>
-
-              <div class="push-stack">
-                <div class="push-card push--month12">
-                  <div class="push-head">
-                    <div class="push-icon">T</div>
-                    <span class="push-app">TurboSquid</span>
-                    <span class="push-time">щойно</span>
+              <div class="step-body">
+                <div class="step-month">Місяць 1</div>
+                <div class="step-title">Старт навчання</div>
+                <div class="step-stats">
+                  <div class="step-stat">
+                    <span class="stat-label">Каталог</span>
+                    <span class="stat-value">5 моделей</span>
                   </div>
-                  <div class="push-title">💰 +$159 — Lounge Chair</div>
-                  <div class="push-sub">Місяць 12 · $11,760 цього місяця</div>
-                </div>
-
-                <div class="push-card push--month6">
-                  <div class="push-head">
-                    <div class="push-icon">T</div>
-                    <span class="push-app">TurboSquid</span>
-                    <span class="push-time">3 міс тому</span>
+                  <div class="step-stat">
+                    <span class="stat-label">Дохід</span>
+                    <span class="stat-value">$0</span>
                   </div>
-                  <div class="push-title">💰 +$89 — Floor Lamp</div>
-                  <div class="push-sub">Місяць 6 · $3,360 цього місяця</div>
-                </div>
-
-                <div class="push-card push--month3">
-                  <div class="push-head">
-                    <div class="push-icon">T</div>
-                    <span class="push-app">TurboSquid</span>
-                    <span class="push-time">9 міс тому</span>
-                  </div>
-                  <div class="push-title">💰 +$45 — Ceramic Vase</div>
-                  <div class="push-sub">Місяць 3 · перший продаж 🎉</div>
-                </div>
-
-                <div class="push-card push--start">
-                  <div class="push-head">
-                    <div class="push-icon push-icon--purple">V</div>
-                    <span class="push-app">Visual360</span>
-                    <span class="push-time">рік тому</span>
-                  </div>
-                  <div class="push-title">🚀 Старт навчання</div>
-                  <div class="push-sub">Місяць 1 · вперше відкрила 3ds Max</div>
                 </div>
               </div>
+            </div>
 
-              <div class="iphone-total">
-                <div class="total-label">Цього року</div>
-                <div class="total-amount">+$15 240</div>
-                <div class="total-trend">↗ актив росте</div>
+            <div class="timeline-step">
+              <div class="step-marker step-marker--3">
+                <span class="step-num">03</span>
+              </div>
+              <div class="step-body">
+                <div class="step-month">Місяць 3</div>
+                <div class="step-title">🎉 Перший продаж</div>
+                <div class="step-stats">
+                  <div class="step-stat">
+                    <span class="stat-label">Каталог</span>
+                    <span class="stat-value">15 моделей</span>
+                  </div>
+                  <div class="step-stat">
+                    <span class="stat-label">Дохід</span>
+                    <span class="stat-value stat-value--orange">$280/міс</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline-step">
+              <div class="step-marker step-marker--6">
+                <span class="step-num">06</span>
+              </div>
+              <div class="step-body">
+                <div class="step-month">Місяць 6</div>
+                <div class="step-title">📈 Стабільні продажі</div>
+                <div class="step-stats">
+                  <div class="step-stat">
+                    <span class="stat-label">Каталог</span>
+                    <span class="stat-value">35 моделей</span>
+                  </div>
+                  <div class="step-stat">
+                    <span class="stat-label">Дохід</span>
+                    <span class="stat-value stat-value--orange">$2 400/міс</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline-step timeline-step--final">
+              <div class="step-marker step-marker--12">
+                <span class="step-num">12</span>
+              </div>
+              <div class="step-body">
+                <div class="step-month">Місяць 12</div>
+                <div class="step-title">💎 Друга зарплата</div>
+                <div class="step-stats">
+                  <div class="step-stat">
+                    <span class="stat-label">Каталог</span>
+                    <span class="stat-value">80+ моделей</span>
+                  </div>
+                  <div class="step-stat">
+                    <span class="stat-label">Дохід</span>
+                    <span class="stat-value stat-value--gradient">$5 800/міс</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="iphone-glow"></div>
         </div>
 
       </div>
