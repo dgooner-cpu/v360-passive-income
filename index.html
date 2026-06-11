@@ -1564,14 +1564,15 @@
       font-weight: 600;
     }
     .calc-payback {
-      margin-top: 12px; padding: 13px;
+      margin-top: 12px; padding: 14px 16px;
       background: linear-gradient(135deg, var(--gold-dim), var(--violet-dim));
       border: 1px solid var(--gold);
-      border-radius: 10px;
-      display: flex; justify-content: space-between;
+      border-radius: 12px;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 12px;
     }
     .calc-payback span:first-child { color: var(--gold); font-weight: 700; font-size: 14px; }
-    .calc-payback span:last-child { color: var(--gold); font-size: 18px; font-family: 'Space Grotesk', sans-serif; }
+    .calc-payback span:last-child { color: var(--gold); font-size: 20px; font-weight: 800; font-family: 'Space Grotesk', sans-serif; white-space: nowrap; }
 
     /* ─── OBJECTIONS ─── */
     .objections {
@@ -2869,7 +2870,7 @@
             <div class="calc-result-row"><span>Місяць 3</span><span id="calcM3">$600</span></div>
             <div class="calc-result-row"><span>Місяць 6</span><span id="calcM6">$2,400</span></div>
             <div class="calc-result-row"><span>Місяць 12</span><span id="calcM12">$8,400</span></div>
-            <div class="calc-payback"><span>Окупність $100</span><span id="calcPayback">14 днів</span></div>
+            <div class="calc-payback"><span>Окупність пакету СТАРТ — лише</span><span id="calcPayback">11 днів</span></div>
           </div>
         </div>
 
@@ -3189,7 +3190,20 @@
       document.getElementById('calcM6').textContent = '$' + m6.toLocaleString();
       document.getElementById('calcM12').textContent = '$' + m12.toLocaleString();
       const days = Math.max(1, Math.round(100 / (m2 / 30)));
-      document.getElementById('calcPayback').textContent = days + ' днів';
+      function ukrPlural(n, one, few, many) {
+        const mod10 = n % 10, mod100 = n % 100;
+        if (mod10 === 1 && mod100 !== 11) return one;
+        if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return few;
+        return many;
+      }
+      let payback;
+      if (days <= 21) {
+        payback = days + ' ' + ukrPlural(days, 'день', 'дні', 'днів');
+      } else {
+        const weeks = Math.max(1, Math.round(days / 7));
+        payback = weeks + ' ' + ukrPlural(weeks, 'тиждень', 'тижні', 'тижнів');
+      }
+      document.getElementById('calcPayback').textContent = payback;
     }
 
     function toggleObj(card) { card.classList.toggle('open'); }
