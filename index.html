@@ -615,14 +615,20 @@
 
     /* ─── QUIZ ─── */
     .quiz-card {
-      background: linear-gradient(135deg, var(--card) 0%, var(--card-2) 100%);
+      background: #FFFFFF;
       border: 1px solid var(--card-border);
       border-radius: var(--radius);
       padding: 36px;
       max-width: 760px; margin: 0 auto;
       position: relative; z-index: 2;
-      box-shadow: 0 30px 100px rgba(0,0,0,.5);
+      box-shadow: var(--shadow-premium);
     }
+    .quiz-option {
+      background: #FAF8F0 !important;
+    }
+    .quiz-progress { background: #ECEAE0 !important; }
+    .result-profile { background: #FAF8F0 !important; }
+    .quiz-form input { background: #FAF8F0 !important; }
     .quiz-progress {
       height: 4px; background: var(--card-border);
       border-radius: 10px; margin-bottom: 24px; overflow: hidden;
@@ -1314,6 +1320,66 @@
     .modal-video::after {
       content: 'V';
       text-shadow: 0 4px 20px rgba(0,0,0,.4);
+    }
+
+    /* ─── LIGHT THEME GLOBAL CARD OVERRIDES ─── */
+    .case-card,
+    .portfolio-card,
+    .objection-card,
+    .package,
+    .guarantee,
+    .value-stack,
+    .calc,
+    .calc-graph,
+    .dashboard-stat,
+    .dashboard,
+    .faq-item,
+    .hero-pricing,
+    .model-card {
+      background: #FFFFFF !important;
+      box-shadow: var(--shadow-card);
+    }
+    .package:hover,
+    .case-card:hover,
+    .portfolio-card:hover,
+    .objection-card:hover,
+    .guarantee:hover,
+    .faq-item:hover,
+    .model-card:hover {
+      box-shadow: var(--shadow-card-hover) !important;
+    }
+    .package--featured {
+      background:
+        linear-gradient(180deg, #FFF8E0 0%, #FFFFFF 100%) !important;
+      border: 2px solid var(--gold) !important;
+    }
+    .calc-result, .calc-payback {
+      background: #FAF8F0 !important;
+    }
+    .value-row { border-bottom-color: var(--card-border) !important; }
+    .value-row span:first-child { color: var(--gray-200); }
+    .dashboard-stat-num,
+    .case-result-num,
+    .hero-pricing-num,
+    .value-yours span:last-child {
+      color: #1A1A1A !important;
+    }
+    .dashboard-table-name { color: #0A0A0A; }
+    .dashboard-table-row { border-bottom-color: var(--card-border); }
+    .calc-result-row span:last-child {
+      color: #1A1A1A !important;
+    }
+    .speaker-photo-initials {
+      color: #FFFFFF;
+    }
+    .quiz-question { color: #0A0A0A; }
+    .package-features li { color: var(--gray-200); }
+    .package-price {
+      color: #1A1A1A !important;
+      text-shadow: 0 1px 0 var(--gold);
+    }
+    .package-name {
+      color: #0A0A0A;
     }
 
     /* ─── RESPONSIVE ─── */
