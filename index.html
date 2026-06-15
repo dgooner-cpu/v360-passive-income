@@ -1372,9 +1372,10 @@
     .portfolio-img svg { width: 65%; height: 65%; color: var(--gold); position: relative; z-index: 1; filter: drop-shadow(0 4px 8px rgba(0,0,0,.3)); }
     .portfolio-meta { padding: 14px; }
     .portfolio-name { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
-    .portfolio-info { display: flex; justify-content: space-between; align-items: center; font-size: 12px; }
-    .portfolio-info .price { color: var(--gold); font-weight: 700; font-family: 'Space Grotesk', sans-serif; }
-    .portfolio-info .sold { color: var(--gray-400); }
+    .portfolio-info { display: flex; justify-content: space-between; align-items: center; gap: 6px; font-size: 12px; }
+    .portfolio-info .price { color: var(--gold); font-weight: 700; font-family: 'Space Grotesk', sans-serif; flex-shrink: 0; }
+    .portfolio-info .sold { color: var(--gray-400); font-size: 11px; text-align: right; white-space: nowrap; }
+    .portfolio-info .sold b { color: var(--orange); font-weight: 700; }
     .portfolio-tag {
       position: absolute; top: 10px; right: 10px;
       padding: 3px 9px;
@@ -2702,7 +2703,7 @@
     <div class="container">
       <span class="pill pill--gold section-tag">📦 Ваш цифровий капітал</span>
       <h2 class="section-title">Що саме ви <span class="grad-gold">створюватимете</span></h2>
-      <p class="section-sub">Кожна виставлена модель продається знову і знову. Один раз зробили — отримуєте роками. Ось приклади з реальними цінниками на TurboSquid.</p>
+      <p class="section-sub">Кожна виставлена модель продається знову і знову. Один раз зробили — отримуєте роками. Ось приклади з <b>реальними цінниками</b> та <b>середніми продажами за місяць</b> на TurboSquid.</p>
 
       <div class="portfolio-hint">
         <span>Гортай вбік</span>
@@ -2717,7 +2718,7 @@
           </div>
           <div class="portfolio-meta">
             <div class="portfolio-name">Керамічна ваза</div>
-            <div class="portfolio-info"><span class="price">$28</span><span class="sold">× 124</span></div>
+            <div class="portfolio-info"><span class="price">$28</span><span class="sold"><b>124</b> прод./міс</span></div>
           </div>
         </div>
 
@@ -2727,7 +2728,7 @@
           </div>
           <div class="portfolio-meta">
             <div class="portfolio-name">Керамічний кухоль</div>
-            <div class="portfolio-info"><span class="price">$32</span><span class="sold">× 98</span></div>
+            <div class="portfolio-info"><span class="price">$32</span><span class="sold"><b>98</b> прод./міс</span></div>
           </div>
         </div>
 
@@ -2738,7 +2739,7 @@
           </div>
           <div class="portfolio-meta">
             <div class="portfolio-name">Рослина в горщику</div>
-            <div class="portfolio-info"><span class="price">$26</span><span class="sold">× 84</span></div>
+            <div class="portfolio-info"><span class="price">$26</span><span class="sold"><b>84</b> прод./міс</span></div>
           </div>
         </div>
 
@@ -2749,7 +2750,7 @@
           </div>
           <div class="portfolio-meta">
             <div class="portfolio-name">Соєва свічка</div>
-            <div class="portfolio-info"><span class="price">$22</span><span class="sold">× 67</span></div>
+            <div class="portfolio-info"><span class="price">$22</span><span class="sold"><b>67</b> прод./міс</span></div>
           </div>
         </div>
 
@@ -2760,7 +2761,7 @@
           </div>
           <div class="portfolio-meta">
             <div class="portfolio-name">Плюшевий ведмідь</div>
-            <div class="portfolio-info"><span class="price">$32</span><span class="sold">× 88</span></div>
+            <div class="portfolio-info"><span class="price">$32</span><span class="sold"><b>88</b> прод./міс</span></div>
           </div>
         </div>
 
@@ -2770,7 +2771,7 @@
           </div>
           <div class="portfolio-meta">
             <div class="portfolio-name">М'яке ліжко</div>
-            <div class="portfolio-info"><span class="price">$299</span><span class="sold">× 17</span></div>
+            <div class="portfolio-info"><span class="price">$299</span><span class="sold"><b>17</b> прод./міс</span></div>
           </div>
         </div>
 
@@ -2780,7 +2781,7 @@
           </div>
           <div class="portfolio-meta">
             <div class="portfolio-name">Барні стільці</div>
-            <div class="portfolio-info"><span class="price">$89</span><span class="sold">× 41</span></div>
+            <div class="portfolio-info"><span class="price">$89</span><span class="sold"><b>41</b> прод./міс</span></div>
           </div>
         </div>
 
@@ -2790,7 +2791,7 @@
           </div>
           <div class="portfolio-meta">
             <div class="portfolio-name">Приліжковий стіл</div>
-            <div class="portfolio-info"><span class="price">$45</span><span class="sold">× 88</span></div>
+            <div class="portfolio-info"><span class="price">$45</span><span class="sold"><b>88</b> прод./міс</span></div>
           </div>
         </div>
 
@@ -2800,7 +2801,7 @@
           </div>
           <div class="portfolio-meta">
             <div class="portfolio-name">Велюрове ліжко</div>
-            <div class="portfolio-info"><span class="price">$199</span><span class="sold">× 13</span></div>
+            <div class="portfolio-info"><span class="price">$199</span><span class="sold"><b>13</b> прод./міс</span></div>
           </div>
         </div>
 
@@ -2811,7 +2812,7 @@
           </div>
           <div class="portfolio-meta">
             <div class="portfolio-name">Письмовий стіл</div>
-            <div class="portfolio-info"><span class="price">$599</span><span class="sold">× 9</span></div>
+            <div class="portfolio-info"><span class="price">$599</span><span class="sold"><b>9</b> прод./міс</span></div>
           </div>
         </div>
 
@@ -2821,7 +2822,7 @@
           </div>
           <div class="portfolio-meta">
             <div class="portfolio-name">Велюрове крісло</div>
-            <div class="portfolio-info"><span class="price">$79</span><span class="sold">× 52</span></div>
+            <div class="portfolio-info"><span class="price">$79</span><span class="sold"><b>52</b> прод./міс</span></div>
           </div>
         </div>
       </div>
