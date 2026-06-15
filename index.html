@@ -952,7 +952,7 @@
       box-shadow: 0 14px 30px rgba(255,107,53,.15);
     }
     .cred-thumb {
-      flex-shrink: 0;
+      position: relative; flex-shrink: 0;
       width: 56px; height: 56px;
       border-radius: 12px;
       background: #fff;
@@ -961,6 +961,21 @@
       display: flex; align-items: center; justify-content: center;
     }
     .cred-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .cred-thumb--contain img { object-fit: contain; padding: 6px; }
+    .cred-thumb::after {
+      content: ''; position: absolute; top: 4px; right: 4px;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: rgba(255,107,53,.95);
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='7' cy='7' r='4.2'/><line x1='10.3' y1='10.3' x2='13' y2='13'/></svg>");
+      background-repeat: no-repeat; background-position: center;
+      background-size: 12px 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,.25);
+      transition: var(--transition);
+    }
+    .cred-card:hover .cred-thumb::after {
+      transform: scale(1.15);
+      background-color: var(--orange-deep);
+    }
     .cred-body { flex: 1; min-width: 0; }
     .cred-title {
       font-size: 13px; font-weight: 800; color: #0a0a0a;
@@ -2399,7 +2414,7 @@
         </button>
 
         <button type="button" class="cred-card" onclick="openCert('iso')">
-          <div class="cred-thumb"><img src="creds/iso-seal.jpg" alt="ISO 9001 — ECJiP" loading="lazy"></div>
+          <div class="cred-thumb cred-thumb--contain"><img src="creds/iso-badge.png" alt="Certyfikat ECJiP ISO 9001" loading="lazy"></div>
           <div class="cred-body">
             <div class="cred-title">Сертифікат ISO 9001</div>
             <div class="cred-sub">EN ISO 9001:2015 · видано <b>ECJiP</b>, березень 2026</div>
@@ -2487,16 +2502,16 @@
     </div>
   </section>
 
-  <!-- PATH 02 -->
-  <div class="path-divider">
+  <!-- PATH 02 (приховано разом з блоком Віктора) -->
+  <div class="path-divider" style="display:none">
     <div class="path-marker">
       <div class="path-num">02</div>
       <div class="path-label">Етап 2<span class="path-label-strong">Знайомство з провідником</span></div>
     </div>
   </div>
 
-  <!-- SPEAKER / VIKTOR -->
-  <section id="speakerSection">
+  <!-- SPEAKER / VIKTOR (тимчасово приховано — щоб повернути, прибери style display:none тут і вище) -->
+  <section id="speakerSection" style="display:none">
     <div class="container">
       <span class="pill pill--cyan section-tag">Хто веде програму</span>
       <h2 class="section-title">Знайомтесь — <span class="grad-cyan">Віктор</span></h2>
@@ -3334,10 +3349,12 @@
     const CERTS = {
       autodesk: { img: 'creds/autodesk.jpg', pdf: null,                 label: 'Autodesk Authorized Training Center · ORG10545' },
       award:    { img: 'creds/award.jpg',    pdf: null,                 label: 'Top Ukrainian Award 2025 — Вибір країни' },
-      iso:      { img: 'creds/iso-seal.jpg', pdf: 'creds/iso-9001.pdf', label: 'EN ISO 9001:2015 · ECJiP' }
+      iso:      { img: 'creds/iso-badge.png', pdf: 'creds/iso-9001.pdf', pdfOnly: true, label: 'EN ISO 9001:2015 · ECJiP' }
     };
     function openCert(key) {
       const c = CERTS[key]; if (!c) return;
+      if (typeof fbq === 'function') fbq('trackCustom', 'CertOpen', { cert: key });
+      if (c.pdfOnly && c.pdf) { window.open(c.pdf, '_blank'); return; }
       document.getElementById('certModalImg').src = c.img;
       document.getElementById('certModalImg').alt = c.label;
       const link = document.getElementById('certModalLink');
@@ -3345,7 +3362,6 @@
       else { link.style.display = 'none'; }
       document.getElementById('certModal').classList.add('active');
       document.body.style.overflow = 'hidden';
-      if (typeof fbq === 'function') fbq('trackCustom', 'CertOpen', { cert: key });
     }
     function closeCert(e) {
       if (e && e.target.id !== 'certModal' && !e.target.classList.contains('cert-modal-close')) return;
