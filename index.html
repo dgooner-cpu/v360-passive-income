@@ -1007,6 +1007,13 @@
       border-radius: 16px;
       box-shadow: 0 40px 100px rgba(0,0,0,.6);
     }
+    .cert-modal-frame {
+      width: min(960px, 94vw);
+      height: 88vh;
+      border: none; border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 40px 100px rgba(0,0,0,.6);
+    }
     .cert-modal-close {
       position: absolute; top: 24px; right: 24px;
       width: 44px; height: 44px; border-radius: 50%;
@@ -2398,7 +2405,7 @@
       <span class="press-label">Visual360 — підтверджено</span>
       <div class="creds-grid">
         <button type="button" class="cred-card" onclick="openCert('autodesk')">
-          <div class="cred-thumb"><img src="creds/autodesk.jpg" alt="Autodesk Authorized Training Center" loading="lazy"></div>
+          <div class="cred-thumb cred-thumb--contain"><img src="creds/autodesk-thumb.png" alt="Autodesk Authorized Training Center" loading="lazy"></div>
           <div class="cred-body">
             <div class="cred-title">Партнер Autodesk</div>
             <div class="cred-sub">Authorized Training Center · ліцензія <b>№ORG10545</b></div>
@@ -2406,7 +2413,7 @@
         </button>
 
         <button type="button" class="cred-card" onclick="openCert('award')">
-          <div class="cred-thumb"><img src="creds/award.jpg" alt="Top Ukrainian Award 2025 — Вибір країни" loading="lazy"></div>
+          <div class="cred-thumb cred-thumb--contain"><img src="creds/award-thumb.png" alt="Top Ukrainian Award 2025 — Вибір країни" loading="lazy"></div>
           <div class="cred-body">
             <div class="cred-title">Вибір країни 2025</div>
             <div class="cred-sub">«Курси 3D-візуалізації року» · <b>Top Ukrainian Award</b></div>
@@ -2428,6 +2435,7 @@
   <div id="certModal" class="cert-modal" onclick="closeCert(event)">
     <button type="button" class="cert-modal-close" onclick="closeCert()">✕</button>
     <img id="certModalImg" class="cert-modal-img" src="" alt="Сертифікат">
+    <iframe id="certModalFrame" class="cert-modal-frame" src="" title="Сертифікат PDF" style="display:none"></iframe>
     <a id="certModalLink" class="cert-modal-link" href="#" target="_blank" style="display:none">Завантажити PDF →</a>
   </div>
 
@@ -3349,23 +3357,32 @@
     const CERTS = {
       autodesk: { img: 'creds/autodesk.jpg', pdf: null,                 label: 'Autodesk Authorized Training Center · ORG10545' },
       award:    { img: 'creds/award.jpg',    pdf: null,                 label: 'Top Ukrainian Award 2025 — Вибір країни' },
-      iso:      { img: 'creds/iso-badge.png', pdf: 'creds/iso-9001.pdf', pdfOnly: true, label: 'EN ISO 9001:2015 · ECJiP' }
+      iso:      { pdf: 'creds/iso-9001.pdf', label: 'EN ISO 9001:2015 · ECJiP' }
     };
     function openCert(key) {
       const c = CERTS[key]; if (!c) return;
       if (typeof fbq === 'function') fbq('trackCustom', 'CertOpen', { cert: key });
-      if (c.pdfOnly && c.pdf) { window.open(c.pdf, '_blank'); return; }
-      document.getElementById('certModalImg').src = c.img;
-      document.getElementById('certModalImg').alt = c.label;
+      const img = document.getElementById('certModalImg');
+      const frame = document.getElementById('certModalFrame');
       const link = document.getElementById('certModalLink');
-      if (c.pdf) { link.href = c.pdf; link.style.display = 'inline-block'; }
-      else { link.style.display = 'none'; }
+      if (c.pdf && !c.img) {
+        img.style.display = 'none'; img.src = '';
+        frame.style.display = 'block';
+        frame.src = c.pdf + '#view=FitH&toolbar=1';
+        link.href = c.pdf; link.textContent = 'Відкрити PDF в новій вкладці →'; link.style.display = 'inline-block';
+      } else {
+        frame.style.display = 'none'; frame.src = '';
+        img.style.display = 'block'; img.src = c.img; img.alt = c.label;
+        if (c.pdf) { link.href = c.pdf; link.textContent = 'Завантажити PDF →'; link.style.display = 'inline-block'; }
+        else { link.style.display = 'none'; }
+      }
       document.getElementById('certModal').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
     function closeCert(e) {
       if (e && e.target.id !== 'certModal' && !e.target.classList.contains('cert-modal-close')) return;
       document.getElementById('certModal').classList.remove('active');
+      document.getElementById('certModalFrame').src = '';
       document.body.style.overflow = '';
     }
     function closeWidget() {
