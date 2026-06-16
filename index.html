@@ -2078,14 +2078,41 @@
       font-family: 'Space Grotesk', sans-serif;
       font-size: 18px; color: var(--gold);
       margin-bottom: 10px; line-height: 1.25;
+      padding-right: 44px;
     }
     .objection-a {
       color: var(--gray-200); font-size: 14px;
       line-height: 1.65; display: none;
     }
     .objection-card.open .objection-a { display: block; }
-    .objection-toggle { color: var(--gray-400); font-size: 13px; margin-top: 10px; }
-    .objection-card.open .objection-toggle { color: var(--gold); }
+    .objection-toggle {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--card-border);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray-300);
+      transition: transform .25s ease, color .25s ease, background .25s ease, border-color .25s ease;
+      pointer-events: none;
+    }
+    .objection-toggle svg { width: 14px; height: 14px; display: block; }
+    .objection-card:hover .objection-toggle {
+      color: var(--gold);
+      background: rgba(255, 196, 79, 0.12);
+      border-color: rgba(255, 196, 79, 0.4);
+    }
+    .objection-card.open .objection-toggle {
+      transform: rotate(180deg);
+      color: var(--gold);
+      background: rgba(255, 196, 79, 0.18);
+      border-color: rgba(255, 196, 79, 0.55);
+    }
 
     /* ─── PACKAGES ─── */
     .packages {
@@ -3209,32 +3236,32 @@
         <div class="objection-card" onclick="toggleObj(this)">
           <div class="objection-q">"Мені доведеться звільнитись?"</div>
           <div class="objection-a">Ні. Перші 3-4 місяці працюєте паралельно з роботою, 1-2 години ввечері. Перші моделі виставляєте на продаж ще під час навчання. Звільнення — тільки коли каталог реально замінив дохід. І чесно: багатьом взагалі не треба звільнятися — друга зарплата сама по собі змінює життя.</div>
-          <div class="objection-toggle">+ Відповідь</div>
+          <div class="objection-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
         </div>
         <div class="objection-card" onclick="toggleObj(this)">
           <div class="objection-q">"А якщо я не доведу до кінця? Я вже кидала навчання"</div>
           <div class="objection-a">Саме тому з вами працює куратор. Перший місяць — разом, крок за кроком, до першої виставленої моделі. Ми не продаємо доступ до відео. Ми доводимо до результату — інакше нам самим невигідно, бо ми хочемо зробити з цього потоку публічний кейс.</div>
-          <div class="objection-toggle">+ Відповідь</div>
+          <div class="objection-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
         </div>
         <div class="objection-card" onclick="toggleObj(this)">
           <div class="objection-q">"Мені за 40, вже не той ресурс"</div>
           <div class="objection-a">На стоці ніхто не бачить ваш вік. Покупець з Каліфорнії бачить модель і ціну. Все. Це одна з небагатьох професій, де 40+ — це перевага: посидючість і уважність тут важать більше за швидкість.</div>
-          <div class="objection-toggle">+ Відповідь</div>
+          <div class="objection-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
         </div>
         <div class="objection-card" onclick="toggleObj(this)">
           <div class="objection-q">"AI завтра все замінить"</div>
           <div class="objection-a">AI вже прискорює 30-40% задач — і ми вчимо ним користуватись. Але AI не робить моделі для виробництва, де потрібен точний полігональний бюджет і технічні вимоги. Ви працюєте разом з AI, не проти нього.</div>
-          <div class="objection-toggle">+ Відповідь</div>
+          <div class="objection-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
         </div>
         <div class="objection-card" onclick="toggleObj(this)">
           <div class="objection-q">"Я не технар, мій комп'ютер — для серіалів"</div>
           <div class="objection-a">Практика з першого дня, уроки по 5-7 хвилин. Перед стартом менеджер перевірить ваш ноутбук — якщо техніка не потягне, скажемо чесно ДО оплати, а не після.</div>
-          <div class="objection-toggle">+ Відповідь</div>
+          <div class="objection-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
         </div>
         <div class="objection-card" onclick="toggleObj(this)">
           <div class="objection-q">"Я не вірю онлайн-школам"</div>
           <div class="objection-a">Правильно робите. Ринок переповнений тими, хто «показує відео, збирає гроші і зникає». Тому ми не просимо вірити на слово: подивіться наші відгуки самі — там 366 «відмінно» і 321 «жахливо». Ми нічого не ховаємо: є студія, є офіс, є партнерство з Autodesk, є випускники, яких можна знайти і спитати.</div>
-          <div class="objection-toggle">+ Відповідь</div>
+          <div class="objection-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
         </div>
       </div>
     </div>
