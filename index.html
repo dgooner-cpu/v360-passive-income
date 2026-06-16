@@ -1364,6 +1364,124 @@
     .speaker-meta-item .num { font-family: 'Space Grotesk', sans-serif; font-size: 26px; color: var(--gold); }
     .speaker-meta-item .lbl { font-size: 11px; color: var(--gray-400); text-transform: uppercase; letter-spacing: 1px; }
 
+    /* ─── SPEAKER VIDEO (9-min full version) ─── */
+    .speaker-video {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 32px;
+      margin-top: 28px;
+      background: linear-gradient(135deg, #FFF8F2 0%, #FFE9D9 100%);
+      border: 1.5px solid var(--orange);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 28px 60px rgba(255,107,53,.14);
+      align-items: center;
+    }
+    .speaker-video-cover {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/10;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      background: #000;
+      border: none;
+      padding: 0;
+    }
+    .speaker-video-cover img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 22%;
+      transition: transform .5s;
+      display: block;
+    }
+    .speaker-video-cover::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.4) 100%);
+      pointer-events: none;
+    }
+    .speaker-video-cover:hover img { transform: scale(1.06); }
+    .speaker-video-play {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      background: rgba(255,107,53,.95);
+      box-shadow: 0 18px 40px rgba(0,0,0,.45);
+      z-index: 2;
+      transition: var(--transition);
+    }
+    .speaker-video-play::after {
+      content: '';
+      position: absolute; top: 50%; left: 56%;
+      transform: translate(-50%, -50%);
+      border: 16px solid transparent;
+      border-left: 24px solid #fff;
+      border-right: 0;
+    }
+    .speaker-video-cover:hover .speaker-video-play {
+      background: var(--orange);
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+    .speaker-video-time {
+      position: absolute; top: 14px; right: 14px;
+      font-size: 11px; font-weight: 800;
+      background: rgba(0,0,0,.78); color: #fff;
+      padding: 5px 11px; border-radius: 999px;
+      letter-spacing: 1.4px;
+      z-index: 2;
+    }
+    .speaker-video-tag {
+      position: absolute; bottom: 14px; left: 14px;
+      font-size: 10px; font-weight: 800;
+      background: var(--orange); color: #fff;
+      padding: 5px 11px; border-radius: 999px;
+      letter-spacing: 1.4px;
+      z-index: 2;
+    }
+    .speaker-video-body {
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .speaker-video-pill {
+      font-size: 11px; font-weight: 800;
+      color: var(--orange); letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+    .speaker-video-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(20px, 2.2vw, 26px);
+      font-weight: 800; color: #0a0a0a;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      margin: 0;
+    }
+    .speaker-video-text {
+      font-size: 14.5px; color: #5C5345;
+      line-height: 1.55;
+      margin: 0;
+    }
+    .speaker-video-btn {
+      align-self: flex-start;
+      padding: 14px 24px;
+      background: linear-gradient(135deg, var(--orange), var(--orange-deep));
+      color: #fff; font-weight: 800; font-size: 14px;
+      border: none; border-radius: var(--radius-pill);
+      cursor: pointer; letter-spacing: 0.3px;
+      box-shadow: 0 12px 28px rgba(255,107,53,.30);
+      font-family: inherit;
+      transition: var(--transition);
+    }
+    .speaker-video-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 36px rgba(255,107,53,.40);
+    }
+    @media (max-width: 768px) {
+      .speaker-video { grid-template-columns: 1fr; gap: 18px; padding: 20px; }
+      .speaker-video-play { width: 68px; height: 68px; }
+      .speaker-video-play::after { border-width: 12px; border-left-width: 18px; }
+    }
+
     /* ─── QUIZ ─── */
     .quiz-card {
       background: #FFFFFF;
@@ -2657,7 +2775,7 @@
 
       <div class="inline-cta">
         <div class="inline-cta-text">
-          <b>Хочете свій кейс у цій таблиці?</b> Подайте заявку — куратор передзвонить за 24 години і скаже чесно, чи підходите.
+          <b>Хочете бачити свій кейс у цьому дашборді?</b> Подайте заявку щоб дізнатись більш детальніше.
         </div>
         <button class="inline-cta-btn" onclick="openLeadModal('cta')">Подати заявку →</button>
       </div>
@@ -2706,6 +2824,23 @@
               <div class="lbl">Років навчаємо</div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="speaker-video">
+        <button type="button" class="speaker-video-cover" onclick="openLongVideo()" aria-label="Дивитись повне відео від Віктора">
+          <img src="speaker/viktor.jpg" alt="Віктор — Visual360" loading="lazy">
+          <span class="speaker-video-tag">📹 ПОВНЕ ВІДЕО</span>
+          <span class="speaker-video-time">9 ХВ</span>
+          <span class="speaker-video-play"></span>
+        </button>
+        <div class="speaker-video-body">
+          <span class="speaker-video-pill">Особисто від Віктора</span>
+          <h3 class="speaker-video-title">9 хвилин про навчання, ідею продукту та чому 3D-стоки — це актив 2026</h3>
+          <p class="speaker-video-text">
+            Тут вся історія: як ми прийшли до цього продукту, чому відкрили доступ публічно, що насправді стоїть за «цифровим капіталом» і чому ми робимо перший потік саме зараз.
+          </p>
+          <button type="button" class="speaker-video-btn" onclick="openLongVideo()">▶ Дивитись повне відео (9 хв)</button>
         </div>
       </div>
 
@@ -3514,14 +3649,23 @@
 
     function toggleObj(card) { card.classList.toggle('open'); }
     function toggleFaq(btn) { btn.parentElement.classList.toggle('open'); }
-    const YOUTUBE_ID = '5S9hbO12Yk4';
+    const YOUTUBE_ID = '5S9hbO12Yk4';            // short 3-min reel (corner widget)
+    const YOUTUBE_ID_LONG = '5S9hbO12Yk4';        // TODO: replace with 9-min full video ID when ready
     function openMainModal() {
       const modal = document.getElementById('videoModal');
       const iframe = document.getElementById('modalIframe');
       iframe.src = 'https://www.youtube.com/embed/' + YOUTUBE_ID + '?autoplay=1&rel=0&modestbranding=1';
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
-      if (typeof fbq === 'function') fbq('trackCustom', 'VideoModalOpen');
+      if (typeof fbq === 'function') fbq('trackCustom', 'VideoModalOpen', { version: 'short' });
+    }
+    function openLongVideo() {
+      const modal = document.getElementById('videoModal');
+      const iframe = document.getElementById('modalIframe');
+      iframe.src = 'https://www.youtube.com/embed/' + YOUTUBE_ID_LONG + '?autoplay=1&rel=0&modestbranding=1';
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      if (typeof fbq === 'function') fbq('trackCustom', 'VideoModalOpen', { version: 'long' });
     }
     function closeModal(e) {
       if (e && e.target.id !== 'videoModal' && !e.target.classList.contains('modal-close')) return;
