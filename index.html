@@ -2213,8 +2213,14 @@
       -webkit-text-fill-color: transparent;
       line-height: 1; margin-bottom: 10px;
     }
-    .guarantee-title { font-weight: 600; margin-bottom: 8px; color: var(--white); font-size: 17px; }
+    .guarantee-title { font-weight: 600; margin-bottom: 8px; color: var(--white); font-size: 17px; line-height: 1.35; }
     .guarantee-text { color: var(--gray-300); font-size: 14px; line-height: 1.6; }
+    .guarantee-seal {
+      width: 64px; height: 64px;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 8px 16px rgba(255,107,53,.35));
+    }
+    .guarantee-seal svg { width: 100%; height: 100%; display: block; }
 
     /* ─── FINAL CTA ─── */
     .final {
@@ -3284,9 +3290,9 @@
 
       <div class="guarantees">
         <div class="guarantee">
-          <div class="guarantee-num">14</div>
-          <div class="guarantee-title">днів повернення</div>
-          <div class="guarantee-text">Якщо за 14 днів зрозумієте, що це не ваше — повертаємо $100 або $200 без питань.</div>
+          <div class="guarantee-num">21</div>
+          <div class="guarantee-title">день повернення</div>
+          <div class="guarantee-text">Якщо за 21 день зрозумієте, що це не ваше — повертаємо $100 або $200 без питань.</div>
         </div>
         <div class="guarantee">
           <div class="guarantee-num">12</div>
@@ -3294,9 +3300,17 @@
           <div class="guarantee-text">Не встигаєте за 2 місяці? Маєте рік, щоб пройти програму у своєму темпі.</div>
         </div>
         <div class="guarantee">
-          <div class="guarantee-num" style="background:none;-webkit-text-fill-color:initial;font-size:46px;">🎯</div>
-          <div class="guarantee-title">до першого продажу — під ключ</div>
-          <div class="guarantee-text">Куратор веде вас від <b style="color:var(--orange);font-weight:700;">створення перших цифрових активів</b> до <b style="color:var(--orange);font-weight:700;">реальних продажів на TurboSquid</b>. Не закриваємо договір, поки на ваш рахунок не почнуть поступати виплати зі стоків.</div>
+          <div class="guarantee-seal" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22 42 L18 62 L26 57 L32 62 L38 57 L46 62 L42 42 Z" fill="#FF6B35" stroke="#FF4E15" stroke-width="0.8" stroke-linejoin="round"/>
+              <circle cx="32" cy="30" r="22" fill="#FF6B35"/>
+              <circle cx="32" cy="30" r="22" fill="none" stroke="#FFD3BF" stroke-width="1.2" stroke-dasharray="2 2"/>
+              <circle cx="32" cy="30" r="17" fill="none" stroke="#fff" stroke-width="1.8" opacity="0.85"/>
+              <path d="M23 31 L29 37 L42 23" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </div>
+          <div class="guarantee-title">Не закриваємо договір, поки на ваш рахунок не почнуть поступати виплати зі стоків</div>
+          <div class="guarantee-text">Куратор веде вас від <b style="color:var(--orange);font-weight:700;">створення перших цифрових активів</b> до <b style="color:var(--orange);font-weight:700;">реальних продажів на TurboSquid</b>.</div>
         </div>
       </div>
     </div>
