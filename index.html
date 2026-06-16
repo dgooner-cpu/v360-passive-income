@@ -987,6 +987,13 @@
       line-height: 1.35;
     }
     .cred-sub b { color: var(--orange); font-weight: 700; }
+    .creds-hint {
+      text-align: center;
+      margin: 22px auto 0;
+      font-size: 13px;
+      color: #9aa1ad;
+      letter-spacing: 0.3px;
+    }
     .cred-note {
       margin-top: 6px;
       font-size: 10.5px; line-height: 1.4;
@@ -995,6 +1002,7 @@
     }
     @media (max-width: 768px) {
       .creds-grid { grid-template-columns: 1fr; max-width: 420px; gap: 10px; }
+      .creds-hint { font-size: 12px; }
     }
 
     /* Cert lightbox */
@@ -2834,6 +2842,7 @@
           </div>
         </button>
       </div>
+      <p class="creds-hint">Натисніть на зображення, щоб відкрити повнорозмірну версію</p>
     </div>
   </div>
 
