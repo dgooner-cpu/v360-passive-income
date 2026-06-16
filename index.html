@@ -1908,6 +1908,69 @@
       .inline-cta-btn { justify-content: center; }
     }
 
+    /* ─── ELIGIBILITY (NOT FOR EVERYONE) ─── */
+    .elig-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+      max-width: 1100px; margin: 40px auto 0;
+    }
+    .elig-col {
+      background: #fff; border-radius: 24px; padding: 32px 30px;
+      border: 2px solid; box-shadow: 0 20px 50px rgba(20, 25, 40, 0.08);
+      display: flex; flex-direction: column;
+    }
+    .elig-col--no  { border-color: rgba(220, 38, 38, .35); background: linear-gradient(180deg, #FFF5F4 0%, #FFFFFF 70%); }
+    .elig-col--yes { border-color: rgba(34, 197, 94, .4);  background: linear-gradient(180deg, #F0FDF4 0%, #FFFFFF 70%); }
+    .elig-col-head { display: flex; align-items: center; gap: 16px; margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .elig-col-icon {
+      flex: none;
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; border-radius: 50%;
+      font-weight: 800; font-size: 22px; color: #fff;
+    }
+    .elig-col--no .elig-col-icon { background: #DC2626; box-shadow: 0 8px 20px rgba(220,38,38,.3); }
+    .elig-col--yes .elig-col-icon { background: #16A34A; box-shadow: 0 8px 20px rgba(34,197,94,.3); }
+    .elig-col-titles { display: flex; flex-direction: column; }
+    .elig-col-title { font-size: 22px; font-weight: 800; color: #1a1a1a; line-height: 1.15; }
+    .elig-col-sub { font-size: 14px; color: #777; margin-top: 2px; }
+    .elig-list { list-style: none; padding: 0; margin: 0; }
+    .elig-list li {
+      position: relative; padding: 13px 0 13px 32px;
+      font-size: 15px; line-height: 1.55; color: #1a1a1a;
+      border-bottom: 1px dashed rgba(0,0,0,0.07);
+    }
+    .elig-list li:last-child { border-bottom: none; }
+    .elig-list li::before {
+      content: ''; position: absolute; left: 0; top: 18px;
+      width: 20px; height: 20px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .elig-col--no .elig-list li::before {
+      background: rgba(220, 38, 38, 0.12); border: 2px solid rgba(220, 38, 38, 0.55);
+    }
+    .elig-col--yes .elig-list li::before {
+      background: rgba(34, 197, 94, 0.15); border: 2px solid rgba(34, 197, 94, 0.6);
+    }
+    .elig-list li b { color: var(--orange); font-weight: 800; }
+    @media (max-width: 768px) {
+      .elig-grid { grid-template-columns: 1fr; gap: 18px; margin-top: 28px; }
+      .elig-col { padding: 24px 20px; border-radius: 20px; }
+      .elig-col-head { gap: 12px; margin-bottom: 16px; padding-bottom: 14px; }
+      .elig-col-icon { width: 38px; height: 38px; font-size: 18px; }
+      .elig-col-title { font-size: 18px; }
+      .elig-list li { font-size: 14px; padding: 11px 0 11px 28px; }
+    }
+
+    /* ─── VALUE PROMO (replaces price line) ─── */
+    .value-promo {
+      margin-top: 18px;
+      padding: 18px 22px;
+      background: linear-gradient(135deg, #FFF4ED 0%, #FFE5D9 100%);
+      border: 1.5px dashed var(--orange);
+      border-radius: 16px;
+      font-size: 15px; line-height: 1.5; color: #1a1a1a; text-align: center;
+    }
+    .value-promo b { color: var(--orange); font-weight: 800; }
+
     /* ─── CALCULATOR ─── */
     .calc-wrap {
       display: block;
@@ -2946,7 +3009,66 @@
   <div class="path-divider">
     <div class="path-marker">
       <div class="path-num">03</div>
-      <div class="path-label">Етап 3<span class="path-label-strong">9 хвилин, які все пояснюють</span></div>
+      <div class="path-label">Етап 3<span class="path-label-strong">Це не для всіх</span></div>
+    </div>
+  </div>
+
+  <!-- ELIGIBILITY / NOT FOR EVERYONE -->
+  <section id="eligibilitySection">
+    <div class="container">
+      <span class="pill section-tag">Чесно і без води</span>
+      <h2 class="section-title">Ця можливість <span class="grad-gold">не для всіх</span></h2>
+      <p class="section-sub">Ми не беремо всіх підряд — куратори фізично не витягнуть. На дзвінку чесно скажемо, ваше це чи ні. Поки що — пройдіться по списку самі.</p>
+
+      <div class="elig-grid">
+        <div class="elig-col elig-col--no">
+          <div class="elig-col-head">
+            <span class="elig-col-icon">✕</span>
+            <div class="elig-col-titles">
+              <div class="elig-col-title">Якщо ви...</div>
+              <div class="elig-col-sub">— це не ваша історія</div>
+            </div>
+          </div>
+          <ul class="elig-list">
+            <li>Шукаєте «чергове навчання», щоб лежало в полиці поряд із десятьма іншими</li>
+            <li>Хочете «спробувати, бо зараз доступно» — без серйозного наміру дійти до результату</li>
+            <li>Вважаєте, що пасивний дохід = «нічого не робити»</li>
+            <li>Не готові виділити 1–2 години на день у перші 60 днів</li>
+            <li>Шукаєте швидкий заробіток «за тиждень» або «без вкладень часу»</li>
+            <li>Любите кидати на пів дороги, як тільки стає «незручно»</li>
+          </ul>
+        </div>
+
+        <div class="elig-col elig-col--yes">
+          <div class="elig-col-head">
+            <span class="elig-col-icon">✓</span>
+            <div class="elig-col-titles">
+              <div class="elig-col-title">Якщо ви...</div>
+              <div class="elig-col-sub">— ласкаво просимо у потік</div>
+            </div>
+          </div>
+          <ul class="elig-list">
+            <li>Хочете побудувати <b>реальний пасивний дохід</b>, а не одноразовий заробіток</li>
+            <li>Готові вкласти час і голову у перші 60 днів, щоб портфоліо потім працювало роками</li>
+            <li>Розумієте, що актив на TurboSquid — це <b>цифровий капітал</b>, а не «робота на годинах»</li>
+            <li>Шукаєте чітку структуру, куратора і команду, а не «розкидані YouTube-відео»</li>
+            <li>Маєте бажання повторити шлях <b>13 500+ випускників</b>, а не вигадувати свій з нуля</li>
+            <li>Готові один раз зробити, щоб потім дашборд приносив гроші сам</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="inline-cta inline-cta--center">
+        <button class="inline-cta-btn" onclick="openLeadModal('eligibility')">Я у правому стовпці — Залишити заявку →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PATH 04 -->
+  <div class="path-divider">
+    <div class="path-marker">
+      <div class="path-num">04</div>
+      <div class="path-label">Етап 4<span class="path-label-strong">9 хвилин, які все пояснюють</span></div>
     </div>
   </div>
 
@@ -2984,137 +3106,6 @@
     </div>
   </section>
 
-  <!-- PATH 04 -->
-  <div class="path-divider">
-    <div class="path-marker">
-      <div class="path-num">04</div>
-      <div class="path-label">Етап 4<span class="path-label-strong">Реальний дашборд</span></div>
-    </div>
-  </div>
-
-  <!-- TURBOSQUID DASHBOARD -->
-  <section id="dashboard">
-    <div class="container">
-      <span class="pill pill--cyan section-tag">📊 Ваш ранок через пів року</span>
-      <h2 class="section-title">Як виглядає <span class="grad-cyan">ваш рахунок</span> на TurboSquid</h2>
-      <p class="section-sub">Прокидаєтесь — відкриваєте дашборд: поки ви спали, продалось 3 моделі, на рахунок впало $240. Це ваш актив. Він росте з кожним днем.</p>
-
-      <div class="dashboard">
-        <div class="dashboard-bar">
-          <div class="dashboard-dot dashboard-dot--r"></div>
-          <div class="dashboard-dot dashboard-dot--y"></div>
-          <div class="dashboard-dot dashboard-dot--g"></div>
-          <div class="dashboard-url">🔒 turbosquid.com/account/dashboard</div>
-        </div>
-        <div class="dashboard-body">
-          <div class="dashboard-header">
-            <div>
-              <div class="dashboard-stat-label">My Earnings</div>
-              <div class="dashboard-title">Дашборд продавця</div>
-            </div>
-            <div class="pill pill--gold"><span class="pill-dot"></span>READY FOR PAYOUT</div>
-          </div>
-
-          <div class="dashboard-stat-row">
-            <div class="dashboard-stat">
-              <div class="dashboard-stat-label">Total · 5 міс</div>
-              <div class="dashboard-stat-num">$35,402</div>
-              <div class="dashboard-stat-delta">↗ +28% MoM</div>
-            </div>
-            <div class="dashboard-stat">
-              <div class="dashboard-stat-label">Models sold</div>
-              <div class="dashboard-stat-num">271</div>
-              <div class="dashboard-stat-delta">↗ +12 цього тижня</div>
-            </div>
-            <div class="dashboard-stat">
-              <div class="dashboard-stat-label">Avg per sale</div>
-              <div class="dashboard-stat-num">$131</div>
-              <div class="dashboard-stat-delta">↗ Top quartile</div>
-            </div>
-            <div class="dashboard-stat">
-              <div class="dashboard-stat-label">Models live</div>
-              <div class="dashboard-stat-num">87</div>
-              <div class="dashboard-stat-delta">↗ +4 in review</div>
-            </div>
-          </div>
-
-          <div class="dashboard-chart">
-            <svg class="chart-svg" viewBox="0 0 600 160" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#FF6B35" stop-opacity="0.4"/>
-                  <stop offset="100%" stop-color="#FF6B35" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <path d="M0,130 L60,118 L120,108 L180,90 L240,82 L300,68 L360,55 L420,42 L480,30 L540,22 L600,12 L600,160 L0,160 Z" fill="url(#chartGrad)"/>
-              <path d="M0,130 L60,118 L120,108 L180,90 L240,82 L300,68 L360,55 L420,42 L480,30 L540,22 L600,12" fill="none" stroke="#FF6B35" stroke-width="2"/>
-              <circle cx="120" cy="108" r="3" fill="#FF6B35"/>
-              <circle cx="240" cy="82" r="3" fill="#FF6B35"/>
-              <circle cx="360" cy="55" r="3" fill="#FF6B35"/>
-              <circle cx="480" cy="30" r="3" fill="#FF6B35"/>
-              <circle cx="600" cy="12" r="4" fill="#FF6B35"/>
-            </svg>
-          </div>
-
-          <div class="dashboard-table">
-            <div class="dashboard-table-row">
-              <div class="dashboard-table-icon">
-                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M8 32 L8 56 L56 56 L56 32"/><path d="M14 32 L14 20 Q14 14 20 14 L44 14 Q50 14 50 20 L50 32"/></svg>
-              </div>
-              <div class="dashboard-table-name">Kitchen Set <small>SKU 38291 · 3ds Max</small></div>
-              <div class="dashboard-table-price">$599</div>
-              <div class="dashboard-table-sold">× 12</div>
-              <div class="dashboard-table-total">$7,188</div>
-            </div>
-            <div class="dashboard-table-row">
-              <div class="dashboard-table-icon">
-                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 32 Q6 24 14 24 L50 24 Q58 24 58 32 L58 44 L6 44 Z"/></svg>
-              </div>
-              <div class="dashboard-table-name">Sofa Collection <small>SKU 38445 · Corona</small></div>
-              <div class="dashboard-table-price">$299</div>
-              <div class="dashboard-table-sold">× 25</div>
-              <div class="dashboard-table-total">$7,475</div>
-            </div>
-            <div class="dashboard-table-row">
-              <div class="dashboard-table-icon">
-                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M24 14 L24 20 Q24 26 28 30 Q24 36 24 44 Q24 52 32 52 Q40 52 40 44 Q40 36 36 30 Q40 26 40 20 L40 14"/></svg>
-              </div>
-              <div class="dashboard-table-name">Ceramic Vases (12 pcs) <small>SKU 38502 · FBX</small></div>
-              <div class="dashboard-table-price">$45</div>
-              <div class="dashboard-table-sold">× 88</div>
-              <div class="dashboard-table-total">$3,960</div>
-            </div>
-            <div class="dashboard-table-row">
-              <div class="dashboard-table-icon">
-                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6 L44 6 L40 24 L24 24 Z"/><path d="M32 24 L32 52"/></svg>
-              </div>
-              <div class="dashboard-table-name">Floor Lamp Pack <small>SKU 38678 · V-Ray</small></div>
-              <div class="dashboard-table-price">$89</div>
-              <div class="dashboard-table-sold">× 41</div>
-              <div class="dashboard-table-total">$3,649</div>
-            </div>
-            <div class="dashboard-table-row">
-              <div class="dashboard-table-icon">
-                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M4 18 L60 18 L54 24 L10 24 Z"/></svg>
-              </div>
-              <div class="dashboard-table-name">Coffee Table Modern <small>SKU 38712</small></div>
-              <div class="dashboard-table-price">$199</div>
-              <div class="dashboard-table-sold">× 13</div>
-              <div class="dashboard-table-total">$2,587</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="inline-cta">
-        <div class="inline-cta-text">
-          <b>Хочете прокидатись з таким дашбордом?</b> Перший крок — заявка. Куратор передзвонить і покаже, скільки часу займе у вас.
-        </div>
-        <button class="inline-cta-btn" onclick="openLeadModal('cta')">Подати заявку →</button>
-      </div>
-    </div>
-  </section>
-
   <!-- PATH 05 -->
   <div class="path-divider">
     <div class="path-marker">
@@ -3144,7 +3135,7 @@
         <div class="value-row"><span>Перевірка моделей перед публікацією</span><span>$100</span></div>
         <div class="value-row"><span>Закритий чат PRO-потоку</span><span>$60</span></div>
         <div class="value-total"><span>Загальна цінність</span><span>$1710</span></div>
-        <div class="value-yours"><span>Ваша ціна</span><span>$200</span></div>
+        <div class="value-promo">Але тільки сьогодні ви можете отримати <b>спеціальні умови</b> та потрапити на навчання — деталі нижче.</div>
         <button class="value-discount" onclick="openLeadModal('cta')">
           <span class="value-discount-lock">🔒</span>
           ЗАФІКСУВАТИ <span class="value-discount-pct">ЗНИЖКУ 88%</span> ЗА СОБОЮ →
