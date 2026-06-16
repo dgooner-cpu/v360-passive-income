@@ -1038,6 +1038,116 @@
     }
     .cert-modal-link:hover { opacity: 1; }
 
+    /* ─── LEAD MODAL (Подати заявку popup) ─── */
+    .lead-modal {
+      position: fixed; inset: 0;
+      background: rgba(15, 8, 4, 0.7);
+      backdrop-filter: blur(8px);
+      display: none; align-items: center; justify-content: center;
+      z-index: 10000; padding: 24px;
+      animation: leadFade .25s ease;
+    }
+    .lead-modal.active { display: flex; }
+    @keyframes leadFade { from { opacity: 0; } to { opacity: 1; } }
+    .lead-modal-card {
+      position: relative;
+      width: 100%; max-width: 440px;
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFF8F3 100%);
+      border-radius: 28px;
+      padding: 36px 32px 30px;
+      box-shadow: 0 40px 100px rgba(0,0,0,.35);
+      animation: leadPop .35s cubic-bezier(.16,1,.3,1);
+    }
+    @keyframes leadPop { from { opacity: 0; transform: translateY(20px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .lead-modal-close {
+      position: absolute; top: 14px; right: 14px;
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(0,0,0,.05); border: none;
+      cursor: pointer; font-size: 16px; color: #444;
+      transition: background .2s;
+    }
+    .lead-modal-close:hover { background: rgba(0,0,0,.1); }
+    .lead-modal-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 800; letter-spacing: 1.2px;
+      color: #A87918; background: #FFF1D9;
+      padding: 5px 12px; border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    .lead-modal-pill::before { content: ''; width: 6px; height: 6px; background: var(--orange); border-radius: 50%; }
+    .lead-modal-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 26px; font-weight: 800; color: #0a0a0a;
+      line-height: 1.15; margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+    .lead-modal-sub {
+      font-size: 14px; color: #5C5345; line-height: 1.5;
+      margin-bottom: 22px;
+    }
+    .lead-modal-form { display: flex; flex-direction: column; gap: 10px; }
+    .lead-modal-form input {
+      width: 100%; padding: 15px 18px;
+      background: #FFFFFF;
+      border: 1.5px solid #ECE6DA;
+      border-radius: 14px;
+      font-size: 15px; font-family: inherit; color: #0a0a0a;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .lead-modal-form input::placeholder { color: #9A9285; }
+    .lead-modal-form input:focus {
+      outline: none;
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(255,107,53,.12);
+    }
+    .lead-modal-submit {
+      margin-top: 6px;
+      padding: 16px 22px;
+      background: linear-gradient(135deg, var(--orange), var(--orange-deep));
+      color: #fff; font-weight: 800; font-size: 15px;
+      border: none; border-radius: 14px;
+      cursor: pointer; letter-spacing: 0.3px;
+      box-shadow: 0 12px 28px rgba(255,107,53,.30);
+      transition: transform .15s, box-shadow .2s;
+      font-family: inherit;
+    }
+    .lead-modal-submit:hover { transform: translateY(-2px); box-shadow: 0 18px 36px rgba(255,107,53,.40); }
+    .lead-modal-submit:active { transform: translateY(0); }
+    .lead-modal-legal {
+      font-size: 11px; color: #9A9285;
+      text-align: center; margin-top: 14px;
+      line-height: 1.4;
+    }
+    .lead-modal-success {
+      text-align: center; padding: 10px 0;
+    }
+    .lead-modal-success-ico {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: linear-gradient(135deg, #5BA85B, #3B6D11);
+      color: #fff; font-size: 30px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 18px;
+      box-shadow: 0 16px 32px rgba(91,168,91,.35);
+    }
+    .lead-modal-success-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px; font-weight: 800; color: #0a0a0a;
+      margin-bottom: 10px;
+    }
+    .lead-modal-success-text {
+      font-size: 14px; color: #5C5345; line-height: 1.5;
+      margin-bottom: 22px;
+    }
+    .lead-modal-success-text b { color: var(--orange); font-weight: 700; }
+    .lead-modal-success-btn {
+      width: 100%; padding: 14px 22px;
+      background: #1A1A1A; color: #fff;
+      border: none; border-radius: 14px;
+      font-size: 14px; font-weight: 700;
+      cursor: pointer; font-family: inherit;
+    }
+    .lead-modal-success-btn:hover { background: #333; }
+
     /* ─── SECTIONS ─── */
     section { padding: 80px 0; position: relative; }
     .section-tag { margin-bottom: 18px; }
@@ -2347,7 +2457,7 @@
           </p>
 
           <div class="hero-actions">
-            <a href="#quizCard" class="btn">Подати заявку на навчання →</a>
+            <button type="button" class="btn" onclick="openLeadModal('hero')">Подати заявку на навчання →</button>
             <button class="btn btn--outline" onclick="openMainModal()">▶ Як це працює (3 хв)</button>
           </div>
 
@@ -2493,6 +2603,30 @@
     <a id="certModalLink" class="cert-modal-link" href="#" target="_blank" style="display:none">Завантажити PDF →</a>
   </div>
 
+  <!-- LEAD MODAL (Подати заявку) -->
+  <div id="leadModal" class="lead-modal" onclick="closeLeadModal(event)">
+    <div class="lead-modal-card" onclick="event.stopPropagation()">
+      <button type="button" class="lead-modal-close" onclick="closeLeadModal()" aria-label="Закрити">✕</button>
+      <div id="leadModalForm">
+        <span class="lead-modal-pill">Заявка на навчання</span>
+        <h3 class="lead-modal-title">Залиште контакти —<br>куратор зателефонує</h3>
+        <p class="lead-modal-sub">Передзвонимо протягом <b style="color:var(--orange);font-weight:700">24 годин</b> і чесно скажемо, чи підходить вам це навчання. Без тиску.</p>
+        <form class="lead-modal-form" onsubmit="submitLead(event)">
+          <input type="text" name="name" id="leadName" placeholder="Ваше ім'я" required autocomplete="name">
+          <input type="tel" name="phone" id="leadPhone" placeholder="Номер телефону" required autocomplete="tel">
+          <button type="submit" class="lead-modal-submit">Надіслати заявку →</button>
+        </form>
+        <p class="lead-modal-legal">Натискаючи кнопку, ви погоджуєтесь з обробкою персональних даних згідно з політикою конфіденційності Visual360.</p>
+      </div>
+      <div id="leadModalSuccess" class="lead-modal-success" style="display:none">
+        <div class="lead-modal-success-ico">✓</div>
+        <div class="lead-modal-success-title">Заявку прийнято</div>
+        <p class="lead-modal-success-text">Куратор Visual360 зателефонує вам протягом <b>24 годин</b>. Тримайте телефон поряд.</p>
+        <button type="button" class="lead-modal-success-btn" onclick="closeLeadModal()">Закрити</button>
+      </div>
+    </div>
+  </div>
+
   <!-- PATH 01 -->
   <div class="path-divider path-divider--start">
     <div class="path-marker">
@@ -2507,53 +2641,6 @@
       <span class="pill pill--gold section-tag"><span class="pill-dot"></span>Реальні випускники</span>
       <h2 class="section-title">Це <span class="grad-gold">не маркетинг.</span><br>Це їхні дашборди.</h2>
       <p class="section-sub">Реальні люди, реальні цифри, реальний шлях. Без прикрас і відфотошоплених скрінів.</p>
-
-      <div class="cases-grid">
-        <div class="case-card">
-          <div class="case-card-header">
-            <div class="case-avatar case-avatar--1">О</div>
-            <div>
-              <div class="case-info-name">Олеся, 34</div>
-              <div class="case-info-meta">Київ · мама в декреті</div>
-            </div>
-          </div>
-          <p class="case-text">«Перший продаж — на 11 тижні. $40 за модель кави. Подумала: і це все? А потім пішло — $180/міс через 6 місяців просто від того, що моделі лежать.»</p>
-          <div class="case-result">
-            <span class="case-result-num">$180/міс</span>
-            <span class="case-result-lbl">Через 6 місяців<br>пасивно</span>
-          </div>
-        </div>
-
-        <div class="case-card">
-          <div class="case-card-header">
-            <div class="case-avatar case-avatar--2">Д</div>
-            <div>
-              <div class="case-info-name">Дмитро, 27</div>
-              <div class="case-info-meta">Варшава · колишній логіст</div>
-            </div>
-          </div>
-          <p class="case-text">«Створив 18 моделей за 4 місяці. 8 проданих. $560 на руки. Не швидко — але без офісу, без боса. І це лише початок. Думаю на роки вперед.»</p>
-          <div class="case-result">
-            <span class="case-result-num">$560</span>
-            <span class="case-result-lbl">За 4 місяці<br>8 продажів</span>
-          </div>
-        </div>
-
-        <div class="case-card">
-          <div class="case-card-header">
-            <div class="case-avatar case-avatar--3">С</div>
-            <div>
-              <div class="case-info-name">Станіслав, 31</div>
-              <div class="case-info-meta">Львів · 1,5 року в студії</div>
-            </div>
-          </div>
-          <p class="case-text">«Лютий — $5 870. З них $1 670 — стоки, пасив. Решта — замовлення. Стоки тепер працюють самі, я фокусуюсь на масштабуванні.»</p>
-          <div class="case-result">
-            <span class="case-result-num">$5 870</span>
-            <span class="case-result-lbl">За місяць<br>пасив + замовлення</span>
-          </div>
-        </div>
-      </div>
 
       <div class="cases-phones">
         <img src="cases/phone-mockup.png" alt="Кейс 1">
@@ -2572,7 +2659,7 @@
         <div class="inline-cta-text">
           <b>Хочете свій кейс у цій таблиці?</b> Подайте заявку — куратор передзвонить за 24 години і скаже чесно, чи підходите.
         </div>
-        <button class="inline-cta-btn" onclick="scrollToId('quizCard')">Подати заявку →</button>
+        <button class="inline-cta-btn" onclick="openLeadModal('cta')">Подати заявку →</button>
       </div>
     </div>
   </section>
@@ -2626,7 +2713,7 @@
         <div class="inline-cta-text">
           <b>Хочете до Віктора у PRO-групу?</b> Він особисто веде потік перший місяць. Подайте заявку — зарезервуємо місце на час дзвінка.
         </div>
-        <button class="inline-cta-btn" onclick="scrollToId('quizCard')">Подати заявку →</button>
+        <button class="inline-cta-btn" onclick="openLeadModal('cta')">Подати заявку →</button>
       </div>
     </div>
   </section>
@@ -3014,7 +3101,7 @@
         <div class="inline-cta-text">
           <b>Хочете прокидатись з таким дашбордом?</b> Перший крок — заявка. Куратор передзвонить і покаже, скільки часу займе у вас.
         </div>
-        <button class="inline-cta-btn" onclick="scrollToId('quizCard')">Подати заявку →</button>
+        <button class="inline-cta-btn" onclick="openLeadModal('cta')">Подати заявку →</button>
       </div>
     </div>
   </section>
@@ -3049,7 +3136,7 @@
         <div class="value-row"><span>Закритий чат PRO-потоку</span><span>$60</span></div>
         <div class="value-total"><span>Загальна цінність</span><span>$1710</span></div>
         <div class="value-yours"><span>Ваша ціна</span><span>$200</span></div>
-        <button class="value-discount" onclick="scrollToId('quizCard')">
+        <button class="value-discount" onclick="openLeadModal('cta')">
           <span class="value-discount-lock">🔒</span>
           ЗАФІКСУВАТИ <span class="value-discount-pct">ЗНИЖКУ 88%</span> ЗА СОБОЮ →
         </button>
@@ -3099,7 +3186,7 @@
         <div class="inline-cta-text">
           <b>Подобається математика?</b> Залиште заявку — куратор підбере темп, який реально пройдете у вашому графіку.
         </div>
-        <button class="inline-cta-btn" onclick="scrollToId('quizCard')">Подати заявку →</button>
+        <button class="inline-cta-btn" onclick="openLeadModal('cta')">Подати заявку →</button>
       </div>
     </div>
   </section>
@@ -3177,7 +3264,7 @@
             <li>Autodesk-сертифікат</li>
             <li>50+ готових текстур</li>
           </ul>
-          <button class="btn btn--outline btn--block" onclick="scrollToId('quizCard')">Подати заявку →</button>
+          <button class="btn btn--outline btn--block" onclick="openLeadModal('cta')">Подати заявку →</button>
         </div>
 
         <div class="package package--featured">
@@ -3197,7 +3284,7 @@
             <li>Розбір моделі перед публікацією</li>
             <li>Закритий чат PRO</li>
           </ul>
-          <button class="btn btn--block" onclick="scrollToId('quizCard')">Подати заявку →</button>
+          <button class="btn btn--block" onclick="openLeadModal('cta')">Подати заявку →</button>
         </div>
       </div>
     </div>
@@ -3255,8 +3342,8 @@
       <p style="color:var(--gray-400); margin-bottom:20px">До закриття першого потоку</p>
 
       <div class="final-row">
-        <button class="btn" onclick="scrollToId('quizCard')">🔒 Подати заявку і зафіксувати знижку 88% →</button>
-        <button class="btn btn--outline" onclick="scrollToId('quizCard')">PRO — $200</button>
+        <button class="btn" onclick="openLeadModal('cta')">🔒 Подати заявку і зафіксувати знижку 88% →</button>
+        <button class="btn btn--outline" onclick="openLeadModal('cta')">PRO — $200</button>
       </div>
     </div>
   </section>
@@ -3474,6 +3561,30 @@
       document.getElementById('certModal').classList.remove('active');
       document.getElementById('certModalFrame').src = '';
       document.body.style.overflow = '';
+    }
+    function openLeadModal(source) {
+      document.getElementById('leadModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+      // Reset to form state (in case modal was previously submitted)
+      document.getElementById('leadModalForm').style.display = '';
+      document.getElementById('leadModalSuccess').style.display = 'none';
+      setTimeout(() => { try { document.getElementById('leadName').focus(); } catch (e) {} }, 200);
+      if (typeof fbq === 'function') fbq('trackCustom', 'LeadModalOpen', { source: source || 'unknown' });
+    }
+    function closeLeadModal(e) {
+      if (e && e.target.id !== 'leadModal' && !e.target.classList.contains('lead-modal-close') && !e.target.classList.contains('lead-modal-success-btn')) return;
+      document.getElementById('leadModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function submitLead(e) {
+      e.preventDefault();
+      const name = document.getElementById('leadName').value.trim();
+      const phone = document.getElementById('leadPhone').value.trim();
+      if (!name || !phone) return;
+      console.log('LEAD SUBMIT:', { name, phone });
+      if (typeof fbq === 'function') fbq('track', 'Lead', { name_present: true });
+      document.getElementById('leadModalForm').style.display = 'none';
+      document.getElementById('leadModalSuccess').style.display = 'block';
     }
     function closeWidget() {
       const w = document.getElementById('videoWidget');
