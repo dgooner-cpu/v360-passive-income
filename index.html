@@ -2263,6 +2263,117 @@
       justify-content: center; flex-wrap: wrap;
       margin-top: 28px;
     }
+    .final-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(28px, 4.2vw, 46px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      margin: 26px auto 8px;
+      max-width: 880px;
+      color: #1a1a1a;
+      position: relative;
+      text-align: center;
+    }
+    .final-sub {
+      font-size: clamp(16px, 1.6vw, 19px);
+      color: #6b6b6b;
+      font-weight: 500;
+      margin: 0 auto 32px;
+      max-width: 720px;
+      text-align: center;
+    }
+    .price-compare {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 22px;
+      max-width: 820px;
+      margin: 0 auto 36px;
+      background: linear-gradient(135deg, #FFF6EE 0%, #FFE5D9 100%);
+      border: 1.5px solid rgba(255,107,53,0.25);
+      border-radius: 22px;
+      padding: 26px 32px;
+      box-shadow: 0 18px 44px rgba(255,107,53,0.10);
+      position: relative;
+      z-index: 1;
+    }
+    .price-col { text-align: center; }
+    .price-col-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #8b8b8b;
+      margin-bottom: 10px;
+    }
+    .price-col-vals { display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap; }
+    .price-pkg {
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+      padding: 6px 14px;
+      background: #fff;
+      border: 1px solid rgba(255,107,53,0.2);
+      border-radius: 12px;
+      min-width: 88px;
+    }
+    .price-pkg-name {
+      font-size: 11px;
+      font-weight: 700;
+      color: #8b8b8b;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .price-pkg-amt {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--orange);
+      line-height: 1;
+    }
+    .price-arrow {
+      color: var(--orange);
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .price-arrow svg { width: 100%; height: 100%; display: block; }
+    .price-later-val {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(20px, 2.2vw, 26px);
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--orange), var(--orange-deep));
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.1;
+    }
+    .final-body {
+      max-width: 720px;
+      margin: 0 auto 14px;
+      text-align: center;
+      font-size: clamp(15px, 1.4vw, 17px);
+      color: #4a4a4a;
+      line-height: 1.65;
+      position: relative;
+      z-index: 1;
+    }
+    .final-body b { color: var(--orange); font-weight: 700; }
+    .final-countdown-label {
+      color: var(--gray-400);
+      margin: 4px auto 0;
+      text-align: center;
+      font-size: 14px;
+      letter-spacing: 0.3px;
+    }
+    @media (max-width: 768px) {
+      .price-compare {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 22px 18px;
+      }
+      .price-arrow { transform: rotate(90deg); margin: 0 auto; }
+      .price-col-vals { gap: 12px; }
+      .price-pkg { min-width: 78px; padding: 6px 12px; }
+      .price-pkg-amt { font-size: 20px; }
+    }
 
     /* ─── FAQ ─── */
     .faq-list { max-width: 800px; margin: 0 auto; }
@@ -3405,17 +3516,38 @@
   <section class="final">
     <div class="container">
       <span class="pill pill--gold"><span class="pill-dot"></span>Через 72 години зростання цін</span>
-      <h2 class="section-title" style="margin: 22px auto 18px; text-align:center">
-        Старт — $100 та PRO — $200 — це ціни <span class="grad-gold">тільки першого потоку</span>.<br>
-        Наступний потік навчання буде точно дорожче
-      </h2>
-      <p class="section-sub" style="margin: 0 auto 28px; text-align:center">
-        Ми вперше відкриваємо програму публічно. Перший потік — це завжди найдешевший доступ: ми робимо публічний кейс, ви заходите за ціною, яка ніколи не повториться.<br><br>
-        Якщо є хоч <b>1% сумніву</b> — залиште заявку, поговорите з менеджером, потім приймайте рішення.
+
+      <h2 class="final-title">Це ціни <span class="grad-gold">тільки першого потоку</span></h2>
+      <p class="final-sub">Наступний потік навчання буде точно дорожче</p>
+
+      <div class="price-compare">
+        <div class="price-col price-col--now">
+          <div class="price-col-label">Зараз · перший потік</div>
+          <div class="price-col-vals">
+            <span class="price-pkg"><span class="price-pkg-name">Старт</span><span class="price-pkg-amt">$100</span></span>
+            <span class="price-pkg"><span class="price-pkg-name">PRO</span><span class="price-pkg-amt">$200</span></span>
+          </div>
+        </div>
+        <div class="price-arrow" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16h20M20 8l8 8-8 8"/></svg>
+        </div>
+        <div class="price-col price-col--later">
+          <div class="price-col-label">Наступний потік</div>
+          <div class="price-col-vals">
+            <span class="price-later-val">точно дорожче</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="final-body">
+        Ми вперше відкриваємо програму публічно. Перший потік — це завжди найдешевший доступ: ми робимо публічний кейс, ви заходите за ціною, <b>яка ніколи не повториться</b>.
+      </p>
+      <p class="final-body">
+        Якщо є хоч <b>1% сумніву</b> — залиште заявку, поговоріть з менеджером, потім приймайте рішення.
       </p>
 
       <div class="countdown-big" id="bigCountdown">72:00:00</div>
-      <p style="color:var(--gray-400); margin-bottom:20px">До закриття першого потоку</p>
+      <p class="final-countdown-label">До закриття першого потоку</p>
 
       <div class="final-row">
         <button class="btn" onclick="openLeadModal('final')">🔒 Залишити заявку і зафіксувати за собою ціну →</button>
