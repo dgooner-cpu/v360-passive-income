@@ -2345,6 +2345,13 @@
       -webkit-text-fill-color: transparent;
       line-height: 1.1;
     }
+    .price-pkg--later {
+      background: linear-gradient(135deg, var(--orange), var(--orange-deep));
+      border-color: var(--orange-deep);
+      box-shadow: 0 8px 18px rgba(255,107,53,0.22);
+    }
+    .price-pkg--later .price-pkg-name { color: #FFE5D9; }
+    .price-pkg--later .price-pkg-amt { color: #fff; -webkit-text-fill-color: #fff; }
     .final-body {
       max-width: 720px;
       margin: 0 auto 14px;
@@ -3532,9 +3539,10 @@
           <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16h20M20 8l8 8-8 8"/></svg>
         </div>
         <div class="price-col price-col--later">
-          <div class="price-col-label">Наступний потік</div>
+          <div class="price-col-label">Через 72 години · в 3 рази дорожче</div>
           <div class="price-col-vals">
-            <span class="price-later-val">точно дорожче</span>
+            <span class="price-pkg price-pkg--later"><span class="price-pkg-name">Старт</span><span class="price-pkg-amt">$300</span></span>
+            <span class="price-pkg price-pkg--later"><span class="price-pkg-name">PRO</span><span class="price-pkg-amt">$600</span></span>
           </div>
         </div>
       </div>
