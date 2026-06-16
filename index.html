@@ -1461,6 +1461,26 @@
       line-height: 1.55;
       margin: 0;
     }
+    .speaker-video-triggers {
+      list-style: none; padding: 0; margin: 0;
+      display: flex; flex-direction: column; gap: 9px;
+    }
+    .speaker-video-triggers li {
+      position: relative;
+      padding-left: 26px;
+      font-size: 13.5px; color: #3a3530;
+      line-height: 1.45;
+    }
+    .speaker-video-triggers li::before {
+      content: '→';
+      position: absolute; left: 0; top: 0;
+      color: var(--orange);
+      font-weight: 800;
+      font-size: 15px;
+    }
+    .speaker-video-triggers li b {
+      color: #0a0a0a; font-weight: 700;
+    }
     .speaker-video-btn {
       align-self: flex-start;
       padding: 14px 24px;
@@ -2786,203 +2806,7 @@
   <div class="path-divider">
     <div class="path-marker">
       <div class="path-num">02</div>
-      <div class="path-label">Етап 2<span class="path-label-strong">Знайомство з провідником</span></div>
-    </div>
-  </div>
-
-  <!-- SPEAKER / VIKTOR -->
-  <section id="speakerSection">
-    <div class="container">
-      <span class="pill pill--cyan section-tag">Хто веде програму</span>
-      <h2 class="section-title">Знайомтесь — <span class="grad-cyan">Віктор</span></h2>
-      <p class="section-sub">Співзасновник Visual360. Особисто веде PRO-групу.</p>
-
-      <div class="speaker">
-        <div class="speaker-photo">
-          <img src="speaker/viktor.jpg" alt="Віктор — співзасновник Visual360" loading="lazy">
-          <div class="speaker-badge">🌴 Працює з Балі · Visual360</div>
-        </div>
-        <div class="speaker-content">
-          <h3 class="speaker-name">Віктор</h3>
-          <div class="speaker-role">Співзасновник Visual360</div>
-          <p class="speaker-bio">
-            15 років на ринку 3D-візуалізації. 9 років навчаємо. <b>Сертифікований партнер Autodesk в Україні.</b> Через нашу студію пройшло 13 500+ людей.
-            <br><br>
-            «Ми не продаємо доступ до відео. Ми доводимо до результату — інакше нам самим невигідно, бо ми хочемо зробити з цього потоку публічний кейс. Перший місяць я особисто з вами — крок за кроком до першої виставленої моделі.»
-          </p>
-          <div class="speaker-meta">
-            <div class="speaker-meta-item">
-              <div class="num">15</div>
-              <div class="lbl">Років на ринку</div>
-            </div>
-            <div class="speaker-meta-item">
-              <div class="num">13 500+</div>
-              <div class="lbl">Випускників</div>
-            </div>
-            <div class="speaker-meta-item">
-              <div class="num">9</div>
-              <div class="lbl">Років навчаємо</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="speaker-video">
-        <button type="button" class="speaker-video-cover" onclick="openLongVideo()" aria-label="Дивитись повне відео від Віктора">
-          <img src="speaker/viktor.jpg" alt="Віктор — Visual360" loading="lazy">
-          <span class="speaker-video-tag">📹 ПОВНЕ ВІДЕО</span>
-          <span class="speaker-video-time">9 ХВ</span>
-          <span class="speaker-video-play"></span>
-        </button>
-        <div class="speaker-video-body">
-          <span class="speaker-video-pill">Особисто від Віктора</span>
-          <h3 class="speaker-video-title">9 хвилин про навчання, ідею продукту та чому 3D-стоки — це актив 2026</h3>
-          <p class="speaker-video-text">
-            Тут вся історія: як ми прийшли до цього продукту, чому відкрили доступ публічно, що насправді стоїть за «цифровим капіталом» і чому ми робимо перший потік саме зараз.
-          </p>
-          <button type="button" class="speaker-video-btn" onclick="openLongVideo()">▶ Дивитись повне відео (9 хв)</button>
-        </div>
-      </div>
-
-      <div class="inline-cta">
-        <div class="inline-cta-text">
-          <b>Хочете до Віктора у PRO-групу?</b> Він особисто веде потік перший місяць. Подайте заявку — зарезервуємо місце на час дзвінка.
-        </div>
-        <button class="inline-cta-btn" onclick="openLeadModal('cta')">Подати заявку →</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- PATH 03 -->
-  <div class="path-divider">
-    <div class="path-marker">
-      <div class="path-num">03</div>
-      <div class="path-label">Етап 3<span class="path-label-strong">Подача заявки на навчання</span></div>
-    </div>
-  </div>
-
-  <!-- QUIZ -->
-  <section id="quiz">
-    <div class="container">
-      <div style="text-align:center; margin-bottom: 32px;">
-        <span class="pill pill--gold section-tag"><span class="pill-dot"></span>Заявки відкриті · 30 місць на потоці</span>
-        <h2 class="section-title" style="margin-left: auto; margin-right: auto;">
-          Подати <span class="grad-gold">заявку на навчання</span>
-        </h2>
-        <p class="section-sub" style="margin-left: auto; margin-right: auto;">
-          5 питань, 90 секунд. Кураторська комісія розглядає кожну анкету і передзвонює <b>протягом 24 годин</b>. Беремо тих, хто реально готовий працювати 2 місяці.
-        </p>
-      </div>
-
-      <div class="quiz-card" id="quizCard">
-        <div class="quiz-step" data-step="1">
-          <div class="quiz-progress"><div class="quiz-progress-bar" style="width:20%"></div></div>
-          <div class="quiz-step-num">Питання 1 / 5</div>
-          <h2 class="quiz-question">Яка ваша ситуація зараз?</h2>
-          <div class="quiz-options" data-q="1">
-            <button class="quiz-option" data-v="ua">Я в Україні і думаю про додатковий дохід</button>
-            <button class="quiz-option" data-v="diaspora">Я за кордоном (Польща, Німеччина, Чехія, інше)</button>
-            <button class="quiz-option" data-v="mama">Я в декреті або на паузі з кар'єри</button>
-            <button class="quiz-option" data-v="burned">Я працюю на нелюбимій роботі і вигорів(ла)</button>
-          </div>
-          <div class="quiz-actions">
-            <span></span>
-            <button class="quiz-next" disabled onclick="nextStep()">Далі →</button>
-          </div>
-        </div>
-
-        <div class="quiz-step" data-step="2" style="display:none">
-          <div class="quiz-progress"><div class="quiz-progress-bar" style="width:40%"></div></div>
-          <div class="quiz-step-num">Питання 2 / 5</div>
-          <h2 class="quiz-question">Що для вас найважливіше?</h2>
-          <div class="quiz-options" data-q="2">
-            <button class="quiz-option" data-v="freedom">Свобода — працювати з будь-якої точки світу</button>
-            <button class="quiz-option" data-v="money">Дохід, який не залежить від боса і ринку</button>
-            <button class="quiz-option" data-v="stability">Стабільність — щоб завтра не залишитись з нічим</button>
-            <button class="quiz-option" data-v="growth">Самореалізація — нова професія, яка мені цікава</button>
-          </div>
-          <div class="quiz-actions">
-            <button class="quiz-back" onclick="prevStep()">← Назад</button>
-            <button class="quiz-next" disabled onclick="nextStep()">Далі →</button>
-          </div>
-        </div>
-
-        <div class="quiz-step" data-step="3" style="display:none">
-          <div class="quiz-progress"><div class="quiz-progress-bar" style="width:60%"></div></div>
-          <div class="quiz-step-num">Питання 3 / 5</div>
-          <h2 class="quiz-question">Скільки часу можете виділяти на навчання?</h2>
-          <div class="quiz-options" data-q="3">
-            <button class="quiz-option" data-v="1h">1 година ввечері — у мене щільний графік</button>
-            <button class="quiz-option" data-v="2h">1-2 години щодня</button>
-            <button class="quiz-option" data-v="3h">2-3 години + вихідні</button>
-            <button class="quiz-option" data-v="full">Готовий зануритись повністю</button>
-          </div>
-          <div class="quiz-actions">
-            <button class="quiz-back" onclick="prevStep()">← Назад</button>
-            <button class="quiz-next" disabled onclick="nextStep()">Далі →</button>
-          </div>
-        </div>
-
-        <div class="quiz-step" data-step="4" style="display:none">
-          <div class="quiz-progress"><div class="quiz-progress-bar" style="width:80%"></div></div>
-          <div class="quiz-step-num">Питання 4 / 5</div>
-          <h2 class="quiz-question">Скажіть чесно:</h2>
-          <div class="quiz-options" data-q="4">
-            <button class="quiz-option" data-v="ready">Я готовий 2 місяці серйозно попотіти заради результату</button>
-            <button class="quiz-option" data-v="try">Я хочу спробувати, подивитись — і вирішити</button>
-            <button class="quiz-option danger" data-v="lazy">Я шукаю швидкі гроші без особливих зусиль</button>
-          </div>
-          <div class="quiz-actions">
-            <button class="quiz-back" onclick="prevStep()">← Назад</button>
-            <button class="quiz-next" disabled onclick="nextStep()">Далі →</button>
-          </div>
-        </div>
-
-        <div class="quiz-step" data-step="5" style="display:none">
-          <div class="quiz-progress"><div class="quiz-progress-bar" style="width:100%"></div></div>
-          <div class="quiz-step-num">Питання 5 / 5</div>
-          <h2 class="quiz-question">Готові інвестувати $100-200 у програму, яка окупається з 1-2 перших замовлень?</h2>
-          <div class="quiz-options" data-q="5">
-            <button class="quiz-option" data-v="yes">Так — це моя інвестиція в себе</button>
-            <button class="quiz-option" data-v="installment">Готовий, якщо є розстрочка</button>
-            <button class="quiz-option" data-v="info">Поки не впевнений — хочу більше інформації</button>
-          </div>
-          <div class="quiz-actions">
-            <button class="quiz-back" onclick="prevStep()">← Назад</button>
-            <button class="quiz-next" disabled onclick="nextStep()">Подати анкету →</button>
-          </div>
-        </div>
-
-        <div class="quiz-step" data-step="6" style="display:none">
-          <div class="quiz-progress"><div class="quiz-progress-bar" style="width:100%"></div></div>
-          <div class="quiz-step-num">Останній крок</div>
-          <h2 class="quiz-question">Контакти для куратора — щоб передзвонити за 24 години</h2>
-          <form class="quiz-form" onsubmit="submitQuiz(event)">
-            <input type="text" placeholder="Ваше ім'я" required id="userName">
-            <input type="tel" placeholder="Номер телефону" required id="userPhone">
-            <button type="submit" class="quiz-next" style="margin-top:12px">Надіслати заявку →</button>
-          </form>
-          <p style="font-size:12px; color:var(--gray-400); margin-top:14px; text-align:center;">Натискаючи кнопку, ви погоджуєтесь, що з вами зв'яжеться куратор Visual360</p>
-        </div>
-
-        <div class="quiz-step quiz-result" data-step="7" style="display:none">
-          <div class="result-status">✓ Заявку прийнято · куратор передзвонить за 24 години</div>
-          <h2 class="quiz-question" style="font-size:26px">Ваш профіль на основі анкети</h2>
-          <div class="result-profile" id="profileBox"></div>
-          <p style="color:var(--gray-200); margin-bottom:22px; font-size:15px">
-            Поки чекаєте на дзвінок — подивіться 3-хвилинне відео від Віктора про програму.
-          </p>
-          <button class="btn btn--block" onclick="openMainModal()">▶ Дивитись відео (3 хв)</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PATH 04 -->
-  <div class="path-divider">
-    <div class="path-marker">
-      <div class="path-num">04</div>
-      <div class="path-label">Етап 4<span class="path-label-strong">Ваше майбутнє портфоліо</span></div>
+      <div class="path-label">Етап 2<span class="path-label-strong">Ваше майбутнє портфоліо</span></div>
     </div>
   </div>
 
@@ -3110,11 +2934,11 @@
     </div>
   </section>
 
-  <!-- PATH 05 -->
+  <!-- PATH 03 -->
   <div class="path-divider">
     <div class="path-marker">
-      <div class="path-num">05</div>
-      <div class="path-label">Етап 5<span class="path-label-strong">Реальний дашборд</span></div>
+      <div class="path-num">03</div>
+      <div class="path-label">Етап 3<span class="path-label-strong">Реальний дашборд</span></div>
     </div>
   </div>
 
@@ -3241,11 +3065,11 @@
     </div>
   </section>
 
-  <!-- PATH 06 -->
+  <!-- PATH 04 -->
   <div class="path-divider">
     <div class="path-marker">
-      <div class="path-num">06</div>
-      <div class="path-label">Етап 6<span class="path-label-strong">Що в коробці</span></div>
+      <div class="path-num">04</div>
+      <div class="path-label">Етап 4<span class="path-label-strong">Що в коробці</span></div>
     </div>
   </div>
 
@@ -3280,11 +3104,11 @@
     </div>
   </section>
 
-  <!-- PATH 07 -->
+  <!-- PATH 05 -->
   <div class="path-divider">
     <div class="path-marker">
-      <div class="path-num">07</div>
-      <div class="path-label">Етап 7<span class="path-label-strong">Порахуй свій шлях</span></div>
+      <div class="path-num">05</div>
+      <div class="path-label">Етап 5<span class="path-label-strong">Порахуй свій шлях</span></div>
     </div>
   </div>
 
@@ -3325,6 +3149,14 @@
       </div>
     </div>
   </section>
+
+  <!-- PATH 06 -->
+  <div class="path-divider">
+    <div class="path-marker">
+      <div class="path-num">06</div>
+      <div class="path-label">Етап 6<span class="path-label-strong">5 страхів</span></div>
+    </div>
+  </div>
 
   <!-- OBJECTIONS -->
   <section>
@@ -3368,11 +3200,91 @@
     </div>
   </section>
 
+  <!-- PATH 07 -->
+  <div class="path-divider">
+    <div class="path-marker">
+      <div class="path-num">07</div>
+      <div class="path-label">Етап 7<span class="path-label-strong">Знімаємо ризик</span></div>
+    </div>
+  </div>
+
+  <!-- GUARANTEES -->
+  <section>
+    <div class="container">
+      <span class="pill pill--cyan section-tag">Ми знімаємо з вас ризик</span>
+      <h2 class="section-title">Договір. <span class="grad-cyan">Розстрочка.</span> Гарантії.</h2>
+      <p class="section-sub">Договір підписуємо офіційно. Доступна оплата частинами через Монобанк, Приват або А-Банк.</p>
+
+      <div class="guarantees">
+        <div class="guarantee">
+          <div class="guarantee-num">14</div>
+          <div class="guarantee-title">днів повернення</div>
+          <div class="guarantee-text">Якщо за 14 днів зрозумієте, що це не ваше — повертаємо $100 або $200 без питань.</div>
+        </div>
+        <div class="guarantee">
+          <div class="guarantee-num">12</div>
+          <div class="guarantee-title">місяців доступу</div>
+          <div class="guarantee-text">Не встигаєте за 2 місяці? Маєте рік, щоб пройти програму у своєму темпі.</div>
+        </div>
+        <div class="guarantee">
+          <div class="guarantee-num" style="background:none;-webkit-text-fill-color:initial;font-size:46px;">🎯</div>
+          <div class="guarantee-title">до першого продажу — під ключ</div>
+          <div class="guarantee-text">Куратор веде вас від <b style="color:var(--orange);font-weight:700;">створення перших цифрових активів</b> до <b style="color:var(--orange);font-weight:700;">реальних продажів на TurboSquid</b>. Не закриваємо договір, поки на ваш рахунок не почнуть поступати виплати зі стоків.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- PATH 08 -->
   <div class="path-divider">
     <div class="path-marker">
       <div class="path-num">08</div>
-      <div class="path-label">Етап 8<span class="path-label-strong">Обери свій пакет</span></div>
+      <div class="path-label">Етап 8<span class="path-label-strong">Відео від Віктора</span></div>
+    </div>
+  </div>
+
+  <!-- SPEAKER VIDEO (simplified — Виктор video address with triggers) -->
+  <section id="speakerSection">
+    <div class="container">
+      <span class="pill pill--cyan section-tag">Звернення засновника</span>
+      <h2 class="section-title">Особисте відео<br>від <span class="grad-cyan">Віктора</span></h2>
+      <p class="section-sub">Засновник Visual360 — 9 хвилин про те, що насправді стоїть за «цифровим капіталом» і чому ми відкриваємо перший публічний потік саме зараз.</p>
+
+      <div class="speaker-video">
+        <button type="button" class="speaker-video-cover" onclick="openLongVideo()" aria-label="Дивитись повне відео від Віктора">
+          <img src="speaker/viktor.jpg" alt="Віктор — засновник Visual360" loading="lazy">
+          <span class="speaker-video-tag">📹 ПОВНЕ ВІДЕО</span>
+          <span class="speaker-video-time">9 ХВ</span>
+          <span class="speaker-video-play"></span>
+        </button>
+        <div class="speaker-video-body">
+          <span class="speaker-video-pill">Чому варто подивитись</span>
+          <h3 class="speaker-video-title">5 речей, які ви зрозумієте за 9 хвилин:</h3>
+          <ul class="speaker-video-triggers">
+            <li><b>Чому ми вперше</b> відкриваємо доступ публічно — а раніше навчали тільки своїх</li>
+            <li><b>Як 10 моделей</b> перетворюються на $5 000+/міс через рік (математика без магії)</li>
+            <li><b>Що насправді стоїть</b> за словом «цифровий капітал» і чим це відрізняється від «навчитись моделювати»</li>
+            <li><b>Чому AI не загроза</b> цій ніші — а інструмент, який ми вбудовуємо в програму</li>
+            <li><b>Як виглядає ваш ранок</b> через 6 місяців, коли дашборд починає приносити гроші сам</li>
+          </ul>
+          <button type="button" class="speaker-video-btn" onclick="openLongVideo()">▶ Дивитись повне відео (9 хв)</button>
+        </div>
+      </div>
+
+      <div class="inline-cta">
+        <div class="inline-cta-text">
+          <b>Хочете до Віктора у PRO-групу?</b> Він особисто веде потік перший місяць. Подайте заявку — зарезервуємо місце на час дзвінка.
+        </div>
+        <button class="inline-cta-btn" onclick="openLeadModal('cta')">Подати заявку →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PATH 09 -->
+  <div class="path-divider">
+    <div class="path-marker">
+      <div class="path-num">09</div>
+      <div class="path-label">Етап 9<span class="path-label-strong">Обери свій пакет</span></div>
     </div>
   </div>
 
@@ -3420,33 +3332,6 @@
             <li>Закритий чат PRO</li>
           </ul>
           <button class="btn btn--block" onclick="openLeadModal('cta')">Подати заявку →</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GUARANTEES -->
-  <section>
-    <div class="container">
-      <span class="pill pill--cyan section-tag">Ми знімаємо з вас ризик</span>
-      <h2 class="section-title">Договір. <span class="grad-cyan">Розстрочка.</span> Гарантії.</h2>
-      <p class="section-sub">Договір підписуємо офіційно. Доступна оплата частинами через Монобанк, Приват або А-Банк.</p>
-
-      <div class="guarantees">
-        <div class="guarantee">
-          <div class="guarantee-num">14</div>
-          <div class="guarantee-title">днів повернення</div>
-          <div class="guarantee-text">Якщо за 14 днів зрозумієте, що це не ваше — повертаємо $100 або $200 без питань.</div>
-        </div>
-        <div class="guarantee">
-          <div class="guarantee-num">12</div>
-          <div class="guarantee-title">місяців доступу</div>
-          <div class="guarantee-text">Не встигаєте за 2 місяці? Маєте рік, щоб пройти програму у своєму темпі.</div>
-        </div>
-        <div class="guarantee">
-          <div class="guarantee-num" style="background:none;-webkit-text-fill-color:initial;font-size:46px;">🎯</div>
-          <div class="guarantee-title">до першого продажу — під ключ</div>
-          <div class="guarantee-text">Куратор веде вас від <b style="color:var(--orange);font-weight:700;">створення перших цифрових активів</b> до <b style="color:var(--orange);font-weight:700;">реальних продажів на TurboSquid</b>. Не закриваємо договір, поки на ваш рахунок не почнуть поступати виплати зі стоків.</div>
         </div>
       </div>
     </div>
