@@ -994,6 +994,14 @@
       color: #9aa1ad;
       letter-spacing: 0.3px;
     }
+    .zoom-hint {
+      display: none;
+      text-align: center;
+      margin: 18px auto 0;
+      font-size: 13px;
+      color: #6b7280;
+      letter-spacing: 0.2px;
+    }
     .cred-note {
       margin-top: 6px;
       font-size: 10.5px; line-height: 1.4;
@@ -1003,6 +1011,7 @@
     @media (max-width: 768px) {
       .creds-grid { grid-template-columns: 1fr; max-width: 420px; gap: 10px; }
       .creds-hint { font-size: 12px; }
+      .zoom-hint { display: block; }
     }
 
     /* Cert lightbox */
@@ -2898,12 +2907,14 @@
         <img src="cases/phone-maksym.png" alt="Кейс Максима — $425 / +183% за 2 місяці">
         <img src="cases/phone-mockup.png" alt="Кейс 3">
       </div>
+      <p class="zoom-hint">🤏 Збільшіть зображення жестом</p>
 
       <div class="group-result">
         <div class="group-result-title">Результати нашої групи з <b>22 людей</b> за останній місяць</div>
         <div class="group-result-dashboard">
           <img src="cases/group-dashboard.png" alt="Дашборд групи Visual360 — TurboSquid">
         </div>
+        <p class="zoom-hint">🤏 Збільшіть зображення жестом</p>
       </div>
 
       <div class="inline-cta">
