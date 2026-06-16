@@ -3662,14 +3662,8 @@
       }, 60000);
     }
 
-    /* ─── PERSISTENT COUNTDOWN ─── */
-    const COUNTDOWN_KEY = 'v360_countdown_start';
-    let startTs = +localStorage.getItem(COUNTDOWN_KEY);
-    if (!startTs) {
-      startTs = Date.now();
-      localStorage.setItem(COUNTDOWN_KEY, startTs);
-    }
-    const endTs = startTs + 72 * 3600 * 1000;
+    /* ─── COUNTDOWN to 2026-06-20 13:00 Europe/Kyiv (UTC+3) ─── */
+    const endTs = Date.UTC(2026, 5, 20, 10, 0, 0); // 13:00 Kyiv = 10:00 UTC
     function updateCountdown() {
       const left = Math.max(0, Math.floor((endTs - Date.now()) / 1000));
       const h = Math.floor(left / 3600);
