@@ -3816,8 +3816,8 @@
       if (!name || !phone) return;
       console.log('LEAD SUBMIT:', { name, phone });
       if (typeof fbq === 'function') fbq('track', 'Lead', { name_present: true });
-      document.getElementById('leadModalForm').style.display = 'none';
-      document.getElementById('leadModalSuccess').style.display = 'block';
+      // Small delay so Meta Pixel can fire before navigation
+      setTimeout(() => { window.location.href = '/thanks/'; }, 120);
     }
     function closeWidget() {
       const w = document.getElementById('videoWidget');
