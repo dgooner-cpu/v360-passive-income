@@ -1922,7 +1922,16 @@
     .inline-cta--center .inline-cta-btn { font-size: 16px; padding: 16px 28px; }
     @media (max-width: 768px) {
       .inline-cta { grid-template-columns: 1fr; text-align: center; gap: 14px; padding: 20px; }
-      .inline-cta-btn { justify-content: center; }
+      .inline-cta-btn {
+        justify-content: center;
+        white-space: normal;
+        line-height: 1.25;
+        max-width: 100%;
+        font-size: 14px;
+        padding: 14px 20px;
+      }
+      .inline-cta--center { padding: 22px 18px; }
+      .inline-cta--center .inline-cta-btn { font-size: 15px; padding: 14px 20px; }
     }
 
     /* ─── ELIGIBILITY (NOT FOR EVERYONE) ─── */
@@ -3037,7 +3046,7 @@
 
       <div class="inline-cta">
         <div class="inline-cta-text">
-          <b>Хочете бачити свій кейс у цьому дашборді?</b> Подайте заявку щоб дізнатись більш детальніше.
+          <b>Хочете бачити своє ім'я у цьому дашборді?</b> Подайте заявку щоб дізнатись більш детальніше.
         </div>
         <button class="inline-cta-btn" onclick="openLeadModal('cta')">Подати заявку →</button>
       </div>
@@ -3580,7 +3589,7 @@
         </div>
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">Чи можна платити частинами?</button>
-          <div class="faq-a">Так. Розстрочка від студії — від 2000 грн на місяць. Без банків, без кредитів, без переплат.</div>
+          <div class="faq-a">Так. Розстрочка від банків — Монобанк, Приват, А-Банк. Оформлюється за кілька хвилин на стороні банку.</div>
         </div>
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">Скільки реально часу займе вийти на перший дохід?</button>
