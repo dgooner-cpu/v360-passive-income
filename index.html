@@ -1996,6 +1996,34 @@
       font-size: 15px; line-height: 1.5; color: #1a1a1a; text-align: center;
     }
     .value-promo b { color: var(--orange); font-weight: 800; }
+    .value-promo--prices { padding: 22px 24px; }
+    .value-promo-lead { font-size: 17px; margin-bottom: 12px; }
+    .value-promo-lead b { font-size: 19px; }
+    .value-promo-pkgs {
+      font-size: 14px;
+      color: #4a4a4a;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    .value-promo-pkg {
+      display: inline-flex; align-items: center;
+      padding: 6px 14px;
+      background: #fff;
+      border: 1px solid rgba(255,107,53,0.25);
+      border-radius: 999px;
+      font-size: 14px;
+    }
+    .value-promo-pkg b { color: var(--orange); font-weight: 800; }
+    .value-promo-or {
+      font-size: 12px;
+      color: #8b8b8b;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
 
     /* ─── CALCULATOR ─── */
     .calc-wrap {
@@ -3313,8 +3341,16 @@
         <div class="value-row"><span>Щотижневі зідзвони (8 тижнів)</span><span>$240</span></div>
         <div class="value-row"><span>Перевірка моделей перед публікацією</span><span>$100</span></div>
         <div class="value-row"><span>Закритий чат PRO-потоку</span><span>$60</span></div>
-        <div class="value-total"><span>Загальна цінність</span><span>$1710</span></div>
-        <div class="value-promo">Але тільки сьогодні ви можете отримати <b>спеціальні умови</b> та потрапити на навчання — деталі нижче.</div>
+        <div class="value-total"><span>Звичайна ринкова ціна</span><span>$1710</span></div>
+        <div class="value-promo value-promo--prices">
+          <div class="value-promo-lead">Але <b>ваша ціна сьогодні — від $100</b>.</div>
+          <div class="value-promo-pkgs">
+            У нас два пакети:
+            <span class="value-promo-pkg"><b>СТАРТ — $100</b></span>
+            <span class="value-promo-or">або</span>
+            <span class="value-promo-pkg"><b>PRO — $200</b></span>
+          </div>
+        </div>
         <button class="value-discount" onclick="openLeadModal('cta')">
           <span class="value-discount-lock">🔒</span>
           ЗАФІКСУВАТИ <span class="value-discount-pct">ЗНИЖКУ 88%</span> ЗА СОБОЮ →
